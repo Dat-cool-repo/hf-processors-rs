@@ -12,6 +12,12 @@ one thread per core).
 
 ``backend="torchvision"`` (default) reproduces transformers v5's default ``XImageProcessor``
 classes; ``backend="pil"`` reproduces the ``XImageProcessorPil`` (v4 "slow") classes.
+
+Decompression bombs: paths and bytes are checked against a pixel limit (from the image
+header, before decoding) with Pillow's ``Image.MAX_IMAGE_PIXELS`` semantics: above
+``get_max_image_pixels()`` (default 89,478,485) a ``DecompressionBombWarning`` is issued, above
+twice the limit ``DecompressionBombError`` (a ``ValueError``) is raised. Change it with
+``set_max_image_pixels(n)``, or disable it with ``set_max_image_pixels(None)``.
 """
 
 from __future__ import annotations
@@ -22,7 +28,17 @@ from typing import Any, Optional, Sequence, Union
 
 import numpy as np
 
-from ._hf_processors_rs import PIL_JPEG, NativeProcessor, __version__, load_image_array
+from ._hf_processors_rs import (
+    DEFAULT_MAX_IMAGE_PIXELS,
+    PIL_JPEG,
+    DecompressionBombError,
+    DecompressionBombWarning,
+    NativeProcessor,
+    __version__,
+    get_max_image_pixels,
+    load_image_array,
+    set_max_image_pixels,
+)
 
 __all__ = [
     "AutoImageProcessor",
@@ -32,6 +48,11 @@ __all__ = [
     "Qwen2VLImageProcessor",
     "WhisperFeatureExtractor",
     "load_image_array",
+    "set_max_image_pixels",
+    "get_max_image_pixels",
+    "DEFAULT_MAX_IMAGE_PIXELS",
+    "DecompressionBombError",
+    "DecompressionBombWarning",
     "PIL_JPEG",
     "__version__",
 ]

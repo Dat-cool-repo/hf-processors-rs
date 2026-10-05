@@ -9,7 +9,7 @@ use hf_processors::{
     load_image,
 };
 use numpy::{PyArray1, PyArrayMethods, PyReadonlyArray1, PyReadonlyArrayDyn, PyUntypedArrayMethods};
-use pyo3::exceptions::{PyOSError, PyRuntimeError, PyTypeError, PyValueError};
+use pyo3::exceptions::{PyOSError, PyRuntimeError, PyRuntimeWarning, PyTypeError, PyValueError};
 use pyo3::prelude::*;
 use pyo3::types::{PyBytes, PyDict, PyList};
 use rayon::prelude::*;
@@ -17,13 +17,67 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 use std::sync::{Arc, Mutex, OnceLock};
 
+pyo3::create_exception!(
+    _hf_processors_rs,
+    DecompressionBombError,
+    PyValueError,
+    "The image (from its header) or an intermediate buffer exceeds twice the pixel limit."
+);
+pyo3::create_exception!(
+    _hf_processors_rs,
+    DecompressionBombWarning,
+    PyRuntimeWarning,
+    "The image exceeds the pixel limit (but not twice the limit)."
+);
+
 fn to_py_err(e: Error) -> PyErr {
     match e {
+        Error::DecompressionBomb(m) => DecompressionBombError::new_err(m),
         Error::Io(e) => PyOSError::new_err(e.to_string()),
         Error::Hub(m) => PyOSError::new_err(m),
         Error::UnsupportedProcessor(m) => PyValueError::new_err(format!("unsupported processor: {m}")),
         other => PyValueError::new_err(other.to_string()),
     }
+}
+
+/// Decompression-bomb warnings raised by the Rust core (possibly on rayon threads, without
+/// the GIL); re-issued as Python `DecompressionBombWarning`s once the call holds the GIL again.
+static PENDING_WARNINGS: Mutex<Vec<String>> = Mutex::new(Vec::new());
+
+fn queue_warning(msg: &str) {
+    PENDING_WARNINGS.lock().unwrap_or_else(|e| e.into_inner()).push(msg.to_string());
+}
+
+fn flush_warnings(py: Python<'_>) -> PyResult<()> {
+    let pending = std::mem::take(&mut *PENDING_WARNINGS.lock().unwrap_or_else(|e| e.into_inner()));
+    let category = py.get_type::<DecompressionBombWarning>();
+    for msg in pending {
+        let msg = std::ffi::CString::new(msg.replace('\0', " ")).expect("no NUL");
+        PyErr::warn(py, category.as_any(), &msg, 2)?;
+    }
+    Ok(())
+}
+
+/// Run `f` without the GIL, then raise any decompression-bomb warnings it produced (before its
+/// error, if any, like Pillow's open-time warning).
+fn detach_and_warn<T: Send>(py: Python<'_>, f: impl FnOnce() -> T + Send) -> PyResult<T> {
+    let out = py.detach(f);
+    flush_warnings(py)?;
+    Ok(out)
+}
+
+/// The pixel limit used when decoding paths and bytes (`None`: unlimited). Images above it
+/// decode with a `DecompressionBombWarning`; above twice the limit, decoding raises
+/// `DecompressionBombError` (Pillow's `Image.MAX_IMAGE_PIXELS` semantics). Process-wide.
+#[pyfunction]
+#[pyo3(signature = (limit))]
+fn set_max_image_pixels(limit: Option<u64>) {
+    hf_processors::set_max_image_pixels(limit);
+}
+
+#[pyfunction]
+fn get_max_image_pixels() -> Option<u64> {
+    hf_processors::max_image_pixels()
 }
 
 fn parse_backend(s: Option<&str>) -> PyResult<Backend> {
@@ -353,9 +407,10 @@ impl NativeProcessor {
         let mut keep = Vec::new();
         let inputs = extract_inputs(images, input_data_format, &mut keep)?;
         let p = p.clone();
-        let out = py
-            .detach(|| run_in_pool(num_threads, || load_all(inputs).and_then(|imgs| p.preprocess_batch(&imgs))))?
-            .map_err(to_py_err)?;
+        let out = detach_and_warn(py, || {
+            run_in_pool(num_threads, || load_all(inputs).and_then(|imgs| p.preprocess_batch(&imgs)))
+        })??
+        .map_err(to_py_err)?;
         drop(keep); // input borrows end only after the GIL-free section
         let shape = out.shape().to_vec();
         let (v, _) = out.into_raw_vec_and_offset();
@@ -377,9 +432,10 @@ impl NativeProcessor {
         let mut keep = Vec::new();
         let inputs = extract_inputs(images, input_data_format, &mut keep)?;
         let p = p.clone();
-        let out = py
-            .detach(|| run_in_pool(num_threads, || load_all(inputs).and_then(|imgs| p.preprocess_batch(&imgs))))?
-            .map_err(to_py_err)?;
+        let out = detach_and_warn(py, || {
+            run_in_pool(num_threads, || load_all(inputs).and_then(|imgs| p.preprocess_batch(&imgs)))
+        })??
+        .map_err(to_py_err)?;
         drop(keep);
         let pv_shape = out.pixel_values.shape().to_vec();
         let g_shape = out.image_grid_thw.shape().to_vec();
@@ -461,7 +517,7 @@ impl NativeProcessor {
 /// Decode an image file like `PIL.Image.open` (no EXIF rotation) into a uint8 HWC array.
 #[pyfunction]
 fn load_image_array<'py>(py: Python<'py>, path: PathBuf) -> PyResult<Bound<'py, PyAny>> {
-    let img = py.detach(|| load_image(&path)).map_err(to_py_err)?;
+    let img = detach_and_warn(py, || load_image(&path))?.map_err(to_py_err)?;
     let shape = [img.height, img.width, img.channels];
     vec_to_numpy(py, img.data, &shape)
 }
@@ -470,6 +526,12 @@ fn load_image_array<'py>(py: Python<'py>, path: PathBuf) -> PyResult<Bound<'py, 
 fn _hf_processors_rs(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<NativeProcessor>()?;
     m.add_function(wrap_pyfunction!(load_image_array, m)?)?;
+    m.add_function(wrap_pyfunction!(set_max_image_pixels, m)?)?;
+    m.add_function(wrap_pyfunction!(get_max_image_pixels, m)?)?;
+    m.add("DEFAULT_MAX_IMAGE_PIXELS", hf_processors::DEFAULT_MAX_IMAGE_PIXELS)?;
+    m.add("DecompressionBombError", m.py().get_type::<DecompressionBombError>())?;
+    m.add("DecompressionBombWarning", m.py().get_type::<DecompressionBombWarning>())?;
+    hf_processors::limits::set_warning_handler(Some(queue_warning));
     m.add("PIL_JPEG", cfg!(feature = "pil-jpeg"))?;
     m.add("__version__", env!("CARGO_PKG_VERSION"))?;
     Ok(())

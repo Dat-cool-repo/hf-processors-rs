@@ -14,6 +14,14 @@ fn js_err(e: impl std::fmt::Display) -> JsError {
     JsError::new(&e.to_string())
 }
 
+/// Pixel limit for `preprocessEncoded` (Pillow's `MAX_IMAGE_PIXELS` semantics; the default is
+/// 89,478,485): images above twice the limit are rejected from their header, before decoding.
+/// `undefined` / `null` disables the check.
+#[wasm_bindgen(js_name = setMaxImagePixels)]
+pub fn set_max_image_pixels(limit: Option<f64>) {
+    hf_processors::set_max_image_pixels(limit.map(|v| v.max(0.0) as u64));
+}
+
 /// A tensor returned to JavaScript: flat row-major `data` plus its `shape`.
 #[wasm_bindgen]
 pub struct Tensor {
