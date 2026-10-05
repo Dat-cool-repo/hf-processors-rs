@@ -36,3 +36,4 @@ scripts/env.local.sh
 .vscode/
 .DS_Store
 Thumbs.db
+pkg-node/
