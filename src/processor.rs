@@ -338,6 +338,12 @@ pub(crate) fn resize_with_backend(
         return Err(Error::Image(format!("resize target {h}x{w} is empty")));
     }
     crate::limits::check_alloc("resize target", &[h, w])?;
+    // Both resamplers run the horizontal pass first (Pillow's adaptive order only goes
+    // vertical-first when that is smaller), so the intermediate image is `in_h x out_w`: a
+    // tall, narrow input resized to a wide, short output needs far more memory than either.
+    if w != img.width && h != img.height {
+        crate::limits::check_alloc("resize intermediate (horizontal pass)", &[img.height, w])?;
+    }
     match backend {
         Backend::Pil => {
             if img.channels != 1 && img.channels != 3 {

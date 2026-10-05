@@ -145,6 +145,15 @@ fn absurd_config_sizes_fail_cleanly() {
             assert!(matches!(run(&p, &img), Err(Error::DecompressionBomb(_))), "{json}");
         }
     }
+    // Small input (4 x 60000) and output (3000 x 1), but the horizontal pass would produce a
+    // 3000 x 60000 intermediate image (found by fuzzing as a timeout).
+    let vit =
+        processor(r#"{"image_processor_type": "ViTImageProcessor", "size": {"height": 1, "width": 3000}}"#).unwrap();
+    match run(&vit, &image(4, 60000, 3)) {
+        Err(Error::DecompressionBomb(m)) => assert!(m.contains("intermediate"), "{m}"),
+        other => panic!("expected DecompressionBomb, got {other:?}"),
+    }
+    assert!(run(&vit, &image(4, 6000, 3)).is_ok());
     // Out-of-range Qwen patching parameters are config errors.
     for json in [
         r#"{"image_processor_type": "Qwen2VLImageProcessor", "patch_size": 100000}"#,

@@ -28,7 +28,8 @@ const MAX_OUT: u64 = 1 << 20;
 fuzz_target!(|inp: Input| {
     common::init();
     let (w, h, ow, oh) = (inp.w as u64, inp.h as u64, inp.out_w as u64, inp.out_h as u64);
-    if w == 0 || h == 0 || ow == 0 || oh == 0 || w * h > MAX_IN || ow * oh > MAX_OUT {
+    // The horizontal pass runs first: its output is h x ow (the library bounds it the same way).
+    if w == 0 || h == 0 || ow == 0 || oh == 0 || w * h > MAX_IN || ow * oh > MAX_OUT || ow * h > MAX_OUT {
         return;
     }
     let (w, h, ow, oh) = (w as usize, h as usize, ow as usize, oh as usize);
