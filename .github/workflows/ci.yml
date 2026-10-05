@@ -26,7 +26,7 @@ jobs:
       # bit-exact image processors (both transformers backends), Qwen2-VL, Whisper.
       - name: Test (pure Rust; JPEG within +-3 of Pillow)
         run: cargo test --release -- --nocapture
-      - name: Test (pil-jpeg: libjpeg-turbo decoder, Pillow-identical JPEG)
+      - name: "Test (pil-jpeg: libjpeg-turbo decoder, Pillow-identical JPEG)"
         run: cargo test --release --features pil-jpeg,rayon -- --nocapture
       - name: Minimal / optional feature builds
         run: |
