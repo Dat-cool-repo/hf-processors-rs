@@ -1,0 +1,63 @@
+[package]
+name = "hf-processors-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+arbitrary = { version = "1", features = ["derive"] }
+hf-processors = { path = "..", default-features = false, features = ["decode", "pil-jpeg"] }
+serde_json = "1"
+
+# A separate workspace: cargo fuzz needs nightly, the main workspace builds on stable.
+[workspace]
+members = ["."]
+
+[profile.release]
+debug = 1
+
+[[bin]]
+name = "config"
+path = "fuzz_targets/config.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "decode_pure"
+path = "fuzz_targets/decode_pure.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "decode_libjpeg"
+path = "fuzz_targets/decode_libjpeg.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "resize"
+path = "fuzz_targets/resize.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "smart_resize"
+path = "fuzz_targets/smart_resize.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "whisper"
+path = "fuzz_targets/whisper.rs"
+test = false
+doc = false
+bench = false
