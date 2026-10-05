@@ -9,7 +9,10 @@ audio preprocessors **bit-exactly**. It covers CLIP, ViT, SigLIP, ConvNeXt, BLIP
 Qwen2.5-VL / Qwen3-VL and Whisper, and has Python and WASM bindings.
 
 - **Exact.** It matches both transformers v5 backends (torchvision and PIL). Golden tests
-  against Python report a max abs diff of `0.0` on every image case.
+  against Python report a max abs diff of `0.0` on every image case (JPEG inputs need the
+  `pil-jpeg` decoder for that). On 200 real photos, CLIP and Qwen2-VL outputs are
+  byte-identical to transformers, and CLIP embeddings computed with candle agree with
+  transformers' to a cosine similarity of 0.99999999998 (see [Testing](#testing)).
 - **Drop-in.** It reads the same `preprocessor_config.json`, loads it from the Hub, a local
   directory or a file, and returns the same `pixel_values` / `image_grid_thw` /
   `input_features`.
@@ -46,7 +49,7 @@ existing crates.
 | `SiglipImageProcessor` | `google/siglip-base-patch16-224`, `google/siglip-so400m-patch14-384` | `pixel_values` |
 | `ConvNextImageProcessor` | `facebook/convnext-tiny-224` (`crop_pct` path), `facebook/convnext-base-384` (warp path) | `pixel_values` |
 | `BlipImageProcessor` | `Salesforce/blip-image-captioning-base` | `pixel_values` |
-| `Qwen2VLImageProcessor` | Qwen2-VL, Qwen2.5-VL, Qwen2.5-Omni, Qwen3-VL, Qwen3.5 | `pixel_values` (P, C·T·p²), `image_grid_thw` (N, 3) |
+| `Qwen2VLImageProcessor` | Qwen2-VL, Qwen2.5-VL, Qwen3-VL (golden-tested); other `model_type`s that use this class (Qwen2.5-Omni, Qwen3.5, ...) are mapped to it but not separately tested | `pixel_values` (P, C·T·p²), `image_grid_thw` (N, 3) |
 | `WhisperFeatureExtractor` | `openai/whisper-*` | `input_features` (N, 80, 3000), optional `attention_mask` |
 
 Every image processor supports both backends: `torchvision` (the v5 default, `XImageProcessor`)
@@ -72,15 +75,20 @@ hf-processors = { git = "https://github.com/Dat-cool-repo/hf-processors-rs", fea
 The library is imported as `hf_processors`. It needs a recent stable Rust toolchain (edition
 2024).
 
-**Python** (build from source; needs a Rust toolchain and Python 3.9 or newer):
+**Python** (build from source; needs a Rust toolchain, a C compiler for the bundled
+libjpeg-turbo, and Python 3.9 or newer):
 
 ```bash
 git clone https://github.com/Dat-cool-repo/hf-processors-rs
 cd hf-processors-rs/bindings/python
+python3 -m venv .venv && . .venv/bin/activate   # Windows: py -m venv .venv && .venv\Scripts\activate
 pip install maturin
 maturin build --release --out dist
-pip install dist/hf_processors_rs-*.whl      # abi3 wheel, import name: hf_processors_rs
+pip install dist/hf_processors_rs-*.whl         # abi3 wheel, import name: hf_processors_rs
+python -c "import hf_processors_rs as h; print(h.__version__, h.PIL_JPEG)"
 ```
+
+`pip install .` (from `bindings/python`) also works; it builds the same wheel.
 
 The `Wheels` GitHub workflow builds abi3 wheels for Linux (x86_64, aarch64), Windows x64 and
 macOS (x86_64, arm64) as CI artifacts.
@@ -160,6 +168,52 @@ Hub downloads use plain HTTPS and fetch only the config files (`preprocessor_con
 and `config.json` when needed). They honour `HF_TOKEN` and `HF_ENDPOINT`, and are cached in
 `~/.cache/hf-processors` (`HF_PROCESSORS_CACHE` overrides the location).
 
+## Decompression bombs and size limits
+
+Encoded images (paths and bytes, in Rust, Python and WASM) are checked against a pixel limit
+**from the image header, before anything is decoded**, with Pillow's `Image.MAX_IMAGE_PIXELS`
+semantics:
+
+| Image size | Behaviour |
+|---|---|
+| ≤ limit (default 89,478,485 pixels, Pillow's default) | decoded |
+| > limit, ≤ 2 × limit | decoded, with a warning (Python: `DecompressionBombWarning`; Rust: stderr, or your handler) |
+| > 2 × limit (178,956,970 pixels by default) | `DecompressionBombError` (Python, a `ValueError`) / `Error::DecompressionBomb` (Rust) |
+
+The same hard limit (2 × limit pixels) applies to every buffer the pipeline allocates: resize
+targets and the resampler's intermediate image (`input height × output width`), zero-padded
+center-crop canvases, Qwen2-VL patch buffers (pixels × temporal patch
+size) and Whisper padding and features. A config with an absurd `size`, `crop_size`,
+`min_pixels` or `max_length` therefore fails with an error instead of exhausting memory. A
+lower limit also caps those buffers, so keep it above your largest output (224 × 224 for CLIP,
+`max_pixels` for Qwen2-VL).
+
+```rust
+hf_processors::set_max_image_pixels(Some(50_000_000)); // or None to disable, like MAX_IMAGE_PIXELS = None
+hf_processors::limits::set_warning_handler(Some(|msg| log::warn!("{msg}"))); // default: one line on stderr
+```
+
+```python
+import warnings
+
+hpr.set_max_image_pixels(50_000_000)    # hpr.get_max_image_pixels(); None disables the checks
+with warnings.catch_warnings():
+    warnings.simplefilter("error", hpr.DecompressionBombWarning)   # treat > limit as an error too
+    proc("huge.jpg")
+```
+
+```js
+setMaxImagePixels(50_000_000); // WASM; null / undefined disables the checks
+```
+
+The limit is process-wide. NumPy arrays, PIL images and torch tensors are not checked (they
+are already decoded; PIL applies its own limit when it opens a file).
+
+Whisper extractor parameters are validated too (`feature_size` 1 to 1024, `n_fft` 1 to 16384,
+positive `hop_length` and `sampling_rate`, `chunk_length × sampling_rate` ≤ 2^28 samples), as
+are the Qwen2-VL patching parameters (`patch_size` ≤ 1024, `merge_size` and
+`temporal_patch_size` ≤ 64). Every released checkpoint is far inside these ranges.
+
 ## Backends and exactness
 
 The two backends reproduce two different implementations:
@@ -178,7 +232,7 @@ Measured against transformers 5.18.0, Pillow 12.3.0, torch 2.14.1 (CPU) and torc
 |---|---:|---|
 | Image processors, PNG inputs (8 configs × 2 backends, 15 images: L / LA / RGBA / P modes, 1×1 to 3000×2000, extreme aspect ratios) | 142 | **0.0** (bit-identical) |
 | JPEG input with `pil-jpeg` (or PIL input from Python) | 8 | **0.0** |
-| JPEG input with the default pure-Rust decoder | 8 | 0.016 to 0.052 (about 15% of uint8 values off by 1 to 3) |
+| JPEG input with the default pure-Rust decoder | 8 | 0.016 to 0.052 (8 to 10% of uint8 values off by 1 to 3) |
 | Resample overrides (bicubic is the configs' default): nearest, bilinear and lanczos on torchvision; nearest, box, hamming, lanczos and bilinear on PIL; up- and down-sampling | 48 | **0.0** |
 | 16-bit PNGs (I;16, RGB16, RGBA16, LA16) | 18 | **0.0** |
 | CMYK JPEG | 4 | **0.0** with `pil-jpeg`; ≤ 0.03 without |
@@ -209,6 +263,9 @@ Machine: Intel i9-13900H, WSL2 (shared machine, so expect ±15% noise). The tabl
 batch preprocessing of already-decoded images, timing only the processor call (median).
 "Typical" is 64 images of about 0.3 MP; "6MP" is 8 images at 3000×2000. The Rust output is
 bit-identical to the matching transformers backend. Run it with `bash scripts/bench.sh 1 4`.
+These numbers were measured on 2026-10-04 and have not been re-measured since the pre-release
+hardening (which adds a header check per decoded image and a few size checks per resize; the
+`pil-jpeg` decoder the benchmarks use is unchanged).
 
 **Rust core vs transformers, each called from its own language:**
 
@@ -261,6 +318,10 @@ Passing numpy arrays brings that batch down to 61 ms (1 thread) and 28 ms (4 thr
   the extractor's sampling rate.
 - **The default JPEG decoder is not Pillow's.** Enable `pil-jpeg` for identical pixels.
 - **EXIF orientation is not applied**, the same as `PIL.Image.open`.
+- **Arithmetic-coded JPEGs are rejected** (both decoders are built without arithmetic
+  decoding); Pillow decodes them. They are rare in practice.
+- **Image formats:** PNG and JPEG only (Pillow opens many more; pass those as PIL images or
+  arrays).
 - **Not covered yet:**
   - video inputs for Qwen2-VL (images only, `grid_t = 1`);
   - Pillow's upcoming adaptive pass order (`PassOrder::Adaptive` is implemented but not
@@ -280,15 +341,100 @@ const { data, width, height } = ctx.getImageData(0, 0, w, h);
 const out = p.preprocessRgba(data, width, height); // out.data: Float32Array, out.shape: [1, 3, 224, 224]
 ```
 
-**Status: experimental.** It builds for `wasm32-unknown-unknown` in CI without the `hub`,
-`rayon` and `pil-jpeg` features, so JPEG goes through the pure-Rust decoder. The
-`wasm-release` profile produces an 837 KB module (309 KB gzipped). It has not been run in a
-browser or in Node yet, and there is no npm package.
+**Status: experimental, tested in Node.js.** It builds without the `hub`, `rayon` and
+`pil-jpeg` features, so JPEG goes through the pure-Rust decoder (the same pixels as a native
+build without `pil-jpeg`, on every architecture). CI runs the module in Node.js on PNG and JPEG
+test images with five configs and both backends, plus Whisper, and requires every output to be
+byte-identical to the native build (`bindings/wasm/tests/node_check.mjs`). It has not been run
+in a browser yet, and there is no npm package. The `wasm-release` profile produces an 852 KB
+module (314 KB gzipped); `wasm-pack build` gives 855 KB (345 KB gzipped).
+
+Build it with [wasm-pack](https://github.com/wasm-bindgen/wasm-pack) (`cargo install wasm-pack`), from
+the repository root:
 
 ```bash
-cargo build --profile wasm-release --target wasm32-unknown-unknown -p hf-processors-wasm
-wasm-pack build bindings/wasm --target web   # JS glue
+rustup target add wasm32-unknown-unknown
+wasm-pack build bindings/wasm --target web       # browsers: bindings/wasm/pkg/
+wasm-pack build bindings/wasm --target nodejs --out-dir pkg-node   # Node.js
+
+# Run it in Node.js and compare with the native build:
+imgs="golden/images/coffee.png golden/images/photo_500x375.jpg"
+cargo run --release -p hf-processors-wasm --example native_reference -- /tmp/hfp-ref golden $imgs
+node bindings/wasm/tests/node_check.mjs bindings/wasm/pkg-node /tmp/hfp-ref golden $imgs
 ```
+
+`cargo build --profile wasm-release --target wasm32-unknown-unknown -p hf-processors-wasm`
+builds just the module (no JS glue), optimized for size.
+
+## Testing
+
+**Golden tests** (`tests/golden.rs`, `tests/golden_extra.rs`, and the same fixtures through the
+Python API in `bindings/python/tests`), against transformers 5.18.0 / Pillow 12.3.0 / torch
+2.14.1 (CPU) / torchvision 0.29.1:
+
+- 150 image cases (8 configs × 2 backends, 15 PNG and JPEG images) bit-exact, plus 14 cases
+  where transformers raises and so does Rust, and 4 known divergences (palette PNGs, see
+  [Known divergences](#known-divergences-and-limitations));
+- 74 more fixed-size cases (resample overrides, 16-bit PNGs, CMYK JPEG, palettes) bit-exact,
+  18 expected errors reproduced, 2 known divergences (CMYK without `do_convert_rgb`);
+- 92 Qwen2-VL / Qwen2.5-VL / Qwen3-VL cases bit-exact (`pixel_values`, `image_grid_thw`,
+  single images and batches), 8 expected errors;
+- 4 legacy alpha-compositing cases; Whisper: 3 default calls and 10 option combinations
+  (tolerances in the table above).
+
+CI runs the Rust tests on Linux x86_64, Windows x64 and macOS arm64, with and without
+`pil-jpeg`, and the Python tests on the same three; the Wheels workflow tests every wheel on
+Linux x86_64, Windows x64, macOS x86_64 and macOS arm64 with Python 3.9 and 3.13. Locally,
+`HF_PROCESSORS_FORCE_SCALAR=1` runs the same suite on the portable (non-AVX2) kernels. A
+`python-vs-transformers` CI job also compares live with the pinned transformers stack.
+
+**Real photos, end to end.** 200 photos from Wikimedia Commons (CC0 / public domain, from the
+curated "Quality images" category, 194 RGB and 6 grayscale JPEGs, camera originals up to 24 MP
+and 1280-px thumbnails; `scripts/real/fetch_photos.py`). Not committed.
+
+| Check | Result |
+|---|---|
+| CLIP ViT-B/32 `pixel_values`, hf-processors (`pil-jpeg`, torchvision backend) vs `CLIPProcessor` | 200 / 200 byte-identical |
+| CLIP image embeddings: [`examples/clip-candle`](examples/clip-candle) (candle, CPU) vs `CLIPModel.get_image_features` (torch, CPU) | max abs diff 1.7e-5 (values up to 8.5), cosine similarity ≥ 0.99999999998 |
+| The same torch model on our `pixel_values` vs on transformers' | identical embeddings |
+| CLIP `pixel_values`, both backends (`hf_processors_rs` vs `CLIPImageProcessor` / `CLIPImageProcessorPil`) | 200 / 200 identical, each backend |
+| Qwen2-VL-2B `pixel_values` + `image_grid_thw`, both backends (3,007,840 patches) | 200 / 200 identical, each backend |
+
+Reproduce with `scripts/real/get_clip.py`, `examples/clip-candle`, `scripts/real/compare_clip.py`
+and `scripts/real/compare_processors.py` (each file's docstring has the command).
+
+**Fuzzing** (`fuzz/`, cargo-fuzz / libFuzzer with AddressSanitizer). Six targets:
+`config` (arbitrary `preprocessor_config.json` text, or arbitrary field values including NaN /
+infinite / zero / negative mean, std and rescale factor, absurd sizes and missing fields, then
+every processor class on small images with both backends), `decode_pure` (PNG and the pure-Rust
+JPEG decoder), `decode_libjpeg` (libjpeg-turbo's C decoder, compiled with clang's
+AddressSanitizer and coverage instrumentation), `resize` (both resamplers, all filters,
+arbitrary sizes and channel counts, SIMD kernels checked against the portable ones on every
+input), `smart_resize` (extreme sizes, aspect ratios and pixel budgets, plus Qwen2-VL patching)
+and `whisper` (arbitrary f32 audio including NaN / inf / empty, call options and extractor
+parameters). Each target ran for 20 minutes with two workers (`-jobs=2 -rss_limit_mb=2048
+-timeout=10`, the `Fuzz (long)` workflow on GitHub's runners), about 4 CPU-hours and 1.7
+million executions in all, ending with no open crash. Fixed findings: Whisper with an odd
+`n_fft` panicked (frame-count mismatch); a resize from a tall, narrow image to a wide, short
+one allocated a huge intermediate image (timeouts, multi-GB allocations). The size limits and
+config validation above were added in the same pass, before the long runs. The minimized
+inputs are in `fuzz/regressions/`; CI replays them and fuzzes every target for 30 s on each run.
+
+**Robustness tests** (`tests/robustness.rs`, `bindings/python/tests/test_limits.py`): the
+fuzzing regressions, decompression-bomb thresholds, absurd configs, NaN / infinite / empty
+audio.
+
+**WASM:** the module runs in Node.js in CI and must match the native build byte for byte
+(see [WASM](#wasm)).
+
+**Packaging:** CI checks that every wheel and the sdist carry the license files, runs
+`twine check --strict`, and builds and tests the package from the sdist in a fresh venv. The
+Windows wheel from the Wheels workflow was also installed into a fresh Python 3.10 venv on a
+Windows 11 machine: 433 tests pass (8 skipped: the live transformers comparison).
+
+**Platforms:** Linux x86_64 (CI and local, WSL2), Windows x64 (CI and local), macOS x86_64 and
+arm64 (CI only; manual testing on Apple Silicon is pending), Linux aarch64 (wheel built in CI,
+not tested).
 
 ## Development
 
@@ -318,6 +464,19 @@ bash scripts/build_wheel.sh       # build the wheel and install it into that ven
 bash scripts/bench.sh 1 4         # Rust vs transformers benchmark
 bash scripts/hub_check.sh         # network: from_pretrained on Hub repos, Rust vs Python
 ```
+
+**Fuzzing** needs nightly Rust and `cargo install cargo-fuzz`. Targets: `config`,
+`decode_pure`, `decode_libjpeg`, `resize`, `smart_resize`, `whisper`.
+
+```bash
+python fuzz/make_seeds.py                                   # seed corpora (Pillow + numpy)
+bash fuzz/run.sh decode_pure 1200 -jobs=2 -workers=2        # 20 minutes, corpora in fuzz/corpus
+CLANG=$(command -v clang) bash fuzz/run.sh decode_libjpeg 1200 -jobs=2 -workers=2   # + ASan / coverage in libjpeg-turbo's C code
+```
+
+Crashes land in `fuzz/artifacts/<target>/`; once fixed, add the minimized input to
+`fuzz/regressions/<target>/` (CI replays them). The `Fuzz (long)` workflow runs every target
+for 20 minutes on GitHub's runners.
 
 **Regenerating the golden fixtures** requires the pinned stack: transformers 5.18.0, Pillow
 12.3.0, torch 2.14.1 (CPU), torchvision 0.29.1 and numpy 2.5.3.
@@ -351,13 +510,15 @@ src/
   image/kernels.rs     integer convolution kernels (AVX2 madd, scalar fallback)
   image/ops.rs         RGB conversion, crops, rescale + normalize
   image/buffer.rs      image buffer and Pillow-compatible decoding
+  limits.rs            decompression-bomb / buffer-size limit (MAX_IMAGE_PIXELS semantics)
   hub.rs               Hub config lookup, download and cache
-bindings/python/       PyO3 + maturin package `hf_processors_rs` and its tests
-bindings/wasm/         wasm-bindgen package
+bindings/python/       PyO3 + maturin package `hf_processors_rs`, its tests and license files
+bindings/wasm/         wasm-bindgen package, native reference + Node.js check
 golden/                fixture generators, Hub configs, test images, fixtures, manifests
-tests/                 Rust golden tests (golden.rs, golden_extra.rs)
-examples/              CLI and benchmark
-scripts/               helper scripts for Linux / WSL
+tests/                 Rust golden tests (golden.rs, golden_extra.rs), robustness.rs (fuzz regressions, limits)
+fuzz/                  cargo-fuzz targets, seed generator, committed regression inputs
+examples/              CLI, benchmark, clip-candle/ (CLIP embeddings with candle)
+scripts/               helper scripts for Linux / WSL; scripts/real/ (real-photo checks)
 docs/MOTIVATION.md     background and research
 ```
 
