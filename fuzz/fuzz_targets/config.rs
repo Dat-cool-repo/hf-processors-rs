@@ -125,7 +125,9 @@ fn exercise(p: Processor) {
         Processor::Whisper(fe) => {
             // Bounded by the harness: the mel projection is dense (frames * bins * mels).
             let clip: Vec<f32> = (0..4000).map(|i| (i as f32 * 0.01).sin()).collect();
-            let work = 4000 / fe.hop_length as u128 * (fe.n_fft as u128 / 2 + 1) * fe.feature_size as u128;
+            let n_fft = fe.n_fft as u128;
+            let per_frame = n_fft * (128 - n_fft.leading_zeros() as u128) * 4 + (n_fft / 2 + 1) * fe.feature_size as u128;
+            let work = (4000 / fe.hop_length as u128 + 1) * per_frame;
             if work <= 100_000_000 {
                 let opts = WhisperOptions { padding: hf_processors::Padding::Longest, ..Default::default() };
                 let _ = fe.call(&[&clip], &opts);

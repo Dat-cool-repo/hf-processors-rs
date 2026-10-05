@@ -70,12 +70,17 @@ fuzz_target!(|inp: Input| {
         dither_seed: inp.dither_seed,
     };
 
-    // Harness bound (not a library limit): the STFT + dense mel projection costs about
-    // frames * n_bins * n_mels; skip parameter sets that would take seconds per run.
+    // Harness bound (not a library limit): each STFT frame costs an n_fft-point FFT plus the dense
+    // mel projection (n_bins * n_mels); skip parameter sets that take seconds per run (with
+    // hop_length 1 and a long chunk that is millions of FFTs, legitimately slow).
     let longest = clips.iter().map(|c| c.len()).max().unwrap_or(0);
-    let padded = opts.max_length.filter(|&m| m > 0).unwrap_or(fe.n_samples).max(longest) as u128;
-    let work = padded / fe.hop_length as u128 * (fe.n_fft as u128 / 2 + 1) * fe.feature_size as u128;
-    if work > 300_000_000 {
+    let padded = opts.max_length.filter(|&m| m > 0).unwrap_or(fe.n_samples).max(longest) as u128
+        + opts.pad_to_multiple_of.unwrap_or(0) as u128; // upper bound of the rounding
+    let n_fft = fe.n_fft as u128;
+    let per_frame = n_fft * (128 - n_fft.leading_zeros() as u128) * 4 + (n_fft / 2 + 1) * fe.feature_size as u128;
+    let work = (padded / fe.hop_length as u128 + 1) * per_frame * n as u128;
+    // Requests above the pixel limit (2^21 samples here) fail fast in the library: keep those.
+    if work > 200_000_000 && padded * n as u128 <= 2 << 20 {
         return;
     }
 
