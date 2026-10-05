@@ -85,10 +85,7 @@ fn decompression_bomb_rejected_from_header() {
             Err(Error::DecompressionBomb(m)) => assert!(m.contains("400000000 pixels"), "{m}"),
             other => panic!("expected DecompressionBomb, got {other:?}"),
         }
-        assert!(matches!(
-            hf_processors::image::decode_image_pure_rust(&bytes),
-            Err(Error::DecompressionBomb(_))
-        ));
+        assert!(matches!(hf_processors::image::decode_image_pure_rust(&bytes), Err(Error::DecompressionBomb(_))));
     }
     // Below the hard limit the header passes and decoding fails normally.
     assert!(matches!(hf_processors::decode_image(&png_header_only(9000, 9000)), Err(Error::Image(_))));
@@ -160,14 +157,19 @@ fn absurd_config_sizes_fail_cleanly() {
 
 #[test]
 fn mean_std_lengths_are_validated() {
+    let _g = lock();
     let img = image(9, 7, 3);
-    for (mean, std) in [("[0.5, 0.5]", "[0.5, 0.5, 0.5]"), ("[]", "[0.5]"), ("[0.5]", "[]"), ("[0.1, 0.2, 0.3, 0.4]", "0.5")] {
-        let json = format!(r#"{{"image_processor_type": "CLIPImageProcessor", "image_mean": {mean}, "image_std": {std}}}"#);
+    for (mean, std) in
+        [("[0.5, 0.5]", "[0.5, 0.5, 0.5]"), ("[]", "[0.5]"), ("[0.5]", "[]"), ("[0.1, 0.2, 0.3, 0.4]", "0.5")]
+    {
+        let json =
+            format!(r#"{{"image_processor_type": "CLIPImageProcessor", "image_mean": {mean}, "image_std": {std}}}"#);
         let p = processor(&json).unwrap();
         assert!(run(&p, &img).is_err(), "{json}");
     }
     // Without normalization the values are not used (an empty mean used to panic).
-    let p = processor(r#"{"image_processor_type": "CLIPImageProcessor", "image_mean": [], "do_normalize": false}"#).unwrap();
+    let p = processor(r#"{"image_processor_type": "CLIPImageProcessor", "image_mean": [], "do_normalize": false}"#)
+        .unwrap();
     assert!(run(&p, &img).is_ok());
     // NaN / zero / negative statistics are not errors (transformers divides anyway).
     let mut cfg = PreprocessorConfig::from_json_str(r#"{"image_processor_type": "CLIPImageProcessor"}"#).unwrap();
@@ -179,6 +181,7 @@ fn mean_std_lengths_are_validated() {
 
 #[test]
 fn smart_resize_extremes() {
+    let _g = lock();
     // Python ints are unbounded; sizes that do not fit are errors, not overflows.
     assert!(smart_resize(usize::MAX, usize::MAX, 28, 3136, 12845056).is_err());
     assert!(smart_resize(1 << 40, 1 << 40, 28, 3136, 12845056).is_err());
@@ -244,7 +247,8 @@ fn hostile_inputs_never_panic() {
         assert!(hf_processors::image::decode_image_pure_rust(bytes).is_err());
     }
     // Zero-sized crops and resize targets.
-    let p = processor(r#"{"image_processor_type": "CLIPImageProcessor", "crop_size": {"height": 0, "width": 0}}"#).unwrap();
+    let p =
+        processor(r#"{"image_processor_type": "CLIPImageProcessor", "crop_size": {"height": 0, "width": 0}}"#).unwrap();
     assert!(run(&p, &image(10, 10, 3)).is_err());
     let p = processor(r#"{"image_processor_type": "CLIPImageProcessor", "size": {"shortest_edge": 0}}"#).unwrap();
     assert!(run(&p, &image(10, 10, 3)).is_err());

@@ -8,10 +8,10 @@ pub mod torch_resize;
 
 pub use buffer::ImageU8;
 #[cfg(feature = "decode")]
-pub use buffer::{decode_image, load_image};
-#[cfg(feature = "decode")]
 #[doc(hidden)]
 pub use buffer::decode_image_pure_rust;
+#[cfg(feature = "decode")]
+pub use buffer::{decode_image, load_image};
 /// Force the portable (non-SIMD) resize kernels, process-wide. Both are exact; used to fuzz
 /// one against the other.
 #[doc(hidden)]

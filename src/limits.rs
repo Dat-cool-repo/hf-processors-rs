@@ -117,7 +117,10 @@ mod tests {
         assert!(check_image_size_with(1, DEFAULT_MAX_IMAGE_PIXELS, l).unwrap().is_none());
         assert!(check_image_size_with(1, DEFAULT_MAX_IMAGE_PIXELS + 1, l).unwrap().is_some());
         assert!(check_image_size_with(1, 2 * DEFAULT_MAX_IMAGE_PIXELS, l).unwrap().is_some());
-        assert!(matches!(check_image_size_with(1, 2 * DEFAULT_MAX_IMAGE_PIXELS + 1, l), Err(Error::DecompressionBomb(_))));
+        assert!(matches!(
+            check_image_size_with(1, 2 * DEFAULT_MAX_IMAGE_PIXELS + 1, l),
+            Err(Error::DecompressionBomb(_))
+        ));
         assert!(check_image_size_with(u64::MAX, u64::MAX, None).unwrap().is_none());
         assert!(check_image_size_with(u64::MAX, u64::MAX, l).is_err());
     }
