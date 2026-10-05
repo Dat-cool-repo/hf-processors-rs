@@ -46,6 +46,12 @@ jobs:
       - run: cargo clippy --workspace --all-targets --features pil-jpeg,rayon -- -D warnings
       - name: clippy (default features, pure-Rust JPEG path)
         run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: License files shipped in the Python distributions are up to date
+        run: |
+          for f in LICENSE-MIT LICENSE-APACHE THIRD_PARTY_NOTICES.md; do
+            cmp "$f" "bindings/python/licenses/$f"
+          done
+          python3 scripts/rust_dep_licenses.py | diff -u bindings/python/licenses/rust-dependencies.txt -
 
   wasm:
     runs-on: ubuntu-latest
@@ -61,6 +67,41 @@ jobs:
         run: |
           cargo build --release --target wasm32-unknown-unknown --manifest-path bindings/wasm/Cargo.toml
           ls -la target/wasm32-unknown-unknown/release/*.wasm
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: wasm-pack
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+      - name: Run the wasm module in Node.js, bit-exact vs native
+        run: |
+          wasm-pack build bindings/wasm --target nodejs --out-dir pkg-node
+          imgs="golden/images/coffee.png golden/images/rgba_257x129.png golden/images/palette_200x120.png golden/images/gray16_160x120.png golden/images/photo_500x375.jpg golden/images/cmyk_200x150.jpg"
+          cargo run --release -p hf-processors-wasm --example native_reference -- "$RUNNER_TEMP/ref" golden $imgs
+          node bindings/wasm/tests/node_check.mjs bindings/wasm/pkg-node "$RUNNER_TEMP/ref" golden $imgs
+
+  fuzz:
+    # Replays the committed regression inputs and fuzzes each target briefly (the long runs are
+    # local; see fuzz/run.sh and the README's Testing section).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@nightly
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: fuzz
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-fuzz
+      - name: Build the fuzz targets
+        run: cd fuzz && cargo fuzz build
+      - name: Regressions + 30 s per target
+        run: |
+          for t in config decode_pure decode_libjpeg resize smart_resize whisper; do
+            echo "::group::$t"
+            bash fuzz/run.sh "$t" 30
+            echo "::endgroup::"
+          done
 
   python:
     name: Python bindings (${{ matrix.os }})
