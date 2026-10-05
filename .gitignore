@@ -1,0 +1,38 @@
+# Rust
+/target/
+target/
+**/*.rs.bk
+Cargo.lock.bak
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+env/
+.env
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+
+# Build outputs (wheels, extension modules, wasm packages)
+dist/
+*.whl
+*.so
+*.pyd
+*.dylib
+*.dll
+pkg/
+node_modules/
+
+# Machine-specific settings and data (keep large or regenerable data outside the repo)
+scripts/env.local.sh
+/data/
+*.tmp
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

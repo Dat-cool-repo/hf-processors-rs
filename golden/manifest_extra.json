@@ -1,0 +1,4965 @@
+{
+ "versions": {
+  "transformers": "5.18.0",
+  "pillow": "12.3.0",
+  "torch": "2.14.1+cpu",
+  "numpy": "2.5.3",
+  "torch_cpu_capability": "AVX2"
+ },
+ "extra_images": [
+  "gray16_160x120.png",
+  "rgb16_150x100.png",
+  "rgba16_150x100.png",
+  "la16_150x100.png",
+  "cmyk_200x150.jpg",
+  "extreme_402x2.png"
+ ],
+ "fixed": [
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "73d5c0ed0ea73584021f6c1735f77949b6767bf32cb8d03a0e2b865e8b10525e",
+   "sha256_u8": "c5c1adcfe6a69a80cc062d67542a6bf49167ef8c7a2f706c0fbe2fc2217b08cc",
+   "key": "photo_640x480_png",
+   "fixture": "extra_resample-nearest__torchvision.npz"
+  },
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "0e98c19240ad5114e31b909c44afb1d0e7dad39286e2dddd7bbba22813ff6c84",
+   "sha256_u8": "d4b8b5249bc47ecadbf497829ee9c3d8438846ff74c555e29ab99afd62a53c82",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_resample-nearest__torchvision.npz"
+  },
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "02a17ccc4019451e28c6f2dbfb4ab1ff0a6b2d25b865d7b0cd0c88a972c0dcd8",
+   "sha256_u8": "3954d6415296ad021ae191f8167a3ce6fd0cdd5b973bf54a2aca7303af473f6a",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_resample-nearest__torchvision.npz"
+  },
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "3c366e80c36d18726ca6db2d57b91fe3a32509af4c1d3150d89ec7d683f06506",
+   "sha256_u8": "92770d28a0d05ff26a473c11c7f2c02068cfacb06b38d6857ed4f120feb52858",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_resample-nearest__torchvision.npz"
+  },
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "a5475ccaa5af79c7c345242db026369cf8c3ac39657dc51cb74835e17c05dc3c",
+   "sha256_u8": "fdc0f60ccaea528716262b7618eedb17fcbef061cac53f6269c682d4048cfb09",
+   "key": "astronaut_png",
+   "fixture": "extra_resample-nearest__torchvision.npz"
+  },
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "81edbc36dd26338327197997c43255efbc66699f5a3eab8cc16e03f0759b4a59",
+   "sha256_u8": "43d01c1a7ed7d730c87a7c6e9d6a188f68844c55d9eab350f62f48bd755c03be",
+   "key": "gray_300x200_png",
+   "fixture": "extra_resample-nearest__torchvision.npz"
+  },
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "4f5bf1340e24a39df8390569ab8efe9ac4adbb1eb10e210a7992be4b9563a14b",
+   "sha256_u8": "d44778042ee58ca2b2f860d5d1def54d5bd09d57c971c5e7209c239e59d667c6",
+   "key": "photo_640x480_png",
+   "fixture": "extra_resample-nearest__pil.npz"
+  },
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "a4e53a7bfe01f55460a6004aea24f2f68013e5a9a8e836f9db2c64d3815ddc39",
+   "sha256_u8": "d4b8b5249bc47ecadbf497829ee9c3d8438846ff74c555e29ab99afd62a53c82",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_resample-nearest__pil.npz"
+  },
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "1f5287e6ab798a924a200f63480656c8cd72557a9ba78ff8b634c494fac02c15",
+   "sha256_u8": "3954d6415296ad021ae191f8167a3ce6fd0cdd5b973bf54a2aca7303af473f6a",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_resample-nearest__pil.npz"
+  },
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "f5e7b4cd7323dc2983840ef8ffdf278c5f36f4e24f559383678c6ac9bfda96d2",
+   "sha256_u8": "1bda209dfc748ff468fa0cb716f82d313ef5847bf0fa825f8dd8c24479613ffc",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_resample-nearest__pil.npz"
+  },
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "7218c28bfee451d5ec8c8623fccf85aa9d832a0daab1e567eccf7efc06c95b4b",
+   "sha256_u8": "418edece2bb53513f366b9905d675dd27ca70684ac6610555c6166d9b1e5f789",
+   "key": "astronaut_png",
+   "fixture": "extra_resample-nearest__pil.npz"
+  },
+  {
+   "suite": "resample-nearest",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 0
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "0f71b65912f67f7494fbdaa977797fdfd1f0bd3709be498dc504d09b8a84b016",
+   "sha256_u8": "43d01c1a7ed7d730c87a7c6e9d6a188f68844c55d9eab350f62f48bd755c03be",
+   "key": "gray_300x200_png",
+   "fixture": "extra_resample-nearest__pil.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "b5304e78472aac4cbfc8b4f674afa77063edd5b4d543b0f371ec92b0937bd303",
+   "sha256_u8": "63e95ad497946b57f4eb638e22d3a4f4a04cac66f01e334b972fb5bb85ece4f0",
+   "key": "photo_640x480_png",
+   "fixture": "extra_resample-lanczos__torchvision.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "d658e93e66505518ffaa3016afc6038d17369e701840db39dc4849a3b2cf4522",
+   "sha256_u8": "66e939c6f57cc6d2e407c8930e21713497789c9b3ccde13b10e1d95f090d20ea",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_resample-lanczos__torchvision.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "cc4217729534b756ece6155195cd78e21cbd547ca5583af128e2333a5172d2e5",
+   "sha256_u8": "eacd76aa91b7fa8edec5166bb35b87483a3215e35b7faf8f85f1d8b4d8555319",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_resample-lanczos__torchvision.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "eb65309df983fe0ccf75f9901cff5bca26a454e83f6e3460b0492b0f7969153e",
+   "sha256_u8": "03c34dc6e58fc2ff445a3bf4cc5f7b01a42b93beabd7cd179f0d153dd8e8c9e5",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_resample-lanczos__torchvision.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "5464d826345b275260ed5a471d90c4d0cce77f47ff9aacd2fa6cf5126437b714",
+   "sha256_u8": "0fbc65d338670e273c96394a1d27758d01da3a48d358045c72f8ae8cd6c6a68e",
+   "key": "astronaut_png",
+   "fixture": "extra_resample-lanczos__torchvision.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "0261bbd1d4f103e75501a7051c07402e90edeca40f986ec7bde935a55100c454",
+   "sha256_u8": "c8300b26bed8cc1b4581355ef64ea738f33422dbf5920ee618718e46b254691d",
+   "key": "gray_300x200_png",
+   "fixture": "extra_resample-lanczos__torchvision.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "7ff468a34b1121943bfc790743dd2d69aefd0817d53328dc19652a1be8f425ba",
+   "sha256_u8": "abc67d8e7c079f6a26724c6de6dbbd5b158ef35d50396bdf08171ed8a6e64fb0",
+   "key": "photo_640x480_png",
+   "fixture": "extra_resample-lanczos__pil.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "0bb44a0fbf385c007f80ddd2c0dde6dec52f1e17a24c0eb22d9b6363ca5c018c",
+   "sha256_u8": "b7c52e65014019d2eeb4d7b83fe66276dfd188e5537bbeb6eccda3ee28d97c60",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_resample-lanczos__pil.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "dbf6e875bf922ba38c6e75945064682296e84ead04449e6c13531ef85acfeb52",
+   "sha256_u8": "9dc42b13e83a9be6cfe53668cb7ce8b7938cfcfc8427fdd31a4e54340d416c80",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_resample-lanczos__pil.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "d386381890357b3f239fe23d35d3f00dd99bfb4b6f23deca5c1feb5f0326ce83",
+   "sha256_u8": "4b92c38712ffaf2decd9397427360de980df069cb41f96a80f3b5d06f002bf27",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_resample-lanczos__pil.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "1b3dae968f491c42ef26d97d56857a84c6c5505a9297d99aa269b584f4a8aa7e",
+   "sha256_u8": "bda96f34da37b25f1672c818dd6741c5b08396ce676fef241133221a0f241b83",
+   "key": "astronaut_png",
+   "fixture": "extra_resample-lanczos__pil.npz"
+  },
+  {
+   "suite": "resample-lanczos",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 1
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "32fe5a5bca4db9c1f97f27a5393ade79b74295fba9889e3191bae0de3af958a4",
+   "sha256_u8": "18532d7b9508c11d1988737e7c1c1ff5b1dce0c630e171b501b7dce8988208c1",
+   "key": "gray_300x200_png",
+   "fixture": "extra_resample-lanczos__pil.npz"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got box)"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got box)"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got box)"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got box)"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got box)"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got box)"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "7fc9f39afe3688ddbe7c7c3827ca2d66bf02792309bfd6f59174687466db9245",
+   "sha256_u8": "cd64aa6675ebda637cab7906e6a3801447f75d459eff5e92d74a6db9e5f96df7",
+   "key": "photo_640x480_png",
+   "fixture": "extra_resample-box__pil.npz"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "22b70e985445db1c3f180a623121317d91883c415403bffbf4a379aadc6941f8",
+   "sha256_u8": "0b64389d90e9cf45a383fd618ff5ccd9cefe30c9aeec3945d7e819a5cf04f146",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_resample-box__pil.npz"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "1f5287e6ab798a924a200f63480656c8cd72557a9ba78ff8b634c494fac02c15",
+   "sha256_u8": "3954d6415296ad021ae191f8167a3ce6fd0cdd5b973bf54a2aca7303af473f6a",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_resample-box__pil.npz"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "37a0304b8d4d30035f15d3e3cdea83093b60658623e0c4853729c2d3927653ae",
+   "sha256_u8": "92770d28a0d05ff26a473c11c7f2c02068cfacb06b38d6857ed4f120feb52858",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_resample-box__pil.npz"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "9289a8afc5f8be3db5e71c8944a33ad8f85f85de7529a44e30cd2fb0b91db0d3",
+   "sha256_u8": "8d8267ac39ed4d873ab0a42a4c67eea46083ac48f12c44e6383c9b91a7e695b9",
+   "key": "astronaut_png",
+   "fixture": "extra_resample-box__pil.npz"
+  },
+  {
+   "suite": "resample-box",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 4
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "0f71b65912f67f7494fbdaa977797fdfd1f0bd3709be498dc504d09b8a84b016",
+   "sha256_u8": "43d01c1a7ed7d730c87a7c6e9d6a188f68844c55d9eab350f62f48bd755c03be",
+   "key": "gray_300x200_png",
+   "fixture": "extra_resample-box__pil.npz"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got hamming)"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got hamming)"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got hamming)"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got hamming)"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got hamming)"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "input_transform": null,
+   "status": "error",
+   "error": "NotImplementedError: Input Error: Only 3D, 4D and 5D input Tensors supported (got 4D) for the modes: nearest | linear | bilinear | bicubic | trilinear | lanczos | area | nearest-exact (got hamming)"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "b2478061d09b609f8e5c484ec38bd7e9d35037e9658d0dffeb32c331bdf2fefa",
+   "sha256_u8": "3e6263f05c8e08174d4199c0046331adc26b307f376b2f8799cbd75f521129dd",
+   "key": "photo_640x480_png",
+   "fixture": "extra_resample-hamming__pil.npz"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "5b51ab8580d3762916f9e76eb01bf4c4bd2749d5b73c2006bafbf7fa69c77b3d",
+   "sha256_u8": "ffdf0706836e682f0ee19732377a10643ded4c7797a35250d077405526ebbd63",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_resample-hamming__pil.npz"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "e748134cfa2c2191a436b5dbe940ac1197ef5fbf4b60de89f83a941c8221b3e0",
+   "sha256_u8": "166a664deeac38d1970fe14083a4c7dbf89254aca2a7c02c0526aeb10fece617",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_resample-hamming__pil.npz"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "159a35a5be4a97ead63d8150626b3d5610fa6dc1ab97d11524a0904e26251f86",
+   "sha256_u8": "e5523af71c41b1dce8d0435c4bbd174e7d08b587b3aeffec9c827b652269d41f",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_resample-hamming__pil.npz"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "b0b3d29fe8d2f500114fe1aecb1e36a2708a772fdf28a029bc2c4e7f50c0afa3",
+   "sha256_u8": "b102feafd5e3142f3241ed40dd1c121590611a208758b0c3d513bf7dc1ee088b",
+   "key": "astronaut_png",
+   "fixture": "extra_resample-hamming__pil.npz"
+  },
+  {
+   "suite": "resample-hamming",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {
+    "resample": 5
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "c70d4cddaadbf775a0bbe8d59b8625620210847789ff0ebaa01c79e90e986a3a",
+   "sha256_u8": "75ddbc8d2a3a0c135dc4f0557a039e2ba1f5c961739b052dd18269a3242573fe",
+   "key": "gray_300x200_png",
+   "fixture": "extra_resample-hamming__pil.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "6a7d1d26a9d5c8e9bae146f5db625307796ffcd74c62fe723a3a1393e7cae8d9",
+   "sha256_u8": "aff17016524db68a847db8ed2fc7c2b2da866f76054d844dbb3fa94a9750cf06",
+   "key": "photo_640x480_png",
+   "fixture": "extra_resample-bilinear__torchvision.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "beb01e7b0ca5651e7c90e86ef7b7497176002830a83a9cfa9390d78b422b74f8",
+   "sha256_u8": "67f7e307a42f1c894bc65684f1b58c784c63e423d0c24b6ec01f22399d375539",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_resample-bilinear__torchvision.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "0c133a86499a97ee5495c3658bd3b61b9d471c705ec1a08591c1de31b4620bb4",
+   "sha256_u8": "e44480dd9a82cb5369cacb05cffdafa7e2db6bfe0a490b2d04caefd03ee23db2",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_resample-bilinear__torchvision.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "a2901c17ab394e1980dc529772c05722ee336d4c47ef45480907ef0d95007d94",
+   "sha256_u8": "03c9021bc3c2fd762dbbb2459f62f0ee6ef20a20b3bf40530caba2ed9c4736e3",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_resample-bilinear__torchvision.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "d6335c303c3f341a908837dcc9b91a9f52480764b170d8196b15566567eb52ca",
+   "sha256_u8": "d65244b9b51d5a79f9a09e7181dae0bf53ee06b73cb624e3cfaebb697927e58e",
+   "key": "astronaut_png",
+   "fixture": "extra_resample-bilinear__torchvision.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "d97c77f98af44f768b047f3520ba93017ffbabffe3cd9889b3cf29169c561031",
+   "sha256_u8": "08a12ccbca37f0d2dc7ffd3ca992ab0f869849400f97fc281145269db4e3f58b",
+   "key": "gray_300x200_png",
+   "fixture": "extra_resample-bilinear__torchvision.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "28addc0865fa0cd8fda903fe76e28d8a2c1d4fd1532bdab13b2690591f1bd36a",
+   "sha256_u8": "ef1b4afecf26aea7ecfea4926db6b39fc6c6f76d8085552ad4abee89e8789c64",
+   "key": "photo_640x480_png",
+   "fixture": "extra_resample-bilinear__pil.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "5c6fe60bacbf645d7505f1421272420047402f57f58ff92a767de4c040f4c52e",
+   "sha256_u8": "5202155e710ac8620531f52009f0b82d5f89da5aff12076740a0cd37c2952759",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_resample-bilinear__pil.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "5836b769914767b4b1778109ff004a23d555c1931abeba37f1a58f355945ccc2",
+   "sha256_u8": "84a5d907994470895912ac66e2c0ec916e15b089830929af385cc12878ab6f81",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_resample-bilinear__pil.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "23c107a756dd8f2250255962232ea54a2e70d0451df9dd57bed112f14f9c4dc3",
+   "sha256_u8": "c4e4165616fe7cd8d981b7991fb02c911f0b2d8f265305dde72dd800b8834c34",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_resample-bilinear__pil.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "1b274c31da60f1d8c5e28be2dea10c99bca0b9589e55f1559551e0cc391a5590",
+   "sha256_u8": "f6d8d649db94c3c0018c7095acfbf82a7151c7a619a56e56afa976626ff79033",
+   "key": "astronaut_png",
+   "fixture": "extra_resample-bilinear__pil.npz"
+  },
+  {
+   "suite": "resample-bilinear",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "overrides": {
+    "resample": 2
+   },
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "sha256_f32": "0ee210eeb600c5ce67c489688a6dbcda05966c787b42953535711d6660e9162d",
+   "sha256_u8": "5fb3114deb704edeefc8299c51f224b2fa6b2f9469f3097627de4fa90e7fddc6",
+   "key": "gray_300x200_png",
+   "fixture": "extra_resample-bilinear__pil.npz"
+  },
+  {
+   "suite": "decode-clip",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {},
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "gray16_160x120.png",
+   "mode": "I;16",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "0a99db046af2e72cdb730d9cad4e60a7c0524de8643312bb941c26bc0c52bbe9",
+   "sha256_u8": "3f7f31b24993ded1d304bb9ab149e12d255678f3f37b006d1ae9b9a02c22a6bc",
+   "key": "gray16_160x120_png",
+   "fixture": "extra_decode-clip__torchvision.npz"
+  },
+  {
+   "suite": "decode-clip",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {},
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "rgb16_150x100.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "7af3a197c5356c16abc35b24d31075536774542ab5c66d87377ed9de0986b276",
+   "sha256_u8": "6ad2b30f995b5a2711a7aa563c8d702053b15b07cbe88bee3472dc4f0f4279eb",
+   "key": "rgb16_150x100_png",
+   "fixture": "extra_decode-clip__torchvision.npz"
+  },
+  {
+   "suite": "decode-clip",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {},
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "rgba16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "7af3a197c5356c16abc35b24d31075536774542ab5c66d87377ed9de0986b276",
+   "sha256_u8": "6ad2b30f995b5a2711a7aa563c8d702053b15b07cbe88bee3472dc4f0f4279eb",
+   "key": "rgba16_150x100_png",
+   "fixture": "extra_decode-clip__torchvision.npz"
+  },
+  {
+   "suite": "decode-clip",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {},
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "la16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "7ddcd18ceb45962ca5da8c231a353fedd567098844621446858684f6a20fa6ab",
+   "sha256_u8": "aea6fef9e0440963d9c16f3402b80aac0a5c482463cf5fcf56fa25bd3f57cad6",
+   "key": "la16_150x100_png",
+   "fixture": "extra_decode-clip__torchvision.npz"
+  },
+  {
+   "suite": "decode-clip",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {},
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "cmyk_200x150.jpg",
+   "mode": "CMYK",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "b60a3c32ada3452ae4ed022650d3931f381e29a48674397418961b2f3fe40c95",
+   "sha256_u8": "9dff64e274cc3d5b59a5eae9be521688045b1ca7fa877ddc61aa4386e53e75b4",
+   "key": "cmyk_200x150_jpg",
+   "fixture": "extra_decode-clip__torchvision.npz"
+  },
+  {
+   "suite": "decode-clip",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {},
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "gray16_160x120.png",
+   "mode": "I;16",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "6af77ab70cdc670175e678b8d055fef2184e12fb0a5649834db40bb3d5227b97",
+   "sha256_u8": "ea585e021a2865b71f31fc0ecab14a89664b26a7edc632a25ca4b50e43cd5027",
+   "key": "gray16_160x120_png",
+   "fixture": "extra_decode-clip__pil.npz"
+  },
+  {
+   "suite": "decode-clip",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {},
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "rgb16_150x100.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "2215f408ae8482818dd99b22e1dcc536f27c9921c08e0aeea263b5dac4c2bc09",
+   "sha256_u8": "820b0fd8b47d61f1c4b9f75f30e883e6241bbb212933a95b0c3018b369f3c2d6",
+   "key": "rgb16_150x100_png",
+   "fixture": "extra_decode-clip__pil.npz"
+  },
+  {
+   "suite": "decode-clip",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {},
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "rgba16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "2215f408ae8482818dd99b22e1dcc536f27c9921c08e0aeea263b5dac4c2bc09",
+   "sha256_u8": "820b0fd8b47d61f1c4b9f75f30e883e6241bbb212933a95b0c3018b369f3c2d6",
+   "key": "rgba16_150x100_png",
+   "fixture": "extra_decode-clip__pil.npz"
+  },
+  {
+   "suite": "decode-clip",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {},
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "la16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "6b73864d066295e80d136a32990ccdd08bae7cc82bd44bef5a7ad526d131680f",
+   "sha256_u8": "4f31f0041477070ba2ced5d432cacef33e7d8a03e867d240ab15be11c419eec3",
+   "key": "la16_150x100_png",
+   "fixture": "extra_decode-clip__pil.npz"
+  },
+  {
+   "suite": "decode-clip",
+   "config": "openai_clip-vit-base-patch32.json",
+   "overrides": {},
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "cmyk_200x150.jpg",
+   "mode": "CMYK",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "8dcbe2c815e9d4705e2cc6e79b02efe3a4887a14349f90571765b11882f54f6c",
+   "sha256_u8": "99c4b866ff6368513256654ea5bc7f8fe188560cf675072f1025fbe6d83aa2a4",
+   "key": "cmyk_200x150_jpg",
+   "fixture": "extra_decode-clip__pil.npz"
+  },
+  {
+   "suite": "decode-siglip",
+   "config": "google_siglip-base-patch16-224.json",
+   "overrides": {},
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "gray16_160x120.png",
+   "mode": "I;16",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "6a690a5e0d1c8b71b1976bea7704cfdbeb51754ee99c0bf97ee81009c56f8fff",
+   "sha256_u8": "a3f184cf7c81d93cf4233c8785d99574f12be78d44b4033c8ffdc8ea60633152",
+   "key": "gray16_160x120_png",
+   "fixture": "extra_decode-siglip__torchvision.npz"
+  },
+  {
+   "suite": "decode-siglip",
+   "config": "google_siglip-base-patch16-224.json",
+   "overrides": {},
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "rgb16_150x100.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "2a923bf5b26f8a166117ccebaa37dfb976f71102004c68a40ea89e6c2a4f4c7f",
+   "sha256_u8": "626871b6a462509baceb7df9546b868327d8f023dada949dfa41013279ccd12a",
+   "key": "rgb16_150x100_png",
+   "fixture": "extra_decode-siglip__torchvision.npz"
+  },
+  {
+   "suite": "decode-siglip",
+   "config": "google_siglip-base-patch16-224.json",
+   "overrides": {},
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "rgba16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "2a923bf5b26f8a166117ccebaa37dfb976f71102004c68a40ea89e6c2a4f4c7f",
+   "sha256_u8": "626871b6a462509baceb7df9546b868327d8f023dada949dfa41013279ccd12a",
+   "key": "rgba16_150x100_png",
+   "fixture": "extra_decode-siglip__torchvision.npz"
+  },
+  {
+   "suite": "decode-siglip",
+   "config": "google_siglip-base-patch16-224.json",
+   "overrides": {},
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "la16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "971dd3c04b943466d69c49ef625c5cde74ce445d60fa09bbd146e6838f149291",
+   "sha256_u8": "a296a8220a37ee340ff11a9bd3e4c5032f2d67d9e6b7934e7646ec91774f3b68",
+   "key": "la16_150x100_png",
+   "fixture": "extra_decode-siglip__torchvision.npz"
+  },
+  {
+   "suite": "decode-siglip",
+   "config": "google_siglip-base-patch16-224.json",
+   "overrides": {},
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "cmyk_200x150.jpg",
+   "mode": "CMYK",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "36566e334ad331db4cf5a958a824036004fc2c4b162c8152865196cddc16665c",
+   "sha256_u8": "8a9c0c09f00242602be0d9c610bb2428302927ab9de87647bacde29583e6fa66",
+   "key": "cmyk_200x150_jpg",
+   "fixture": "extra_decode-siglip__torchvision.npz"
+  },
+  {
+   "suite": "decode-siglip",
+   "config": "google_siglip-base-patch16-224.json",
+   "overrides": {},
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "gray16_160x120.png",
+   "mode": "I;16",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "fea2e516ce637b05ba5fafd49279c1df6abc78deed8cc94726ac4fb91f2d49ae",
+   "sha256_u8": "1d28efe1321a2b6425499dd9acb49c6d113752ecd277bc9581aa06ff5167c932",
+   "key": "gray16_160x120_png",
+   "fixture": "extra_decode-siglip__pil.npz"
+  },
+  {
+   "suite": "decode-siglip",
+   "config": "google_siglip-base-patch16-224.json",
+   "overrides": {},
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "rgb16_150x100.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "182b701a9bb102b8e3f39003e4375a280070e8c92f05de3f966e146e55e0aebb",
+   "sha256_u8": "197110d02ed142929be872e9a3439f3b66eae0c4ed6c461d6a18b9539251e812",
+   "key": "rgb16_150x100_png",
+   "fixture": "extra_decode-siglip__pil.npz"
+  },
+  {
+   "suite": "decode-siglip",
+   "config": "google_siglip-base-patch16-224.json",
+   "overrides": {},
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "rgba16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "182b701a9bb102b8e3f39003e4375a280070e8c92f05de3f966e146e55e0aebb",
+   "sha256_u8": "197110d02ed142929be872e9a3439f3b66eae0c4ed6c461d6a18b9539251e812",
+   "key": "rgba16_150x100_png",
+   "fixture": "extra_decode-siglip__pil.npz"
+  },
+  {
+   "suite": "decode-siglip",
+   "config": "google_siglip-base-patch16-224.json",
+   "overrides": {},
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "la16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "3447d46238d3ae0304c240c24d41c0c66df965a86e786eb9ba43f5d9d5039640",
+   "sha256_u8": "03db2e3689ed55574d2427ba7a0a7eb47dee4e084ab153950537933c97c33afe",
+   "key": "la16_150x100_png",
+   "fixture": "extra_decode-siglip__pil.npz"
+  },
+  {
+   "suite": "decode-siglip",
+   "config": "google_siglip-base-patch16-224.json",
+   "overrides": {},
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "cmyk_200x150.jpg",
+   "mode": "CMYK",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "63608b4df113c293b9826356d125697fd3bc93c08c6bc50425d407aee82d8f2e",
+   "sha256_u8": "c718ffdaa5eb6c24f12fa80734b8edd0593a5b3d9c00e3e96d3ea4046f95cb00",
+   "key": "cmyk_200x150_jpg",
+   "fixture": "extra_decode-siglip__pil.npz"
+  },
+  {
+   "suite": "decode-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "gray16_160x120.png",
+   "mode": "I;16",
+   "input_transform": null,
+   "status": "error",
+   "error": "RuntimeError: output with shape [1, 1, 224, 224] doesn't match the broadcast shape [1, 3, 224, 224]"
+  },
+  {
+   "suite": "decode-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "rgb16_150x100.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "63afe410ae99ddb7d681badaf33c78b72d7c780473879224f62ba9b02b799618",
+   "sha256_u8": "736c15a09b6d6252e6f92145679e74177ce7aedc74716d0914282a4f2e2e3f4f",
+   "key": "rgb16_150x100_png",
+   "fixture": "extra_decode-vit__torchvision.npz"
+  },
+  {
+   "suite": "decode-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "rgba16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "error",
+   "error": "ValueError: Unable to infer channel dimension format"
+  },
+  {
+   "suite": "decode-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "la16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "error",
+   "error": "ValueError: Unable to infer channel dimension format"
+  },
+  {
+   "suite": "decode-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "cmyk_200x150.jpg",
+   "mode": "CMYK",
+   "input_transform": null,
+   "status": "error",
+   "error": "ValueError: Unable to infer channel dimension format"
+  },
+  {
+   "suite": "decode-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "gray16_160x120.png",
+   "mode": "I;16",
+   "input_transform": null,
+   "status": "error",
+   "error": "ValueError: The image to be converted to a PIL image contains values outside the range [0, 255], got [0, 1122] which cannot be converted to uint8."
+  },
+  {
+   "suite": "decode-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "rgb16_150x100.png",
+   "mode": "RGB",
+   "input_transform": null,
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "633ae4186d38d05fd8307c482b1b1b40419932191f4a13987441f49cf9455b91",
+   "sha256_u8": "5cbb0c10eff047f16e77ee8da2f3b1c2b5031241a9be382f6ad8e115917ca214",
+   "key": "rgb16_150x100_png",
+   "fixture": "extra_decode-vit__pil.npz"
+  },
+  {
+   "suite": "decode-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "rgba16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "error",
+   "error": "ValueError: mean must have 4 elements if it is an iterable, got 3"
+  },
+  {
+   "suite": "decode-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "la16_150x100.png",
+   "mode": "RGBA",
+   "input_transform": null,
+   "status": "error",
+   "error": "ValueError: mean must have 4 elements if it is an iterable, got 3"
+  },
+  {
+   "suite": "decode-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "cmyk_200x150.jpg",
+   "mode": "CMYK",
+   "input_transform": null,
+   "status": "error",
+   "error": "ValueError: mean must have 4 elements if it is an iterable, got 3"
+  },
+  {
+   "suite": "palette-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "input_transform": "convert_rgb",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "90eb6e721448048bd727094fe75061bea5d96fa698b989229a55557a8e16bf45",
+   "sha256_u8": "3bb73af2e359efdd36ec3bc84f5bc16a020b2204e9137fbb8a0b4acd18b22b06",
+   "key": "palette_200x120_png",
+   "fixture": "extra_palette-vit__torchvision.npz"
+  },
+  {
+   "suite": "palette-vit",
+   "config": "google_vit-base-patch16-224.json",
+   "overrides": {},
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "input_transform": "convert_rgb",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "57466b9b53925dedfb4f3507842a9a8774891a03e48be07e377f080bd38e0c9c",
+   "sha256_u8": "421ce60551ff63ae1bc5884019d8bfce9d2e0417053737d3d3b54c28694454fa",
+   "key": "palette_200x120_png",
+   "fixture": "extra_palette-vit__pil.npz"
+  },
+  {
+   "suite": "palette-convnext",
+   "config": "facebook_convnext-tiny-224.json",
+   "overrides": {},
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "input_transform": "convert_rgb",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "2bc7495f16a9ae1cdfce35aff3a38260704ec8dd581e50ffa300b0e6a1a1786d",
+   "sha256_u8": "1cfe60143b2a51af49f82ce24f30d4ecf71f2f1c5f0187511e12300f859b798a",
+   "key": "palette_200x120_png",
+   "fixture": "extra_palette-convnext__torchvision.npz"
+  },
+  {
+   "suite": "palette-convnext",
+   "config": "facebook_convnext-tiny-224.json",
+   "overrides": {},
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "input_transform": "convert_rgb",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "sha256_f32": "828cb2096b4f94c0d728059bd3c7aad19fefd8b5481a571f8d5e08b6ef849856",
+   "sha256_u8": "73a583f0bb60227487c849ec78a615cbe60f117ca0da548e90d468829b777e80",
+   "key": "palette_200x120_png",
+   "fixture": "extra_palette-convnext__pil.npz"
+  }
+ ],
+ "decode": [
+  {
+   "image": "gray16_160x120.png",
+   "mode": "I;16",
+   "shape": [
+    120,
+    160,
+    3
+   ],
+   "sha256": "6e3c29266be9077d8a39d7554c0968caa0c3276d75c1159aa29e3a251d5745e2"
+  },
+  {
+   "image": "rgb16_150x100.png",
+   "mode": "RGB",
+   "shape": [
+    100,
+    150,
+    3
+   ],
+   "sha256": "e0543d2e80796e38fbbb21cd229d48de4f43b731309652eb9eff869dc3591304"
+  },
+  {
+   "image": "rgba16_150x100.png",
+   "mode": "RGBA",
+   "shape": [
+    100,
+    150,
+    3
+   ],
+   "sha256": "e0543d2e80796e38fbbb21cd229d48de4f43b731309652eb9eff869dc3591304"
+  },
+  {
+   "image": "la16_150x100.png",
+   "mode": "RGBA",
+   "shape": [
+    100,
+    150,
+    3
+   ],
+   "sha256": "f6f2a502ee5a9a5345c48977c29dd877ec08b8457f1ad95c5cfb0a9b88e88e92"
+  },
+  {
+   "image": "cmyk_200x150.jpg",
+   "mode": "CMYK",
+   "shape": [
+    150,
+    200,
+    3
+   ],
+   "sha256": "e77b88b27d4a44582d16304cbac5dbfa6de29c9995f1b35943331b0261df78b9"
+  },
+  {
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "shape": [
+    120,
+    200,
+    3
+   ],
+   "sha256": "8847c44e76a9606c44de1c218746a7b97a1320502af94202172fa67c0fe9e79d"
+  }
+ ],
+ "qwen": [
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1564,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    34,
+    46
+   ],
+   "resized": [
+    476,
+    644
+   ],
+   "sha256_f32": "e7073bd212defd994fe9b7bcb0189fe5933d6671b3f166033c5e91f47b15b381",
+   "sha256_u8": "017b158b7e2553bf7e75334482498eb57a1a51bbbb1664b9e560f4dc6692c0e7",
+   "key": "photo_640x480_png",
+   "fixture": "extra_qwen2-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    864,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    36,
+    24
+   ],
+   "resized": [
+    504,
+    336
+   ],
+   "sha256_f32": "a9150aade196218a48483c668e47a9bedca9c5614b7c0991b2e9d96a9144cccd",
+   "sha256_u8": "e1441998730aa7d520bbe016ca5aa222ea1cc2919fafc4ab1b4681af9be82acf",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_qwen2-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    308,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    14,
+    22
+   ],
+   "resized": [
+    196,
+    308
+   ],
+   "sha256_f32": "2eaa3d78e6e7cdf6cd62d9d542b986808e8f104b00e9d51793b8aa95bae9468d",
+   "sha256_u8": "96655446bcb042c19878957c7b07afe781d4769d87e047819db4ae4bcf4588f5",
+   "key": "gray_300x200_png",
+   "fixture": "extra_qwen2-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    180,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    10,
+    18
+   ],
+   "resized": [
+    140,
+    252
+   ],
+   "sha256_f32": "7978c1fb408b944aa2dc298661a2695758b7361259491b59920e029be62028cd",
+   "sha256_u8": "cae1e3ea50b3877e225ee4c7eed4f09d335a5f183e2dc027866b17aadee14183",
+   "key": "rgba_257x129_png",
+   "fixture": "extra_qwen2-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    24,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    6,
+    4
+   ],
+   "resized": [
+    84,
+    56
+   ],
+   "sha256_f32": "291acee53d15fbfb349ba5588e70aa011068914d5064c68f9cbc9a191c7e1dce",
+   "sha256_u8": "88082588d12c577f5255f8fd4ac893009aaa4f0233e90bb670f388abb4b6e2d0",
+   "key": "tiny_2x3_png",
+   "fixture": "extra_qwen2-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    24,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    4,
+    6
+   ],
+   "resized": [
+    56,
+    84
+   ],
+   "sha256_f32": "bbbedc4bc2119a4268307ecd4085c9403962aa5983961c761b813140186b61b7",
+   "sha256_u8": "73cb1b3a35532cb05a34926959f9d3b4176e5cb62b2f1de509ceb964b8535d3f",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_qwen2-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    296,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    4,
+    74
+   ],
+   "resized": [
+    56,
+    1036
+   ],
+   "sha256_f32": "8209e27bcf6b9116f7ab43381bea4b9a6eb04044f6e075b65f4d7a82fded952b",
+   "sha256_u8": "abe006e202846437285e5faf381f9f7e739ffccf892ec1a33fa6c9523ba92b06",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_qwen2-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    200,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    50,
+    4
+   ],
+   "resized": [
+    700,
+    56
+   ],
+   "sha256_f32": "57c6d2b8d7453cf1f268c177e47d9b14df2916039d3b349387aac7a026823cbb",
+   "sha256_u8": "0f45da85b7662274a449392e8bcad9a9d3a04390066110c374e9c6217de8d9e0",
+   "key": "tall_50x700_png",
+   "fixture": "extra_qwen2-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1296,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    36,
+    36
+   ],
+   "resized": [
+    504,
+    504
+   ],
+   "sha256_f32": "2cfdc4e3a1a8365cde6c83150f3cddff7dca37390e23ab4cb00811a24c567ab1",
+   "sha256_u8": "a0761cbc995fdefdfc43cd2b18b6a195939b9f3a72ffe542fcaf4f4804a5a10c",
+   "key": "astronaut_png",
+   "fixture": "extra_qwen2-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    936,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    26,
+    36
+   ],
+   "resized": [
+    364,
+    504
+   ],
+   "sha256_f32": "c705368d295daedc5050b3cd651ddae404b21a867d6d9fd42f1e94d96c6580e9",
+   "sha256_u8": "9314e11fe4f8a570952d7f97c61a548a1423b65e2482e5c3242e3edbf4b94249",
+   "key": "photo_500x375_jpg",
+   "fixture": "extra_qwen2-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "extreme_402x2.png",
+   "mode": "RGB",
+   "status": "error",
+   "error": "ValueError: absolute aspect ratio must be smaller than 200, got 201.0"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    30388,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    142,
+    214
+   ],
+   "resized": [
+    1988,
+    2996
+   ],
+   "sha256_f32": "cddf049d82d7f9babc57008cf851d00c2d1eccafa66bc417d7be2140ba574c36",
+   "sha256_u8": "303256212a70696a75a503989409771b24f8dab4806c4a758050cb6909223929",
+   "key": "huge_3000x2000_png",
+   "fixture": "extra_qwen2-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "photo_640x480.png+gray_300x200.png+tiny_2x3.png+photo_640x480.png+wide_1024x64.png",
+   "batch": [
+    "photo_640x480.png",
+    "gray_300x200.png",
+    "tiny_2x3.png",
+    "photo_640x480.png",
+    "wide_1024x64.png"
+   ],
+   "status": "ok",
+   "shape": [
+    3756,
+    1176
+   ],
+   "grid_thw": [
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     14,
+     22
+    ],
+    [
+     1,
+     6,
+     4
+    ],
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     4,
+     74
+    ]
+   ],
+   "sha256_f32": "b9178efe5ccd7f99468ce6e62f184e9fa58833f7e501066497a38e156e458e27"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1564,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    34,
+    46
+   ],
+   "resized": [
+    476,
+    644
+   ],
+   "sha256_f32": "8b902cea4b6ad949322b78534892271b2431f314439e8a0f7478540f8fb3c76b",
+   "sha256_u8": "8e8de5c038b06456d807c29caac75bb9acad39eb4a960bea7864d62faa826dd8",
+   "key": "photo_640x480_png",
+   "fixture": "extra_qwen2-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    864,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    36,
+    24
+   ],
+   "resized": [
+    504,
+    336
+   ],
+   "sha256_f32": "ef166feb8f608ba26a3e182a1b77f62d424a0c48e2d6fddf9124fd9420f317de",
+   "sha256_u8": "2f7552d67ee075d07385100acb79fa4748aba1b84dc2234fa1bdc00c847a90be",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_qwen2-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    308,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    14,
+    22
+   ],
+   "resized": [
+    196,
+    308
+   ],
+   "sha256_f32": "15456ec2921a1e73413cc0a2e304932f6aadfa4a9302f51850c2f7b0849899f2",
+   "sha256_u8": "08e801131b4575d25f1cb3d51eecf876fd8e1abbc93d64788251b58288aeef5f",
+   "key": "gray_300x200_png",
+   "fixture": "extra_qwen2-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    180,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    10,
+    18
+   ],
+   "resized": [
+    140,
+    252
+   ],
+   "sha256_f32": "c6f6d5d42f91f6f8adae27113f073ab62ef9775b31d9b4b8e87105eb30add196",
+   "sha256_u8": "50083b4c91479ef9bb71caee83c3cd351b3173a764ca1c00a10d9593d065c7e6",
+   "key": "rgba_257x129_png",
+   "fixture": "extra_qwen2-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    24,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    6,
+    4
+   ],
+   "resized": [
+    84,
+    56
+   ],
+   "sha256_f32": "8fa91ae565f61e9d4673835fa192dc37ff1c3b117484f6cf41b3977553a140a3",
+   "sha256_u8": "0a2d4f4edea8d9a9f466c44e29cefa2127f60b0cbb24d9b0561602e58b9b9ae9",
+   "key": "tiny_2x3_png",
+   "fixture": "extra_qwen2-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    24,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    4,
+    6
+   ],
+   "resized": [
+    56,
+    84
+   ],
+   "sha256_f32": "771fe6226cc5a5f120991a5c45b3dcdf596246af252b8fe620aac85b25660c1f",
+   "sha256_u8": "109098ae1f7f67001c474f6f6bbc427e076c254cdc5217e86811896afcd64bd0",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_qwen2-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    296,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    4,
+    74
+   ],
+   "resized": [
+    56,
+    1036
+   ],
+   "sha256_f32": "95d9c4e57846473a30e71eaa34b40389d642f5b790745d184344f155e9abe845",
+   "sha256_u8": "710ff2c2dca1d5bf206192a44941a40833df82bf82953e7139092762dba3ee52",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_qwen2-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    200,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    50,
+    4
+   ],
+   "resized": [
+    700,
+    56
+   ],
+   "sha256_f32": "f9182863a3eff64c1eef032ec40d4224ff90a32e455927585f02641fd5f251ee",
+   "sha256_u8": "7b2a1b193f35b41f5eac27576fc9c7dc6d6124199e1e395c2b016a9958e7069c",
+   "key": "tall_50x700_png",
+   "fixture": "extra_qwen2-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1296,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    36,
+    36
+   ],
+   "resized": [
+    504,
+    504
+   ],
+   "sha256_f32": "18547d17a6d9aea9e38f7c9beb6f031e3377394b947219764f4780a343c56e9a",
+   "sha256_u8": "5393fd2710b46240efd935e3da2fd7624203a11527791737ec8518b93cd5671d",
+   "key": "astronaut_png",
+   "fixture": "extra_qwen2-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    936,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    26,
+    36
+   ],
+   "resized": [
+    364,
+    504
+   ],
+   "sha256_f32": "5e874fb04d0b3d40b840e72e1c07d1cd3b91749cbe7231693a13e6046c66eea5",
+   "sha256_u8": "3e2599904073bac94d82335a27dbb8ec1507b606043784d8e747c1bb4594995e",
+   "key": "photo_500x375_jpg",
+   "fixture": "extra_qwen2-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "extreme_402x2.png",
+   "mode": "RGB",
+   "status": "error",
+   "error": "ValueError: absolute aspect ratio must be smaller than 200, got 201.0"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    30388,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    142,
+    214
+   ],
+   "resized": [
+    1988,
+    2996
+   ],
+   "sha256_f32": "0d39d6cbb6f654db5cce345f93f7b554eaa219b38951707b3d8a0d9d6b35e199",
+   "sha256_u8": "c97b034ed9df27d0d91c7e66c80075dfeb4d77f4054b0309203cefdcf83aa46c",
+   "key": "huge_3000x2000_png",
+   "fixture": "extra_qwen2-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "photo_640x480.png+gray_300x200.png+tiny_2x3.png+photo_640x480.png+wide_1024x64.png",
+   "batch": [
+    "photo_640x480.png",
+    "gray_300x200.png",
+    "tiny_2x3.png",
+    "photo_640x480.png",
+    "wide_1024x64.png"
+   ],
+   "status": "ok",
+   "shape": [
+    3756,
+    1176
+   ],
+   "grid_thw": [
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     14,
+     22
+    ],
+    [
+     1,
+     6,
+     4
+    ],
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     4,
+     74
+    ]
+   ],
+   "sha256_f32": "ef2b85cb38477cc3b068930d83f7c6090f0ad67bd7973cafcc6a14aa154e16be"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1564,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    34,
+    46
+   ],
+   "resized": [
+    476,
+    644
+   ],
+   "sha256_f32": "e7073bd212defd994fe9b7bcb0189fe5933d6671b3f166033c5e91f47b15b381",
+   "sha256_u8": "017b158b7e2553bf7e75334482498eb57a1a51bbbb1664b9e560f4dc6692c0e7",
+   "key": "photo_640x480_png",
+   "fixture": "extra_qwen2.5-vl-7b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    864,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    36,
+    24
+   ],
+   "resized": [
+    504,
+    336
+   ],
+   "sha256_f32": "a9150aade196218a48483c668e47a9bedca9c5614b7c0991b2e9d96a9144cccd",
+   "sha256_u8": "e1441998730aa7d520bbe016ca5aa222ea1cc2919fafc4ab1b4681af9be82acf",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_qwen2.5-vl-7b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    308,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    14,
+    22
+   ],
+   "resized": [
+    196,
+    308
+   ],
+   "sha256_f32": "2eaa3d78e6e7cdf6cd62d9d542b986808e8f104b00e9d51793b8aa95bae9468d",
+   "sha256_u8": "96655446bcb042c19878957c7b07afe781d4769d87e047819db4ae4bcf4588f5",
+   "key": "gray_300x200_png",
+   "fixture": "extra_qwen2.5-vl-7b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    180,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    10,
+    18
+   ],
+   "resized": [
+    140,
+    252
+   ],
+   "sha256_f32": "7978c1fb408b944aa2dc298661a2695758b7361259491b59920e029be62028cd",
+   "sha256_u8": "cae1e3ea50b3877e225ee4c7eed4f09d335a5f183e2dc027866b17aadee14183",
+   "key": "rgba_257x129_png",
+   "fixture": "extra_qwen2.5-vl-7b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    24,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    6,
+    4
+   ],
+   "resized": [
+    84,
+    56
+   ],
+   "sha256_f32": "291acee53d15fbfb349ba5588e70aa011068914d5064c68f9cbc9a191c7e1dce",
+   "sha256_u8": "88082588d12c577f5255f8fd4ac893009aaa4f0233e90bb670f388abb4b6e2d0",
+   "key": "tiny_2x3_png",
+   "fixture": "extra_qwen2.5-vl-7b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    24,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    4,
+    6
+   ],
+   "resized": [
+    56,
+    84
+   ],
+   "sha256_f32": "bbbedc4bc2119a4268307ecd4085c9403962aa5983961c761b813140186b61b7",
+   "sha256_u8": "73cb1b3a35532cb05a34926959f9d3b4176e5cb62b2f1de509ceb964b8535d3f",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_qwen2.5-vl-7b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    296,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    4,
+    74
+   ],
+   "resized": [
+    56,
+    1036
+   ],
+   "sha256_f32": "8209e27bcf6b9116f7ab43381bea4b9a6eb04044f6e075b65f4d7a82fded952b",
+   "sha256_u8": "abe006e202846437285e5faf381f9f7e739ffccf892ec1a33fa6c9523ba92b06",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_qwen2.5-vl-7b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    200,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    50,
+    4
+   ],
+   "resized": [
+    700,
+    56
+   ],
+   "sha256_f32": "57c6d2b8d7453cf1f268c177e47d9b14df2916039d3b349387aac7a026823cbb",
+   "sha256_u8": "0f45da85b7662274a449392e8bcad9a9d3a04390066110c374e9c6217de8d9e0",
+   "key": "tall_50x700_png",
+   "fixture": "extra_qwen2.5-vl-7b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1296,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    36,
+    36
+   ],
+   "resized": [
+    504,
+    504
+   ],
+   "sha256_f32": "2cfdc4e3a1a8365cde6c83150f3cddff7dca37390e23ab4cb00811a24c567ab1",
+   "sha256_u8": "a0761cbc995fdefdfc43cd2b18b6a195939b9f3a72ffe542fcaf4f4804a5a10c",
+   "key": "astronaut_png",
+   "fixture": "extra_qwen2.5-vl-7b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    936,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    26,
+    36
+   ],
+   "resized": [
+    364,
+    504
+   ],
+   "sha256_f32": "c705368d295daedc5050b3cd651ddae404b21a867d6d9fd42f1e94d96c6580e9",
+   "sha256_u8": "9314e11fe4f8a570952d7f97c61a548a1423b65e2482e5c3242e3edbf4b94249",
+   "key": "photo_500x375_jpg",
+   "fixture": "extra_qwen2.5-vl-7b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "extreme_402x2.png",
+   "mode": "RGB",
+   "status": "error",
+   "error": "ValueError: absolute aspect ratio must be smaller than 200, got 201.0"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "photo_640x480.png+gray_300x200.png+tiny_2x3.png+photo_640x480.png+wide_1024x64.png",
+   "batch": [
+    "photo_640x480.png",
+    "gray_300x200.png",
+    "tiny_2x3.png",
+    "photo_640x480.png",
+    "wide_1024x64.png"
+   ],
+   "status": "ok",
+   "shape": [
+    3756,
+    1176
+   ],
+   "grid_thw": [
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     14,
+     22
+    ],
+    [
+     1,
+     6,
+     4
+    ],
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     4,
+     74
+    ]
+   ],
+   "sha256_f32": "b9178efe5ccd7f99468ce6e62f184e9fa58833f7e501066497a38e156e458e27"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1564,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    34,
+    46
+   ],
+   "resized": [
+    476,
+    644
+   ],
+   "sha256_f32": "8b902cea4b6ad949322b78534892271b2431f314439e8a0f7478540f8fb3c76b",
+   "sha256_u8": "8e8de5c038b06456d807c29caac75bb9acad39eb4a960bea7864d62faa826dd8",
+   "key": "photo_640x480_png",
+   "fixture": "extra_qwen2.5-vl-7b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    864,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    36,
+    24
+   ],
+   "resized": [
+    504,
+    336
+   ],
+   "sha256_f32": "ef166feb8f608ba26a3e182a1b77f62d424a0c48e2d6fddf9124fd9420f317de",
+   "sha256_u8": "2f7552d67ee075d07385100acb79fa4748aba1b84dc2234fa1bdc00c847a90be",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_qwen2.5-vl-7b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    308,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    14,
+    22
+   ],
+   "resized": [
+    196,
+    308
+   ],
+   "sha256_f32": "15456ec2921a1e73413cc0a2e304932f6aadfa4a9302f51850c2f7b0849899f2",
+   "sha256_u8": "08e801131b4575d25f1cb3d51eecf876fd8e1abbc93d64788251b58288aeef5f",
+   "key": "gray_300x200_png",
+   "fixture": "extra_qwen2.5-vl-7b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    180,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    10,
+    18
+   ],
+   "resized": [
+    140,
+    252
+   ],
+   "sha256_f32": "c6f6d5d42f91f6f8adae27113f073ab62ef9775b31d9b4b8e87105eb30add196",
+   "sha256_u8": "50083b4c91479ef9bb71caee83c3cd351b3173a764ca1c00a10d9593d065c7e6",
+   "key": "rgba_257x129_png",
+   "fixture": "extra_qwen2.5-vl-7b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    24,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    6,
+    4
+   ],
+   "resized": [
+    84,
+    56
+   ],
+   "sha256_f32": "8fa91ae565f61e9d4673835fa192dc37ff1c3b117484f6cf41b3977553a140a3",
+   "sha256_u8": "0a2d4f4edea8d9a9f466c44e29cefa2127f60b0cbb24d9b0561602e58b9b9ae9",
+   "key": "tiny_2x3_png",
+   "fixture": "extra_qwen2.5-vl-7b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    24,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    4,
+    6
+   ],
+   "resized": [
+    56,
+    84
+   ],
+   "sha256_f32": "771fe6226cc5a5f120991a5c45b3dcdf596246af252b8fe620aac85b25660c1f",
+   "sha256_u8": "109098ae1f7f67001c474f6f6bbc427e076c254cdc5217e86811896afcd64bd0",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_qwen2.5-vl-7b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    296,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    4,
+    74
+   ],
+   "resized": [
+    56,
+    1036
+   ],
+   "sha256_f32": "95d9c4e57846473a30e71eaa34b40389d642f5b790745d184344f155e9abe845",
+   "sha256_u8": "710ff2c2dca1d5bf206192a44941a40833df82bf82953e7139092762dba3ee52",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_qwen2.5-vl-7b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    200,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    50,
+    4
+   ],
+   "resized": [
+    700,
+    56
+   ],
+   "sha256_f32": "f9182863a3eff64c1eef032ec40d4224ff90a32e455927585f02641fd5f251ee",
+   "sha256_u8": "7b2a1b193f35b41f5eac27576fc9c7dc6d6124199e1e395c2b016a9958e7069c",
+   "key": "tall_50x700_png",
+   "fixture": "extra_qwen2.5-vl-7b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1296,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    36,
+    36
+   ],
+   "resized": [
+    504,
+    504
+   ],
+   "sha256_f32": "18547d17a6d9aea9e38f7c9beb6f031e3377394b947219764f4780a343c56e9a",
+   "sha256_u8": "5393fd2710b46240efd935e3da2fd7624203a11527791737ec8518b93cd5671d",
+   "key": "astronaut_png",
+   "fixture": "extra_qwen2.5-vl-7b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    936,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    26,
+    36
+   ],
+   "resized": [
+    364,
+    504
+   ],
+   "sha256_f32": "5e874fb04d0b3d40b840e72e1c07d1cd3b91749cbe7231693a13e6046c66eea5",
+   "sha256_u8": "3e2599904073bac94d82335a27dbb8ec1507b606043784d8e747c1bb4594995e",
+   "key": "photo_500x375_jpg",
+   "fixture": "extra_qwen2.5-vl-7b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "extreme_402x2.png",
+   "mode": "RGB",
+   "status": "error",
+   "error": "ValueError: absolute aspect ratio must be smaller than 200, got 201.0"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2.5-vl-7b",
+   "config": "Qwen_Qwen2.5-VL-7B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "photo_640x480.png+gray_300x200.png+tiny_2x3.png+photo_640x480.png+wide_1024x64.png",
+   "batch": [
+    "photo_640x480.png",
+    "gray_300x200.png",
+    "tiny_2x3.png",
+    "photo_640x480.png",
+    "wide_1024x64.png"
+   ],
+   "status": "ok",
+   "shape": [
+    3756,
+    1176
+   ],
+   "grid_thw": [
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     14,
+     22
+    ],
+    [
+     1,
+     6,
+     4
+    ],
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     4,
+     74
+    ]
+   ],
+   "sha256_f32": "ef2b85cb38477cc3b068930d83f7c6090f0ad67bd7973cafcc6a14aa154e16be"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1200,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    30,
+    40
+   ],
+   "resized": [
+    480,
+    640
+   ],
+   "sha256_f32": "b4543be0a1ab58a4ad2ec0223d53138b5e6e944770fee7b2b8b4ecb5f60260eb",
+   "sha256_u8": "63c57d451a1751ba5c684bc1da823f4dc4c2db582d264277b53b5609ecc86559",
+   "key": "photo_640x480_png",
+   "fixture": "extra_qwen3-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    640,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    32,
+    20
+   ],
+   "resized": [
+    512,
+    320
+   ],
+   "sha256_f32": "00775a7a05202b5882afdf45d8117fe0e68cbeed3c3ba3d8b403071a008d31e4",
+   "sha256_u8": "1a583d0d50fe590714a07f11289cb401bb66548f5a9a9fa7f2a4b3e208b062fa",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_qwen3-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    280,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    14,
+    20
+   ],
+   "resized": [
+    224,
+    320
+   ],
+   "sha256_f32": "4e15fc1d404646cb031e7f2fc40413fbb393369dd8ced6a0efb3f82d7c4ce275",
+   "sha256_u8": "c323c0d3009bd7a5f2506e72898834a0c756b43d556d4770b19ccd42fed92e23",
+   "key": "gray_300x200_png",
+   "fixture": "extra_qwen3-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    288,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    12,
+    24
+   ],
+   "resized": [
+    192,
+    384
+   ],
+   "sha256_f32": "41b0b8a3071f88848473a0c416a3d6d558d2c2f09de9ba18f067f7acedebefcf",
+   "sha256_u8": "5fb81ce8f67f2942cb802dfc88b65a9e24bae84394d84eff03bbe98b2903d4fa",
+   "key": "rgba_257x129_png",
+   "fixture": "extra_qwen3-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    280,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    20,
+    14
+   ],
+   "resized": [
+    320,
+    224
+   ],
+   "sha256_f32": "b32f514d1fb80ee39d37e807950449c8b39ae78750f35fd6457778a8ec096257",
+   "sha256_u8": "263336a73e58a55c941197400e9e7ccbdd37d11cf5a74d30e8524e66b7cb4d0e",
+   "key": "tiny_2x3_png",
+   "fixture": "extra_qwen3-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    280,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    14,
+    20
+   ],
+   "resized": [
+    224,
+    320
+   ],
+   "sha256_f32": "c8517afb1f700d01d5664bd8ae4c78a05783f304365103e866c252ca9ad511c0",
+   "sha256_u8": "672a7c25eaa7b0dc0e3bdf901f57e9ceb485c6edcad5a5fb2fc14ae605931a6a",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_qwen3-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    256,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    4,
+    64
+   ],
+   "resized": [
+    64,
+    1024
+   ],
+   "sha256_f32": "e45302f7fe0ee89f2076e88a8e7509ce3f59a951dd0fb49e1de3773fea70ccb9",
+   "sha256_u8": "72489f862599810b405edd41efa1dcc862a76bc23b3b63ee8a0e933bb2819ee5",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_qwen3-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    360,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    60,
+    6
+   ],
+   "resized": [
+    960,
+    96
+   ],
+   "sha256_f32": "d0a1312696d32ef276690edf89c91b2ecf219cc46c8ebd67b346b5db44243041",
+   "sha256_u8": "8ae62633c1cee5ae20a98fea01f8a3b313065f965895130f55e1d33381820cfa",
+   "key": "tall_50x700_png",
+   "fixture": "extra_qwen3-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1024,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    32,
+    32
+   ],
+   "resized": [
+    512,
+    512
+   ],
+   "sha256_f32": "ec46e604df40c24873a9ecf893aec59f1e6f1c1017ed788e705897e3e15f1bef",
+   "sha256_u8": "9d1263ba0e684c996ad8d59ebeeb479d2608e2d7bb09a217aafcb77f1c5f9533",
+   "key": "astronaut_png",
+   "fixture": "extra_qwen3-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    768,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    24,
+    32
+   ],
+   "resized": [
+    384,
+    512
+   ],
+   "sha256_f32": "f6d94bd75e5902e04c98b0da1b4e809c3573adca75f3c31cf4e98c6ca7278310",
+   "sha256_u8": "d65d976962e2b8c18b19ce05690dbe5975ac4091d65bb3c16ea0c42645558185",
+   "key": "photo_500x375_jpg",
+   "fixture": "extra_qwen3-vl-2b__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "extreme_402x2.png",
+   "mode": "RGB",
+   "status": "error",
+   "error": "ValueError: absolute aspect ratio must be smaller than 200, got 201.0"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "torchvision",
+   "image": "photo_640x480.png+gray_300x200.png+tiny_2x3.png+photo_640x480.png+wide_1024x64.png",
+   "batch": [
+    "photo_640x480.png",
+    "gray_300x200.png",
+    "tiny_2x3.png",
+    "photo_640x480.png",
+    "wide_1024x64.png"
+   ],
+   "status": "ok",
+   "shape": [
+    3216,
+    1536
+   ],
+   "grid_thw": [
+    [
+     1,
+     30,
+     40
+    ],
+    [
+     1,
+     14,
+     20
+    ],
+    [
+     1,
+     20,
+     14
+    ],
+    [
+     1,
+     30,
+     40
+    ],
+    [
+     1,
+     4,
+     64
+    ]
+   ],
+   "sha256_f32": "9d423e4e014010f8ef7e768edfc42d5455b47b6b955166e77bdb6c146af3274b"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1200,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    30,
+    40
+   ],
+   "resized": [
+    480,
+    640
+   ],
+   "sha256_f32": "8e09dfeca6227b741bc0e052785dea505b5a92c23d0720c731c7145ca69044e6",
+   "sha256_u8": "63c57d451a1751ba5c684bc1da823f4dc4c2db582d264277b53b5609ecc86559",
+   "key": "photo_640x480_png",
+   "fixture": "extra_qwen3-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    640,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    32,
+    20
+   ],
+   "resized": [
+    512,
+    320
+   ],
+   "sha256_f32": "b6fb8f9dec79278a26b8225e99f5b92800f45185b1c881fa1d07df478d521851",
+   "sha256_u8": "57a61f5f2e71160052ed9898f6ea7f329e3294d8a25e3d3c928a80669ea100dd",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_qwen3-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    280,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    14,
+    20
+   ],
+   "resized": [
+    224,
+    320
+   ],
+   "sha256_f32": "ed28e0f0b431ef11dcb64c0ad1008fe79716f9da818505e4315d575119157cc6",
+   "sha256_u8": "12b756a9bbfbfeb1432f58f529cbe3779617367bf12daecba892ae42eceeea7c",
+   "key": "gray_300x200_png",
+   "fixture": "extra_qwen3-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    288,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    12,
+    24
+   ],
+   "resized": [
+    192,
+    384
+   ],
+   "sha256_f32": "4e8b21b7b8e72d59d9d862634efe394f86f0f2a1b6530dcabf50a6e4755c1725",
+   "sha256_u8": "0627ec7ad97b0cf8a05b4a406f519a3f4c5b397b2f8484debf6d6cc4566a7f40",
+   "key": "rgba_257x129_png",
+   "fixture": "extra_qwen3-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    280,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    20,
+    14
+   ],
+   "resized": [
+    320,
+    224
+   ],
+   "sha256_f32": "0bc342015296d4a1caf450879152b7cdaed504494ac0a330e74e45774b6ef24a",
+   "sha256_u8": "7607dcec2718f7d323b6a33b458451639f8b89be3aca292b8c3290772ae630c2",
+   "key": "tiny_2x3_png",
+   "fixture": "extra_qwen3-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    280,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    14,
+    20
+   ],
+   "resized": [
+    224,
+    320
+   ],
+   "sha256_f32": "e6f2fe65b367db1e780a2c10ddfcfa81271551ec8b594e04b62a671667cece72",
+   "sha256_u8": "e974110f1684bedd39405fcd98f830f3e6e02e3f77634e5b9419269ecb0a05d6",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_qwen3-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    256,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    4,
+    64
+   ],
+   "resized": [
+    64,
+    1024
+   ],
+   "sha256_f32": "ac4743bc2a2161c07bfa872423412a24501c0a78d77da4c97608432bb78da5d9",
+   "sha256_u8": "72489f862599810b405edd41efa1dcc862a76bc23b3b63ee8a0e933bb2819ee5",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_qwen3-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    360,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    60,
+    6
+   ],
+   "resized": [
+    960,
+    96
+   ],
+   "sha256_f32": "cb9b1ade93d4b3326da3142da69d7c8a92812f2bae826ec7928b09fffd65a02c",
+   "sha256_u8": "a6afe49ec8956c177a352162af2162827e3946742b0ba0c46dd19e9c9ebbe7e3",
+   "key": "tall_50x700_png",
+   "fixture": "extra_qwen3-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1024,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    32,
+    32
+   ],
+   "resized": [
+    512,
+    512
+   ],
+   "sha256_f32": "029ee923b3586b4d6e1230c89a6e8d5c252231bfd7ff52b63305fba3f6426789",
+   "sha256_u8": "9d1263ba0e684c996ad8d59ebeeb479d2608e2d7bb09a217aafcb77f1c5f9533",
+   "key": "astronaut_png",
+   "fixture": "extra_qwen3-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    768,
+    1536
+   ],
+   "grid_thw": [
+    1,
+    24,
+    32
+   ],
+   "resized": [
+    384,
+    512
+   ],
+   "sha256_f32": "4522f000a3ee4832deeafc74d067b55c6c35e8f253c528faece616a65b8aafa6",
+   "sha256_u8": "f172c8bf9c1c841e3d80c568fe0a1ef482b7c05c40e252acfca1e5ca2b072562",
+   "key": "photo_500x375_jpg",
+   "fixture": "extra_qwen3-vl-2b__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "extreme_402x2.png",
+   "mode": "RGB",
+   "status": "error",
+   "error": "ValueError: absolute aspect ratio must be smaller than 200, got 201.0"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen3-vl-2b",
+   "config": "Qwen_Qwen3-VL-2B-Instruct.json",
+   "overrides": {},
+   "backend": "pil",
+   "image": "photo_640x480.png+gray_300x200.png+tiny_2x3.png+photo_640x480.png+wide_1024x64.png",
+   "batch": [
+    "photo_640x480.png",
+    "gray_300x200.png",
+    "tiny_2x3.png",
+    "photo_640x480.png",
+    "wide_1024x64.png"
+   ],
+   "status": "ok",
+   "shape": [
+    3216,
+    1536
+   ],
+   "grid_thw": [
+    [
+     1,
+     30,
+     40
+    ],
+    [
+     1,
+     14,
+     20
+    ],
+    [
+     1,
+     20,
+     14
+    ],
+    [
+     1,
+     30,
+     40
+    ],
+    [
+     1,
+     4,
+     64
+    ]
+   ],
+   "sha256_f32": "5f67fd6854d941be05c064036c2c1dc08ad75210723e249b911ec0cfa7a90100"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1564,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    34,
+    46
+   ],
+   "resized": [
+    476,
+    644
+   ],
+   "sha256_f32": "e7073bd212defd994fe9b7bcb0189fe5933d6671b3f166033c5e91f47b15b381",
+   "sha256_u8": "017b158b7e2553bf7e75334482498eb57a1a51bbbb1664b9e560f4dc6692c0e7",
+   "key": "photo_640x480_png",
+   "fixture": "extra_qwen2-vl-2b-budget__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1040,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    40,
+    26
+   ],
+   "resized": [
+    560,
+    364
+   ],
+   "sha256_f32": "e4cbdfbe658696011cce39f96bcb12fc1cbc627cc73c327285973aa271d62ddf",
+   "sha256_u8": "388ba77dd50dacbf2297b7c7464f92e79e971a497559fb9c82a6bc001df42536",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_qwen2-vl-2b-budget__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    1120,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    28,
+    40
+   ],
+   "resized": [
+    392,
+    560
+   ],
+   "sha256_f32": "c4e38ccb4c42aed9ca4bd3d3045eb6275dd9c4162451bc82e61bc37a1e313637",
+   "sha256_u8": "acdbe4d0dba52327313856a7d5446dec30ba80a8b01290b7e62b37d5a1f9700f",
+   "key": "gray_300x200_png",
+   "fixture": "extra_qwen2-vl-2b-budget__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    1104,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    24,
+    46
+   ],
+   "resized": [
+    336,
+    644
+   ],
+   "sha256_f32": "729535f488c74be88b7f5e397bfc70e134ebbc252fd3d3e155c4020954d1d8d2",
+   "sha256_u8": "a27c940f17a9dbd29a1346d3ec1defbc6d1a77873341b8b0cdcc8a6486b07714",
+   "key": "rgba_257x129_png",
+   "fixture": "extra_qwen2-vl-2b-budget__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1120,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    40,
+    28
+   ],
+   "resized": [
+    560,
+    392
+   ],
+   "sha256_f32": "3668f4a01be36e331c19017534ccc09015ca2dc68cf52b59855c47b64fb04d6a",
+   "sha256_u8": "344c8d719b9584c052892330fea27d426c6d6f4f696cabe28ddc6b74f4bf3c1a",
+   "key": "tiny_2x3_png",
+   "fixture": "extra_qwen2-vl-2b-budget__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1064,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    28,
+    38
+   ],
+   "resized": [
+    392,
+    532
+   ],
+   "sha256_f32": "d6c8e473c8571950e990ac6918f138f025bbe1a61a86c2db1adbb09883181e7a",
+   "sha256_u8": "a70414e21ae98234786bda6c9205ed535173a9dce93a46a61e45c5ee30a7d40b",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_qwen2-vl-2b-budget__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1024,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    8,
+    128
+   ],
+   "resized": [
+    112,
+    1792
+   ],
+   "sha256_f32": "89c719edb7ee151744a756e2952136c047eb28732b43f1eee98ecf568b85537c",
+   "sha256_u8": "5b60d9ea10800251dda375705252be8c2c4413384e8e099e36deb067e085788a",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_qwen2-vl-2b-budget__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1200,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    120,
+    10
+   ],
+   "resized": [
+    1680,
+    140
+   ],
+   "sha256_f32": "e18ef512a75ebd1f28230b97731ccc50112559a9fa99428c5fa56727c5a3760a",
+   "sha256_u8": "7947764efaa8290638a09a719de0079096d767efd28438ef780b397a5ea1bb7b",
+   "key": "tall_50x700_png",
+   "fixture": "extra_qwen2-vl-2b-budget__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1296,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    36,
+    36
+   ],
+   "resized": [
+    504,
+    504
+   ],
+   "sha256_f32": "2cfdc4e3a1a8365cde6c83150f3cddff7dca37390e23ab4cb00811a24c567ab1",
+   "sha256_u8": "a0761cbc995fdefdfc43cd2b18b6a195939b9f3a72ffe542fcaf4f4804a5a10c",
+   "key": "astronaut_png",
+   "fixture": "extra_qwen2-vl-2b-budget__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1064,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    28,
+    38
+   ],
+   "resized": [
+    392,
+    532
+   ],
+   "sha256_f32": "f7b09bccc1792d7870ddfc1eebbfc07d306cb0f14ef19f00bfd92f17eea5da1d",
+   "sha256_u8": "64c574a358d1ddfd40b4b771d894aa57ff94f5f17a7ec35d4a1d057ff8187342",
+   "key": "photo_500x375_jpg",
+   "fixture": "extra_qwen2-vl-2b-budget__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "extreme_402x2.png",
+   "mode": "RGB",
+   "status": "error",
+   "error": "ValueError: absolute aspect ratio must be smaller than 200, got 201.0"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    4988,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    58,
+    86
+   ],
+   "resized": [
+    812,
+    1204
+   ],
+   "sha256_f32": "87184e93aed3844c38d613b2fea04bcbe165b9398e6be7ee9e9fe375747d2a2f",
+   "sha256_u8": "ce4b94705c43ab0dfce4c5367a927102764e3348f1015303d20900704c8cbede",
+   "key": "huge_3000x2000_png",
+   "fixture": "extra_qwen2-vl-2b-budget__torchvision.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "torchvision",
+   "image": "photo_640x480.png+gray_300x200.png+tiny_2x3.png+photo_640x480.png+wide_1024x64.png",
+   "batch": [
+    "photo_640x480.png",
+    "gray_300x200.png",
+    "tiny_2x3.png",
+    "photo_640x480.png",
+    "wide_1024x64.png"
+   ],
+   "status": "ok",
+   "shape": [
+    6392,
+    1176
+   ],
+   "grid_thw": [
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     28,
+     40
+    ],
+    [
+     1,
+     40,
+     28
+    ],
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     8,
+     128
+    ]
+   ],
+   "sha256_f32": "82672832fd02e1c00f219d40ee43ab95b693acb4fafb821bb170a5463d8b2b2d"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1564,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    34,
+    46
+   ],
+   "resized": [
+    476,
+    644
+   ],
+   "sha256_f32": "8b902cea4b6ad949322b78534892271b2431f314439e8a0f7478540f8fb3c76b",
+   "sha256_u8": "8e8de5c038b06456d807c29caac75bb9acad39eb4a960bea7864d62faa826dd8",
+   "key": "photo_640x480_png",
+   "fixture": "extra_qwen2-vl-2b-budget__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1040,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    40,
+    26
+   ],
+   "resized": [
+    560,
+    364
+   ],
+   "sha256_f32": "0c28d7681eec2d362b91542d450f8123d1f1436410acf8680d498f2948390710",
+   "sha256_u8": "f5c2875e2b66ad5ac09b72f7450d9e1251ca7cf4efc82fcd11fe8c183c13510f",
+   "key": "hifreq_333x517_png",
+   "fixture": "extra_qwen2-vl-2b-budget__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    1120,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    28,
+    40
+   ],
+   "resized": [
+    392,
+    560
+   ],
+   "sha256_f32": "91e6c8482530600c96d51e9f9d7178e3015b0caa6d6a5f1550dc3bc4efb339f3",
+   "sha256_u8": "751560316c679b329abdc28c4e13c70403d5f68bea1a2b501d85f22abd96bbee",
+   "key": "gray_300x200_png",
+   "fixture": "extra_qwen2-vl-2b-budget__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    1104,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    24,
+    46
+   ],
+   "resized": [
+    336,
+    644
+   ],
+   "sha256_f32": "fa4280938fb8f3cbf28c9af9e441b3668637f295a92cf322e0c1c21fd8dccbb0",
+   "sha256_u8": "05393dc690ebe19887268142a6f86a0ced227945f453be02e5ca4c0bb2bc1b64",
+   "key": "rgba_257x129_png",
+   "fixture": "extra_qwen2-vl-2b-budget__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1120,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    40,
+    28
+   ],
+   "resized": [
+    560,
+    392
+   ],
+   "sha256_f32": "8ac520a86bfac6310d0310a358e54816790930f48d7dd4d97c8bebaadbf53bec",
+   "sha256_u8": "d337a13bb8171f51b16e8445a41bd4b2ab6487a324cda7cffee695bd7bd5dd23",
+   "key": "tiny_2x3_png",
+   "fixture": "extra_qwen2-vl-2b-budget__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1064,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    28,
+    38
+   ],
+   "resized": [
+    392,
+    532
+   ],
+   "sha256_f32": "2f1c6e6f7e6fb705b49bfee18829a3540ebd0a2f4737b9ea8eb91db7696d25c3",
+   "sha256_u8": "29020ab971bda381a0e5625ca5c650615e172d0cfdfe723d08093edd9d9ff770",
+   "key": "tiny_7x5_png",
+   "fixture": "extra_qwen2-vl-2b-budget__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1024,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    8,
+    128
+   ],
+   "resized": [
+    112,
+    1792
+   ],
+   "sha256_f32": "e667de40c608859bf4eb763b73eb4c701c70ae2ae85978871f0f6da0cb63fab6",
+   "sha256_u8": "2f2b934d863d4c54c5cfabbe99c5974b25c91c039091dd9f280d0d4cb54a0d46",
+   "key": "wide_1024x64_png",
+   "fixture": "extra_qwen2-vl-2b-budget__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1200,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    120,
+    10
+   ],
+   "resized": [
+    1680,
+    140
+   ],
+   "sha256_f32": "58268aa6d7d9ae40034feca338df8354b0cab026e929a4b0c4748dcaa1976166",
+   "sha256_u8": "09bb3abb90909d80821f4bbe2b4ee3d9b2da2c4927acaecf0472dfcbda0307e2",
+   "key": "tall_50x700_png",
+   "fixture": "extra_qwen2-vl-2b-budget__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1296,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    36,
+    36
+   ],
+   "resized": [
+    504,
+    504
+   ],
+   "sha256_f32": "18547d17a6d9aea9e38f7c9beb6f031e3377394b947219764f4780a343c56e9a",
+   "sha256_u8": "5393fd2710b46240efd935e3da2fd7624203a11527791737ec8518b93cd5671d",
+   "key": "astronaut_png",
+   "fixture": "extra_qwen2-vl-2b-budget__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    1064,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    28,
+    38
+   ],
+   "resized": [
+    392,
+    532
+   ],
+   "sha256_f32": "78cdf905e652641b0da5af443fcec67fa6b881eef96b18133d4a4ef27b3e62b9",
+   "sha256_u8": "429c60438d957fd2b10ea02fb7f7661c4659b833a762142d2ba927b37cf0e533",
+   "key": "photo_500x375_jpg",
+   "fixture": "extra_qwen2-vl-2b-budget__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "extreme_402x2.png",
+   "mode": "RGB",
+   "status": "error",
+   "error": "ValueError: absolute aspect ratio must be smaller than 200, got 201.0"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    4988,
+    1176
+   ],
+   "grid_thw": [
+    1,
+    58,
+    86
+   ],
+   "resized": [
+    812,
+    1204
+   ],
+   "sha256_f32": "c28d6f98ec61f3b78745605326267b7e6246aef6d3772c2a7d47bb3c4c860bf7",
+   "sha256_u8": "604fbcf7d70e7aa2791f06d7a4e367d2ab722c2c6de580ba8389ec5035883c52",
+   "key": "huge_3000x2000_png",
+   "fixture": "extra_qwen2-vl-2b-budget__pil.npz"
+  },
+  {
+   "suite": "qwen",
+   "case": "qwen2-vl-2b-budget",
+   "config": "Qwen_Qwen2-VL-2B-Instruct.json",
+   "overrides": {
+    "min_pixels": 200704,
+    "max_pixels": 1003520
+   },
+   "backend": "pil",
+   "image": "photo_640x480.png+gray_300x200.png+tiny_2x3.png+photo_640x480.png+wide_1024x64.png",
+   "batch": [
+    "photo_640x480.png",
+    "gray_300x200.png",
+    "tiny_2x3.png",
+    "photo_640x480.png",
+    "wide_1024x64.png"
+   ],
+   "status": "ok",
+   "shape": [
+    6392,
+    1176
+   ],
+   "grid_thw": [
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     28,
+     40
+    ],
+    [
+     1,
+     40,
+     28
+    ],
+    [
+     1,
+     34,
+     46
+    ],
+    [
+     1,
+     8,
+     128
+    ]
+   ],
+   "sha256_f32": "84ee31cc6c0007f1a7785fa909bef741a2f31f79f5a3e8e87edf35ea112865f3"
+  }
+ ],
+ "whisper": [
+  {
+   "name": "longest_mask",
+   "clips": [
+    "a",
+    "b"
+   ],
+   "kwargs": {
+    "padding": "longest",
+    "return_attention_mask": true
+   },
+   "overrides": {},
+   "dither_seed": null,
+   "shape": [
+    2,
+    80,
+    250
+   ],
+   "mask_shape": [
+    2,
+    250
+   ],
+   "mask_lengths": [
+    100,
+    250
+   ]
+  },
+  {
+   "name": "normalize_maxlen",
+   "clips": [
+    "a"
+   ],
+   "kwargs": {
+    "do_normalize": true,
+    "max_length": 32000
+   },
+   "overrides": {},
+   "dither_seed": null,
+   "shape": [
+    1,
+    80,
+    200
+   ],
+   "mask_shape": [
+    1,
+    32000
+   ],
+   "mask_lengths": [
+    16000
+   ]
+  },
+  {
+   "name": "normalize_longest_mask",
+   "clips": [
+    "a",
+    "b"
+   ],
+   "kwargs": {
+    "do_normalize": true,
+    "padding": "longest",
+    "return_attention_mask": true
+   },
+   "overrides": {},
+   "dither_seed": null,
+   "shape": [
+    2,
+    80,
+    250
+   ],
+   "mask_shape": [
+    2,
+    250
+   ],
+   "mask_lengths": [
+    100,
+    250
+   ]
+  },
+  {
+   "name": "no_truncation",
+   "clips": [
+    "b"
+   ],
+   "kwargs": {
+    "max_length": 32000,
+    "truncation": false
+   },
+   "overrides": {},
+   "dither_seed": null,
+   "shape": [
+    1,
+    80,
+    250
+   ]
+  },
+  {
+   "name": "truncation",
+   "clips": [
+    "b"
+   ],
+   "kwargs": {
+    "max_length": 32000
+   },
+   "overrides": {},
+   "dither_seed": null,
+   "shape": [
+    1,
+    80,
+    200
+   ]
+  },
+  {
+   "name": "pad_multiple",
+   "clips": [
+    "a"
+   ],
+   "kwargs": {
+    "padding": "longest",
+    "pad_to_multiple_of": 3000,
+    "return_attention_mask": true
+   },
+   "overrides": {},
+   "dither_seed": null,
+   "shape": [
+    1,
+    80,
+    112
+   ],
+   "mask_shape": [
+    1,
+    112
+   ],
+   "mask_lengths": [
+    100
+   ]
+  },
+  {
+   "name": "do_not_pad",
+   "clips": [
+    "a"
+   ],
+   "kwargs": {
+    "padding": "do_not_pad"
+   },
+   "overrides": {},
+   "dither_seed": null,
+   "shape": [
+    1,
+    80,
+    100
+   ]
+  },
+  {
+   "name": "config_mask_default",
+   "clips": [
+    "a"
+   ],
+   "kwargs": {
+    "padding": "longest"
+   },
+   "overrides": {
+    "return_attention_mask": true
+   },
+   "dither_seed": null,
+   "shape": [
+    1,
+    80,
+    100
+   ],
+   "mask_shape": [
+    1,
+    16000
+   ],
+   "mask_lengths": [
+    16000
+   ]
+  },
+  {
+   "name": "dither",
+   "clips": [
+    "a",
+    "b"
+   ],
+   "kwargs": {
+    "padding": "longest",
+    "return_attention_mask": true
+   },
+   "overrides": {
+    "dither": 0.01
+   },
+   "dither_seed": 0,
+   "shape": [
+    2,
+    80,
+    250
+   ],
+   "mask_shape": [
+    2,
+    250
+   ],
+   "mask_lengths": [
+    100,
+    250
+   ]
+  },
+  {
+   "name": "dither_seed7_maxlen",
+   "clips": [
+    "a"
+   ],
+   "kwargs": {
+    "max_length": 24000
+   },
+   "overrides": {
+    "dither": 0.001
+   },
+   "dither_seed": 7,
+   "shape": [
+    1,
+    80,
+    150
+   ]
+  }
+ ]
+}

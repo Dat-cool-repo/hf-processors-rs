@@ -1,0 +1,2954 @@
+{
+ "versions": {
+  "transformers": "5.18.0",
+  "pillow": "12.3.0",
+  "torch": "2.14.1+cpu",
+  "torchvision": "0.29.1+cpu",
+  "numpy": "2.5.3",
+  "python": "3.12.3",
+  "torch_cpu_capability": "AVX2"
+ },
+ "images": [
+  "gray_300x200.png",
+  "hifreq_333x517.png",
+  "huge_3000x2000.png",
+  "la_100x150.png",
+  "palette_200x120.png",
+  "photo_640x480.png",
+  "rgba_257x129.png",
+  "tall_50x700.png",
+  "tiny_1x1.png",
+  "tiny_2x3.png",
+  "tiny_7x5.png",
+  "wide_1024x64.png",
+  "astronaut.png",
+  "coffee.png",
+  "photo_500x375.jpg"
+ ],
+ "cases": [
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "gray_300x200_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "9ec6d79a84676ed8b3592e42ba21b6c8c70fc3b1426c9643756debbf814f6a71",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "c3dc14f2ef31dc8d7ea699b82242740afc149fe0af164e2cec1ab05b749b6edf",
+   "full": "repo"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "huge_3000x2000_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "2d4a4245417d7c46c129eec6ecb37ca4b6ded5def812c9cf4e3c7d04d5e81e96",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "la_100x150.png",
+   "mode": "LA",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "la_100x150_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "85f6a0ea80b609e13551ce6c7134762ab3adb90116e39f635f7d67cb3c61d966",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "palette_200x120_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "5d784b3edef7ba65f1c089689ada7eb9857b15b72e30156712e3da40c920cc1c",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "75d037495ff8546afc23cddf9941e4db8e117e4647a5ddc2d54976797a4a68e4",
+   "full": "repo"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "rgba_257x129_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "07b56e63af94c002b753b4f6498c51efae9e555830d9745a07f3e230547120fb",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "e47c1915e8cbfff53797597ef4400f940b9ce3eff3c5446e2c86c9753b2f357b",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_1x1.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_1x1_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "4bf351ba01a977423ad53d2fe35c37eeb1b72e56a730198a16f1123d330b6529",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "2d7ee90dd562df58e6044790257e5b6208e24975f70b0aa4e0ff3357629464f5",
+   "full": "repo"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_7x5_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "8e55af88b5a93e61e46124fc8297571d935cd1e17973b24063c6ce11fe112221",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "wide_1024x64_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "d39eaaf0972c6a9cedcb7e20ce024c6d1131ded832e330813a9211668d73816a",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "astronaut_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "1401a75928f3e64c4e192b3eea5da2ac8ceac391f2a17bdfc0bd45ff44fd614e",
+   "full": "repo"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "coffee.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "coffee_png",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "e2f1ce89477fc886ade97175ba0d5a192286999bfad105b046e4d77f6664950f",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_500x375_jpg",
+   "fixture": "clip-vit-base-patch32__torchvision.npz",
+   "sha256": "ba4f8f698e94e552db2d64fe47144bb08ef3e33467908682f82ac34459f94c39",
+   "full": "repo"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "gray_300x200_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "4f518fc4d7dc4942f93ac8652c19a7187da10ff221d83e6001484c2da243e5d8",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "2bf81016d7ea181506be3b1a19ae50f45385da1b5beea04ee070981cb78e6adc",
+   "full": "repo"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "huge_3000x2000_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "1cad3eddaf391bfaea6eeddaa95627fe4d81da2df8da43f25a44b4f4b2d49012",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "la_100x150.png",
+   "mode": "LA",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "la_100x150_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "721d3355a2a878af65a1738d8bcfa471a4bbe96697215a1e5f8daa9c302aadb6",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "palette_200x120_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "f946bc489fd9fbd13f3af902a124a1d96d4b8270a6e5bf73f75dfaecbaa90e98",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "25721d88a2dc805013234173f864bc449d2a0e2659e392cdd974b162fa204f74",
+   "full": "repo"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "rgba_257x129_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "ee51f34d479beb2850fb07e5d2d7578cbcedd983b15fe1b629b8d1a88f45c6e1",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "355e483541a55da505ee011d831e82b35d011d7f55f56f138ff1c13c7bd52a7f",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "tiny_1x1.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_1x1_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "4bf351ba01a977423ad53d2fe35c37eeb1b72e56a730198a16f1123d330b6529",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "3d1b5d93a9e9b4a8752881da68df46a2fbf0f25f63169113d49f2412dcc4da76",
+   "full": "repo"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_7x5_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "94c910c4f40b3edcd51fb028ef085ad9a3e1f0512df8d539f23f9e4542f117f4",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "wide_1024x64_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "dc9411821a6c36a90c6f34e359ee113080eda27d0f76313f6287d17b997b0078",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "astronaut_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "d0112ed64541b6d9640f8cb07317c8cbb0d3adb45ca4163bf36d7861e9c0699d",
+   "full": "repo"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "coffee.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "coffee_png",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "177e35c1eca31b28101ca7058b13c9fd1fc5bd0c3c176ef1b4fd37f2b6be80f6",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-base-patch32",
+   "config": "openai_clip-vit-base-patch32.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_500x375_jpg",
+   "fixture": "clip-vit-base-patch32__pil.npz",
+   "sha256": "3b223ab08d205df8c64d99c77f02506dbe2bfe548581c445b7127a097c2c369d",
+   "full": "repo"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "clip-vit-large-patch14-336__torchvision.npz",
+   "sha256": "b3ac276779d0c8d8728b8a2fad762168fc6652d7af7a51dc4d81107583e17d03",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "clip-vit-large-patch14-336__torchvision.npz",
+   "sha256": "6f029f168d7b656ee60169d68d978148c9bc71a92ac65312684d43a29037b113",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "gray_300x200_png",
+   "fixture": "clip-vit-large-patch14-336__torchvision.npz",
+   "sha256": "784a57abd5483cb7b559df51430e30d54ac92e2b4eaa2842c49be064443460af",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "clip-vit-large-patch14-336__torchvision.npz",
+   "sha256": "b8cbd4fb0518678330e994ca38bba8f51a899fb6e0378c9578719c2445857afb",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "astronaut_png",
+   "fixture": "clip-vit-large-patch14-336__torchvision.npz",
+   "sha256": "4504a6c76f4ac32e2b239f611ba1e54619648dbc59fff1a962e7a2d408cadb9e",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "clip-vit-large-patch14-336__torchvision.npz",
+   "sha256": "44c7c854d87d4d1eead29f011e381f29c43ae12ea51c2a4684e1bec5d5eef796",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "clip-vit-large-patch14-336__pil.npz",
+   "sha256": "892e2ab30bf98fec1d2463edfe15a30c076d9b8cf1cb3a650d4435a2ba92b5d2",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "clip-vit-large-patch14-336__pil.npz",
+   "sha256": "482eb6b15191c8024ef8386aba40cefc509925ee11e3b18084c6af31e111a145",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "gray_300x200_png",
+   "fixture": "clip-vit-large-patch14-336__pil.npz",
+   "sha256": "a55910b5b522cefb80cc0d8df0e5411def1b72ef145a2271f5b41e640dff7d4b",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "clip-vit-large-patch14-336__pil.npz",
+   "sha256": "ab1dc321a8b9509de508a5eb57f83b297b7de9da75954194b350c53df1dd741b",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "astronaut_png",
+   "fixture": "clip-vit-large-patch14-336__pil.npz",
+   "sha256": "402bed0eef4e141cb0e43a524cd4f96da4a7b4570f6e99a99c2fb73ae5f7cc0a",
+   "full": "external"
+  },
+  {
+   "case": "clip-vit-large-patch14-336",
+   "config": "openai_clip-vit-large-patch14-336.json",
+   "processor": "CLIPImageProcessor",
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    336,
+    336
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "clip-vit-large-patch14-336__pil.npz",
+   "sha256": "09a555d8878111164b2c09c77f83f96dbf79affb5fb43b70bcab9fe4fa9714dd",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "error",
+   "error": "RuntimeError: output with shape [1, 1, 224, 224] doesn't match the broadcast shape [1, 3, 224, 224]"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "vit-base-patch16-224__torchvision.npz",
+   "sha256": "04b0140c190830146d9559e3c4c475794df1f3dd146f1a7269fbc9bee14cc09f",
+   "full": "repo"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "huge_3000x2000_png",
+   "fixture": "vit-base-patch16-224__torchvision.npz",
+   "sha256": "ab4791d56c1680fc281e2cc8304f49f440f3c0b2ae743e93524877a43efcf25c",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "la_100x150.png",
+   "mode": "LA",
+   "status": "error",
+   "error": "ValueError: Unable to infer channel dimension format"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "status": "error",
+   "error": "RuntimeError: output with shape [1, 1, 224, 224] doesn't match the broadcast shape [1, 3, 224, 224]"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "vit-base-patch16-224__torchvision.npz",
+   "sha256": "97edc984e70ef6e802845c13917e673d8e2b08dafbf1f6f28582949ffc804cd3",
+   "full": "repo"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "error",
+   "error": "ValueError: Unable to infer channel dimension format"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "vit-base-patch16-224__torchvision.npz",
+   "sha256": "46e67189a0ff48fe43c40fb194d898a1349d6a04eab31ea90e949c2e46e52311",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_1x1.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_1x1_png",
+   "fixture": "vit-base-patch16-224__torchvision.npz",
+   "sha256": "4bf351ba01a977423ad53d2fe35c37eeb1b72e56a730198a16f1123d330b6529",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "vit-base-patch16-224__torchvision.npz",
+   "sha256": "dbb09945a1b016d6ba73742e862ca4e2ee9610d2e1bf51e4ac054022fec8158b",
+   "full": "repo"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_7x5_png",
+   "fixture": "vit-base-patch16-224__torchvision.npz",
+   "sha256": "db462c8f616ccbae0f5d43b5e027e47aa3c9f70460278907a8f2202141825a03",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "wide_1024x64_png",
+   "fixture": "vit-base-patch16-224__torchvision.npz",
+   "sha256": "263cde9eb71f417bb9ba007a919b58f50912d4ced85b62f63d68bc26375b8f01",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "astronaut_png",
+   "fixture": "vit-base-patch16-224__torchvision.npz",
+   "sha256": "3918393e17d1451a2f38f3263f9c70384898cfc7d25a2d6358c1ac0d0574dc7e",
+   "full": "repo"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "coffee.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "coffee_png",
+   "fixture": "vit-base-patch16-224__torchvision.npz",
+   "sha256": "a15f889fd6a565a66ed61c06ffe5279559289a56dd613346eb515c1a246029d3",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_500x375_jpg",
+   "fixture": "vit-base-patch16-224__torchvision.npz",
+   "sha256": "1058a56ddd974933481cc1d857ac0d8a283e2e2f5715bfa714b5111e9f5a4740",
+   "full": "repo"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "error",
+   "error": "ValueError: mean must have 1 elements if it is an iterable, got 3"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "vit-base-patch16-224__pil.npz",
+   "sha256": "9a8a8706ae063d67bcbd0842550c489b1310e9ffdc7869cdc002f525d04af6a4",
+   "full": "repo"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "huge_3000x2000_png",
+   "fixture": "vit-base-patch16-224__pil.npz",
+   "sha256": "c49ad9859f4a90dd9361eb9ea0896f3ae3742b335001ffb3f882fe1052722a69",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "la_100x150.png",
+   "mode": "LA",
+   "status": "error",
+   "error": "ValueError: mean must have 2 elements if it is an iterable, got 3"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "status": "error",
+   "error": "ValueError: mean must have 1 elements if it is an iterable, got 3"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "vit-base-patch16-224__pil.npz",
+   "sha256": "dd6898be781fcd6ca496d031238f96701ceda4cd1b8dadf40295619ac4c9e6be",
+   "full": "repo"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "error",
+   "error": "ValueError: mean must have 4 elements if it is an iterable, got 3"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "vit-base-patch16-224__pil.npz",
+   "sha256": "636d8dc2d92b2d457a3cf3e1fd7b0ad44d3bad62eafd09828c681027f981a27d",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "tiny_1x1.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_1x1_png",
+   "fixture": "vit-base-patch16-224__pil.npz",
+   "sha256": "4bf351ba01a977423ad53d2fe35c37eeb1b72e56a730198a16f1123d330b6529",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "vit-base-patch16-224__pil.npz",
+   "sha256": "3824d7a0f9302f5267793b82d00923366b390d8c22a094b735540f2c3e616b71",
+   "full": "repo"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_7x5_png",
+   "fixture": "vit-base-patch16-224__pil.npz",
+   "sha256": "e6d3ee074f2397316ba2a89644cc87c94d2b146fc1c0a85287aa1a8a0e30b0dc",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "wide_1024x64_png",
+   "fixture": "vit-base-patch16-224__pil.npz",
+   "sha256": "00888a4659654b09148b7278be46c88a546c59295ea918f9ebc5d8ff57b3252b",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "astronaut_png",
+   "fixture": "vit-base-patch16-224__pil.npz",
+   "sha256": "3918393e17d1451a2f38f3263f9c70384898cfc7d25a2d6358c1ac0d0574dc7e",
+   "full": "repo"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "coffee.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "coffee_png",
+   "fixture": "vit-base-patch16-224__pil.npz",
+   "sha256": "8775196091e4b5554083338b3950828fa8c795838da48075420951a120236815",
+   "full": "external"
+  },
+  {
+   "case": "vit-base-patch16-224",
+   "config": "google_vit-base-patch16-224.json",
+   "processor": "ViTImageProcessor",
+   "backend": "pil",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_500x375_jpg",
+   "fixture": "vit-base-patch16-224__pil.npz",
+   "sha256": "546048e4786b59f924399cfa1d630bc82b20dadce5e51dae5f94c6c7c8b2a511",
+   "full": "repo"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "gray_300x200_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "d5f0440a56131d8a50e976b6af1243f7e78771282964084e7123f10a9b0749d4",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "a4b94bfc3c3534ec06c24d649a39c28bf899f5745bf712a73d21137f6af82675",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "huge_3000x2000_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "bc635077002004e192944d0255863671b8985ca3475cfbb1ab1fa9a598b88eb7",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "la_100x150.png",
+   "mode": "LA",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "la_100x150_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "c6ea3b1967bfa33e9ea55badb4794aa19aec80374b753c8b1de9448599624bdd",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "palette_200x120_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "40b35f24d66cd8b38cfe2261bc69805f5c2f8aec48b83464856a8184b6577438",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "e3eae4b901c2f5fa473b6a6578b86c0c2365fca299e035bf38ff454101cf54bc",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "rgba_257x129_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "3e8f14229320b19da800edb7848a3503396e2ad23e351b5ebc3a2b067bc7b257",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "3d3763554f4a29cc5c344c9717fbee7ad96b7991cbe58767a5fc4f5dc877e708",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_1x1.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_1x1_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "4bf351ba01a977423ad53d2fe35c37eeb1b72e56a730198a16f1123d330b6529",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "68265e4778512de3875ea2888e30b908266369248de24a0440d1735855836fc5",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_7x5_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "9ff6d164d05efaf94b522efe38fe2fdd7b3c6290bd9cada1ab5043f9694bd2cd",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "wide_1024x64_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "d760cfc3c076e39f0ab854464f582405356febdb4e0156d1047bce56d69ae2d1",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "astronaut_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "1401a75928f3e64c4e192b3eea5da2ac8ceac391f2a17bdfc0bd45ff44fd614e",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "coffee.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "coffee_png",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "435339fad66cac14992b378f3a3a6261ca7bd0b1e64619e7aa86e9538b789185",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_500x375_jpg",
+   "fixture": "siglip-base-patch16-224__torchvision.npz",
+   "sha256": "41ff08951e3988bb8358a07359055d6a96e4fe9a75db2f183f848811ed531d17",
+   "full": "repo"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "gray_300x200_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "e8604be6305dd0b5f373d0f895d5d1e2db27d17bb1ce324a8f59d6d3aa76d3d8",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "2e001626b3b4adc23030fa5cf901005ccd7c2621667d700c3218ee7d780d40ca",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "huge_3000x2000_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "9b3c842f4861ec9f7f2bf218bbe94ce1a4ae47d4844500726abc0c5165e7c705",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "la_100x150.png",
+   "mode": "LA",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "la_100x150_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "ac820d02b32405a02f0a85fa8c8c9e4563f40c2cf7cf3681cf396343d1d1b88e",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "palette_200x120_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "84203f99ebd20bb59002736411b4c35345e28f3daef69804df03595671c5daaf",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "198fc01c57096c39678884b1b9306782a77b13022541398f128515b30b79e15d",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "rgba_257x129_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "1b0b1638156b4422cd75eb757c5cf45c701806c3ef33f8a1133a61441eb52150",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "1a889df69cad495b2d8a49b1f2bc7202541a8b70633e590b695b8133698794c6",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "tiny_1x1.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_1x1_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "4bf351ba01a977423ad53d2fe35c37eeb1b72e56a730198a16f1123d330b6529",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "e10b21f50c8d33d2a9a679b42c472166363ff188d024c663e5d4958afe883563",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_7x5_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "92a55fa39661a8cdd0791f70aed066d09079bae87b6adafb61850b91ef60fe68",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "wide_1024x64_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "b5ec670343dfbefec979df6c5f1835279ef82159bcda1407f066e760bb2cddcf",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "astronaut_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "d0112ed64541b6d9640f8cb07317c8cbb0d3adb45ca4163bf36d7861e9c0699d",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "coffee.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "coffee_png",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "38f5faaf71266187fe0edf7418845bf8c327dcde642ad3c63bbb52f0b43440d0",
+   "full": "external"
+  },
+  {
+   "case": "siglip-base-patch16-224",
+   "config": "google_siglip-base-patch16-224.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_500x375_jpg",
+   "fixture": "siglip-base-patch16-224__pil.npz",
+   "sha256": "291aba774e1167e699ca204d76aaf3db7840de0c170e3661aa315d1c6b46ac5c",
+   "full": "repo"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "siglip-so400m-patch14-384__torchvision.npz",
+   "sha256": "62ad6249dc25984cc1eaf63f8c3cad23b7f14a84fdb84ac55acebebfe5b96777",
+   "full": "external"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "siglip-so400m-patch14-384__torchvision.npz",
+   "sha256": "22a07a54c1124bccf2e92259e04e35d401afce4db724c14e0aa8c09e76dbbaba",
+   "full": "external"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "gray_300x200_png",
+   "fixture": "siglip-so400m-patch14-384__torchvision.npz",
+   "sha256": "6ab7cc92f2bfcd852bf80e4a070c81cf4b396561a2d0aa5bb07e6af27235c9c5",
+   "full": "external"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "siglip-so400m-patch14-384__torchvision.npz",
+   "sha256": "fff6b5948ed72789d03e48bbb3510efbdd7eb3f27d8cd013b41c6ba6396c53ec",
+   "full": "external"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "astronaut_png",
+   "fixture": "siglip-so400m-patch14-384__torchvision.npz",
+   "sha256": "0691b7bf3255db201f1c93b49f1cffa3ce6e9b4051aad89a5b3c45b4a7a8bfd6",
+   "full": "external"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "siglip-so400m-patch14-384__torchvision.npz",
+   "sha256": "ba0c10639cd5e9eb4ec672b3b959ab73d0f978cd37baf02d37f7c4b28379916b",
+   "full": "external"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "siglip-so400m-patch14-384__pil.npz",
+   "sha256": "3f2058c535b55122e92924e05a403fd7973a0a4680422be044c30638614876b0",
+   "full": "external"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "siglip-so400m-patch14-384__pil.npz",
+   "sha256": "995bb5a9d31af8c4587cc42064ca371710fd2cbea7d08c08c3c0727a6d45e1a7",
+   "full": "external"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "gray_300x200_png",
+   "fixture": "siglip-so400m-patch14-384__pil.npz",
+   "sha256": "c560b59ad1a3513178fafc00314a10922b89787a51f4f8245b6857405adce629",
+   "full": "external"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "siglip-so400m-patch14-384__pil.npz",
+   "sha256": "914e8d02b80a46b91dbc1fa74d697fe902e474f77da4589d6f79234f78220f55",
+   "full": "external"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "astronaut_png",
+   "fixture": "siglip-so400m-patch14-384__pil.npz",
+   "sha256": "1a2394600fdc26f3b7cdc50aaa51506a2c768617956e9d31aeb2399d446ede29",
+   "full": "external"
+  },
+  {
+   "case": "siglip-so400m-patch14-384",
+   "config": "google_siglip-so400m-patch14-384.json",
+   "processor": "SiglipImageProcessor",
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "siglip-so400m-patch14-384__pil.npz",
+   "sha256": "a3d55084c9225dbf6c1116eeb2b535a9e87caee0cd7cc63114ac48095cd67189",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "error",
+   "error": "RuntimeError: output with shape [1, 1, 224, 224] doesn't match the broadcast shape [1, 3, 224, 224]"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "convnext-tiny-224__torchvision.npz",
+   "sha256": "9eed12533e3370030fbfc351ee77b9a241f4e542e9648c44556fad32f6172d58",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "huge_3000x2000_png",
+   "fixture": "convnext-tiny-224__torchvision.npz",
+   "sha256": "f3dbca867c623c7b3e7f932e4a4884ca8cb693ddd45c455ad5b1c57540580175",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "la_100x150.png",
+   "mode": "LA",
+   "status": "error",
+   "error": "ValueError: Unable to infer channel dimension format"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "status": "error",
+   "error": "RuntimeError: output with shape [1, 1, 224, 224] doesn't match the broadcast shape [1, 3, 224, 224]"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "convnext-tiny-224__torchvision.npz",
+   "sha256": "439fbc297f46da2891d8a3211d774b11ec1b5723d4e1c2017cd1d59e145bac95",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "error",
+   "error": "ValueError: Unable to infer channel dimension format"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "convnext-tiny-224__torchvision.npz",
+   "sha256": "e2d867272420eeaa009675d46ea00eb4fd7f6f540f79b7cad36c115dd7a51172",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_1x1.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_1x1_png",
+   "fixture": "convnext-tiny-224__torchvision.npz",
+   "sha256": "4bf351ba01a977423ad53d2fe35c37eeb1b72e56a730198a16f1123d330b6529",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "convnext-tiny-224__torchvision.npz",
+   "sha256": "3a3de59ea14a041f9c466b7bcad2ab4ec6f6413d2af6eb0a8cb948311f09e6e6",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_7x5_png",
+   "fixture": "convnext-tiny-224__torchvision.npz",
+   "sha256": "5e3a9108bb755f92eb25409bcf20650670c61d1529480bdeb52f5cfaaea7ac85",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "wide_1024x64_png",
+   "fixture": "convnext-tiny-224__torchvision.npz",
+   "sha256": "3e88d6c8460c41d4e3a161769caa14e9e79458ab0dd59334fe891f85c8eb6df4",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "astronaut_png",
+   "fixture": "convnext-tiny-224__torchvision.npz",
+   "sha256": "3efa359db1a4b73989d42b2b3dfa29105b15a6c466de203fb1300fbf99469249",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "coffee.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "coffee_png",
+   "fixture": "convnext-tiny-224__torchvision.npz",
+   "sha256": "88d89e8fd279998a401617b2d198a876bfc1d337e0992684de1d2c2eca68ded2",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_500x375_jpg",
+   "fixture": "convnext-tiny-224__torchvision.npz",
+   "sha256": "4445d9359e980569c0db176df2e6ac2b2e56668bbfe07b5cd70af648e28bbb50",
+   "full": "repo"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "error",
+   "error": "ValueError: mean must have 1 elements if it is an iterable, got 3"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "convnext-tiny-224__pil.npz",
+   "sha256": "33a24a90192b62e4667ebbfd38b580b6ed2ba4e4cc27fbab7f27ad5c376cf8c8",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "huge_3000x2000.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "huge_3000x2000_png",
+   "fixture": "convnext-tiny-224__pil.npz",
+   "sha256": "06b810307c7e5b249ca10edd885053048a1da143e768c114d6b8d8463cc115cb",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "la_100x150.png",
+   "mode": "LA",
+   "status": "error",
+   "error": "ValueError: mean must have 2 elements if it is an iterable, got 3"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "palette_200x120.png",
+   "mode": "P",
+   "status": "error",
+   "error": "ValueError: mean must have 1 elements if it is an iterable, got 3"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "convnext-tiny-224__pil.npz",
+   "sha256": "e92302a66a1053fc640bb706ac8638826e7e9a9ca840e2d1f7c374b9eb8fedd4",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "rgba_257x129.png",
+   "mode": "RGBA",
+   "status": "error",
+   "error": "ValueError: mean must have 4 elements if it is an iterable, got 3"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "convnext-tiny-224__pil.npz",
+   "sha256": "7ac112fb824a5f9eb009f86addbf00133f293d2f144c6a8e160d37442e71da3b",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "tiny_1x1.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_1x1_png",
+   "fixture": "convnext-tiny-224__pil.npz",
+   "sha256": "4bf351ba01a977423ad53d2fe35c37eeb1b72e56a730198a16f1123d330b6529",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "convnext-tiny-224__pil.npz",
+   "sha256": "d4cf3d3cc05f8a1846df74cac7bf76300e4cf845222e03d0a93df1aa21bb4870",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "tiny_7x5.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "tiny_7x5_png",
+   "fixture": "convnext-tiny-224__pil.npz",
+   "sha256": "bfa3d82c1c884ca5154909162e67d0709221bd196e9da6b734071079825ec7a6",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "wide_1024x64.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "wide_1024x64_png",
+   "fixture": "convnext-tiny-224__pil.npz",
+   "sha256": "3e88d6c8460c41d4e3a161769caa14e9e79458ab0dd59334fe891f85c8eb6df4",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "astronaut_png",
+   "fixture": "convnext-tiny-224__pil.npz",
+   "sha256": "3efa359db1a4b73989d42b2b3dfa29105b15a6c466de203fb1300fbf99469249",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "coffee.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "coffee_png",
+   "fixture": "convnext-tiny-224__pil.npz",
+   "sha256": "a63146e70c260e94ee5fcd9409be355a5779314e31e66ddd2307187527de5902",
+   "full": "external"
+  },
+  {
+   "case": "convnext-tiny-224",
+   "config": "facebook_convnext-tiny-224.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "photo_500x375.jpg",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    224,
+    224
+   ],
+   "key": "photo_500x375_jpg",
+   "fixture": "convnext-tiny-224__pil.npz",
+   "sha256": "dd50452d47a6c5a4859ff1b423c0dd509eca6bc03c835252fc912ea65ec1f346",
+   "full": "repo"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "convnext-base-384__torchvision.npz",
+   "sha256": "62ad6249dc25984cc1eaf63f8c3cad23b7f14a84fdb84ac55acebebfe5b96777",
+   "full": "external"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "convnext-base-384__torchvision.npz",
+   "sha256": "22a07a54c1124bccf2e92259e04e35d401afce4db724c14e0aa8c09e76dbbaba",
+   "full": "external"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "error",
+   "error": "RuntimeError: output with shape [1, 1, 384, 384] doesn't match the broadcast shape [1, 3, 384, 384]"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "convnext-base-384__torchvision.npz",
+   "sha256": "fff6b5948ed72789d03e48bbb3510efbdd7eb3f27d8cd013b41c6ba6396c53ec",
+   "full": "external"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "astronaut_png",
+   "fixture": "convnext-base-384__torchvision.npz",
+   "sha256": "0691b7bf3255db201f1c93b49f1cffa3ce6e9b4051aad89a5b3c45b4a7a8bfd6",
+   "full": "external"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "convnext-base-384__torchvision.npz",
+   "sha256": "ba0c10639cd5e9eb4ec672b3b959ab73d0f978cd37baf02d37f7c4b28379916b",
+   "full": "external"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "convnext-base-384__pil.npz",
+   "sha256": "3f2058c535b55122e92924e05a403fd7973a0a4680422be044c30638614876b0",
+   "full": "external"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "convnext-base-384__pil.npz",
+   "sha256": "995bb5a9d31af8c4587cc42064ca371710fd2cbea7d08c08c3c0727a6d45e1a7",
+   "full": "external"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "error",
+   "error": "ValueError: mean must have 1 elements if it is an iterable, got 3"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "convnext-base-384__pil.npz",
+   "sha256": "914e8d02b80a46b91dbc1fa74d697fe902e474f77da4589d6f79234f78220f55",
+   "full": "external"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "astronaut_png",
+   "fixture": "convnext-base-384__pil.npz",
+   "sha256": "1a2394600fdc26f3b7cdc50aaa51506a2c768617956e9d31aeb2399d446ede29",
+   "full": "external"
+  },
+  {
+   "case": "convnext-base-384",
+   "config": "facebook_convnext-base-384.json",
+   "processor": "ConvNextImageProcessor",
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "convnext-base-384__pil.npz",
+   "sha256": "a3d55084c9225dbf6c1116eeb2b535a9e87caee0cd7cc63114ac48095cd67189",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "torchvision",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "blip-image-captioning-base__torchvision.npz",
+   "sha256": "62ad6249dc25984cc1eaf63f8c3cad23b7f14a84fdb84ac55acebebfe5b96777",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "torchvision",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "blip-image-captioning-base__torchvision.npz",
+   "sha256": "22a07a54c1124bccf2e92259e04e35d401afce4db724c14e0aa8c09e76dbbaba",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "torchvision",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "gray_300x200_png",
+   "fixture": "blip-image-captioning-base__torchvision.npz",
+   "sha256": "6ab7cc92f2bfcd852bf80e4a070c81cf4b396561a2d0aa5bb07e6af27235c9c5",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "torchvision",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "blip-image-captioning-base__torchvision.npz",
+   "sha256": "fff6b5948ed72789d03e48bbb3510efbdd7eb3f27d8cd013b41c6ba6396c53ec",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "torchvision",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "astronaut_png",
+   "fixture": "blip-image-captioning-base__torchvision.npz",
+   "sha256": "0691b7bf3255db201f1c93b49f1cffa3ce6e9b4051aad89a5b3c45b4a7a8bfd6",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "torchvision",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "blip-image-captioning-base__torchvision.npz",
+   "sha256": "ba0c10639cd5e9eb4ec672b3b959ab73d0f978cd37baf02d37f7c4b28379916b",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "pil",
+   "image": "photo_640x480.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "photo_640x480_png",
+   "fixture": "blip-image-captioning-base__pil.npz",
+   "sha256": "3f2058c535b55122e92924e05a403fd7973a0a4680422be044c30638614876b0",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "pil",
+   "image": "hifreq_333x517.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "hifreq_333x517_png",
+   "fixture": "blip-image-captioning-base__pil.npz",
+   "sha256": "995bb5a9d31af8c4587cc42064ca371710fd2cbea7d08c08c3c0727a6d45e1a7",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "pil",
+   "image": "gray_300x200.png",
+   "mode": "L",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "gray_300x200_png",
+   "fixture": "blip-image-captioning-base__pil.npz",
+   "sha256": "c560b59ad1a3513178fafc00314a10922b89787a51f4f8245b6857405adce629",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "pil",
+   "image": "tiny_2x3.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tiny_2x3_png",
+   "fixture": "blip-image-captioning-base__pil.npz",
+   "sha256": "914e8d02b80a46b91dbc1fa74d697fe902e474f77da4589d6f79234f78220f55",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "pil",
+   "image": "astronaut.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "astronaut_png",
+   "fixture": "blip-image-captioning-base__pil.npz",
+   "sha256": "1a2394600fdc26f3b7cdc50aaa51506a2c768617956e9d31aeb2399d446ede29",
+   "full": "external"
+  },
+  {
+   "case": "blip-image-captioning-base",
+   "config": "Salesforce_blip-image-captioning-base.json",
+   "processor": "BlipImageProcessor",
+   "backend": "pil",
+   "image": "tall_50x700.png",
+   "mode": "RGB",
+   "status": "ok",
+   "shape": [
+    3,
+    384,
+    384
+   ],
+   "key": "tall_50x700_png",
+   "fixture": "blip-image-captioning-base__pil.npz",
+   "sha256": "a3d55084c9225dbf6c1116eeb2b535a9e87caee0cd7cc63114ac48095cd67189",
+   "full": "external"
+  }
+ ],
+ "whisper": [
+  {
+   "name": "short_1s",
+   "samples": 16000,
+   "shape": [
+    80,
+    3000
+   ]
+  },
+  {
+   "name": "speechlike_7p3s",
+   "samples": 116800,
+   "shape": [
+    80,
+    3000
+   ]
+  },
+  {
+   "name": "long_31s",
+   "samples": 496000,
+   "shape": [
+    80,
+    3000
+   ]
+  }
+ ],
+ "composite": [
+  {
+   "image": "rgba_257x129.png",
+   "sha256": "a4168fc82fd0d41c1f0a21911c39ca6fc44ae7d027152b657ec8d280f8d18727"
+  },
+  {
+   "image": "la_100x150.png",
+   "sha256": "382b0bb5434cec61e11ded87b1d00c9901b8c9a1d69beb3a6e9a8ba639413d87"
+  },
+  {
+   "image": "palette_200x120.png",
+   "sha256": "8847c44e76a9606c44de1c218746a7b97a1320502af94202172fa67c0fe9e79d"
+  },
+  {
+   "image": "gray_300x200.png",
+   "sha256": "6581bab95098b9e496aa3d13fdd9ba188c5d03b356807e94629406d1b288e4ff"
+  }
+ ]
+}

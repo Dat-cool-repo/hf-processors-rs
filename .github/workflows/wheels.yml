@@ -1,0 +1,84 @@
+name: Wheels
+
+# Builds abi3 (CPython >= 3.9) wheels for the `hf_processors_rs` Python package and tests each
+# one against the golden fixtures. Artifacts only: nothing is published.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: ${{ matrix.platform.name }}
+    runs-on: ${{ matrix.platform.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - { name: linux-x86_64, runner: ubuntu-latest, target: x86_64, manylinux: "2_28" }
+          - { name: linux-aarch64, runner: ubuntu-latest, target: aarch64, manylinux: "2_28" }
+          - { name: windows-x64, runner: windows-latest, target: x64, manylinux: "" }
+          - { name: macos-x86_64, runner: macos-13, target: x86_64, manylinux: "" }
+          - { name: macos-arm64, runner: macos-14, target: aarch64, manylinux: "" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build wheel
+        uses: PyO3/maturin-action@v1
+        with:
+          working-directory: bindings/python
+          target: ${{ matrix.platform.target }}
+          manylinux: ${{ matrix.platform.manylinux || 'auto' }}
+          args: --release --out dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheel-${{ matrix.platform.name }}
+          path: bindings/python/dist/*.whl
+
+  sdist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: PyO3/maturin-action@v1
+        with:
+          working-directory: bindings/python
+          command: sdist
+          args: --out dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sdist
+          path: bindings/python/dist/*.tar.gz
+
+  test:
+    name: test ${{ matrix.platform.name }} / py${{ matrix.python }}
+    needs: build
+    runs-on: ${{ matrix.platform.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.9", "3.13"]
+        platform:
+          - { name: linux-x86_64, runner: ubuntu-latest }
+          - { name: windows-x64, runner: windows-latest }
+          - { name: macos-x86_64, runner: macos-13 }
+          - { name: macos-arm64, runner: macos-14 }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: wheel-${{ matrix.platform.name }}
+          path: dist
+      - name: Install wheel + test deps
+        shell: bash
+        run: |
+          python -m pip install pytest numpy pillow
+          python -m pip install --no-index --find-links dist hf-processors-rs
+      - name: Golden-fixture parity
+        working-directory: bindings/python
+        run: python -m pytest -q tests

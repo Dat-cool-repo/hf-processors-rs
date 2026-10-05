@@ -1,0 +1,38 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "hf-processors-rs"
+version = "0.1.0"
+description = "Hugging Face transformers image/audio preprocessors (CLIP, SigLIP, ViT, ConvNeXt, BLIP, Qwen2-VL, Whisper) reproduced bit-exactly in Rust"
+license = { text = "MIT OR Apache-2.0" }
+authors = [{ name = "Dat-cool-repo contributors" }]
+keywords = ["huggingface", "transformers", "preprocessing", "clip", "siglip", "qwen2-vl", "whisper"]
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.21"]
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+Homepage = "https://github.com/Dat-cool-repo/hf-processors-rs"
+Repository = "https://github.com/Dat-cool-repo/hf-processors-rs"
+Issues = "https://github.com/Dat-cool-repo/hf-processors-rs/issues"
+
+[project.optional-dependencies]
+pil = ["pillow"]
+test = ["pytest", "pillow"]
+
+[tool.maturin]
+python-source = "python"
+module-name = "hf_processors_rs._hf_processors_rs"
+strip = true
+features = ["pyo3/extension-module"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

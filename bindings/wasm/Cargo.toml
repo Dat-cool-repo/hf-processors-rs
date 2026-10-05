@@ -1,0 +1,19 @@
+[package]
+name = "hf-processors-wasm"
+version = "0.1.0"
+edition = "2024"
+description = "wasm-bindgen bindings for hf-processors (in-browser HF preprocessing)."
+license = "MIT OR Apache-2.0"
+authors = ["Dat-cool-repo contributors"]
+repository = "https://github.com/Dat-cool-repo/hf-processors-rs"
+homepage = "https://github.com/Dat-cool-repo/hf-processors-rs"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# No `hub` (network), `rayon` (threads) or `pil-jpeg` (C code) on wasm32: configs are passed as
+# JSON, batches run sequentially, and JPEG uses the pure-Rust decoder.
+hf-processors = { path = "../..", default-features = false, features = ["decode"] }
+wasm-bindgen = "0.2"

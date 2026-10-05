@@ -1,0 +1,76 @@
+[package]
+name = "hf-processors"
+version = "0.1.0"
+edition = "2024"
+description = "Hugging Face `transformers` image/audio preprocessors (CLIP, ViT, SigLIP, ConvNeXt, BLIP, Qwen2-VL, Whisper) reproduced bit-exactly in Rust from preprocessor_config.json, golden-tested against Python."
+license = "MIT OR Apache-2.0"
+authors = ["Dat-cool-repo contributors"]
+repository = "https://github.com/Dat-cool-repo/hf-processors-rs"
+homepage = "https://github.com/Dat-cool-repo/hf-processors-rs"
+keywords = ["huggingface", "transformers", "preprocessing", "image", "whisper"]
+categories = ["multimedia::images", "science", "computer-vision"]
+readme = "README.md"
+publish = false
+
+[lib]
+name = "hf_processors"
+
+[features]
+default = ["hub", "decode"]
+# Fetch preprocessor_config.json from the Hugging Face Hub over plain HTTPS (ureq + rustls).
+hub = ["dep:ureq"]
+# Decode image files (`load_image`, `preprocess_path`): PNG etc. via the `image` crate, JPEG
+# via the pure-Rust `jpeg-decoder` (within +-3 of Pillow's libjpeg-turbo).
+decode = ["dep:image", "dep:jpeg-decoder"]
+# Decode JPEG with libjpeg-turbo's decoder (mozjpeg fork, built from C with `cc`):
+# bit-identical to Pillow's `Image.open(...)` pixels.
+pil-jpeg = ["decode", "dep:mozjpeg"]
+# Parallel batch preprocessing.
+rayon = ["dep:rayon"]
+# Convert outputs into candle tensors.
+candle = ["dep:candle-core"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+ndarray = "0.16"
+rustfft = "6"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"], optional = true }
+jpeg-decoder = { version = "0.3", default-features = false, optional = true }
+mozjpeg = { version = "0.10", default-features = false, optional = true }
+ureq = { version = "3", optional = true }
+rayon = { version = "1", optional = true }
+candle-core = { version = "0.9", optional = true }
+
+[dev-dependencies]
+ndarray-npy = { version = "0.9", default-features = false, features = ["compressed_npz"] }
+serde_json = "1"
+sha2 = "0.10"
+
+[profile.release]
+debug = 1
+
+[profile.test]
+opt-level = 3
+
+[[example]]
+name = "bench"
+required-features = ["decode"]
+
+[[example]]
+name = "preprocess"
+required-features = ["decode"]
+
+[workspace]
+members = [".", "bindings/python", "bindings/wasm"]
+
+# Small wasm builds: cargo build --profile wasm-release --target wasm32-unknown-unknown -p hf-processors-wasm
+[profile.wasm-release]
+inherits = "release"
+debug = 0
+strip = true
+lto = true
+opt-level = "s"
+codegen-units = 1
+panic = "abort"

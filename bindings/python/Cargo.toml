@@ -1,0 +1,25 @@
+[package]
+name = "hf-processors-py"
+version = "0.1.0"
+edition = "2024"
+description = "Python bindings (PyO3, abi3) for hf-processors: bit-exact Hugging Face image/audio preprocessors."
+license = "MIT OR Apache-2.0"
+authors = ["Dat-cool-repo contributors"]
+repository = "https://github.com/Dat-cool-repo/hf-processors-rs"
+homepage = "https://github.com/Dat-cool-repo/hf-processors-rs"
+publish = false
+
+[lib]
+name = "_hf_processors_rs"
+crate-type = ["cdylib"]
+
+[features]
+default = ["pil-jpeg"]
+# Pillow-identical JPEG decoding for file-path / bytes inputs (libjpeg-turbo built with `cc`).
+pil-jpeg = ["hf-processors/pil-jpeg"]
+
+[dependencies]
+hf-processors = { path = "../..", features = ["rayon"] }
+pyo3 = { version = "0.29", features = ["abi3-py39", "generate-import-lib"] }
+numpy = "0.29"
+rayon = "1"
