@@ -8,7 +8,7 @@
 // Image cases must be bit-identical. Whisper is reported with its max abs difference (the
 // math library behind f64 log10 / cos can differ between wasm and native in the last ulp).
 import { createRequire } from "node:module";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { basename, join, resolve } from "node:path";
 
 const [pkgDir, refDir, goldenDir, ...images] = process.argv.slice(2);
@@ -47,15 +47,34 @@ function compare(name, got) {
 
 let failures = 0;
 let cases = 0;
+let errors = 0;
 for (const cfgName of CONFIGS) {
   const json = readFileSync(join(goldenDir, "configs", cfgName), "utf8");
   for (const backend of ["torchvision", "pil"]) {
     const p = new wasm.Preprocessor(json, backend);
     for (const image of images) {
-      const t = p.preprocessEncoded(readFileSync(image));
       const name = `${cfgName.replace(/\.json$/, "")}__${backend}__${basename(image)}`;
-      const r = compare(name, t.data);
       cases++;
+      const errFile = join(refDir, name + ".err");
+      if (existsSync(errFile)) {
+        // The native build rejects this case (like transformers): the wasm build must too.
+        const want = readFileSync(errFile, "utf8");
+        let got = null;
+        try {
+          p.preprocessEncoded(readFileSync(image));
+        } catch (e) {
+          got = e.message;
+        }
+        if (got !== want) {
+          failures++;
+          console.log(`DIFF ${name}: expected error ${JSON.stringify(want)}, got ${JSON.stringify(got)}`);
+        } else {
+          errors++;
+        }
+        continue;
+      }
+      const t = p.preprocessEncoded(readFileSync(image));
+      const r = compare(name, t.data);
       if (!r.identical) {
         failures++;
         console.log(`DIFF ${name}: max abs ${r.maxAbs} over ${r.n} values`);
@@ -63,7 +82,7 @@ for (const cfgName of CONFIGS) {
     }
   }
 }
-console.log(`images: ${cases - failures}/${cases} cases bit-identical to native`);
+console.log(`images: ${cases - failures}/${cases} cases match native (${cases - failures - errors} bit-identical outputs, ${errors} identical errors)`);
 
 const fe = new wasm.Preprocessor(readFileSync(join(goldenDir, "configs", "openai_whisper-tiny.json"), "utf8"));
 const tone = new Float32Array(40000);

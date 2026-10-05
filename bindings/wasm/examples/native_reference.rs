@@ -6,7 +6,8 @@
 //! cargo run --release -p hf-processors-wasm --example native_reference -- OUT_DIR GOLDEN_DIR IMAGE...
 //! ```
 //!
-//! Writes `OUT_DIR/<config>__<backend>__<image>.f32` (little-endian float32) per image case and
+//! Writes `OUT_DIR/<config>__<backend>__<image>.f32` (little-endian float32) per image case, or
+//! `.err` with the error message when the case fails (as some must, like transformers), and
 //! `OUT_DIR/whisper.f32` for a synthetic 2.5 s signal through the Whisper extractor.
 
 use hf_processors::{AutoProcessor, Backend, PreprocessorConfig, Processor, WhisperOptions, decode_image};
@@ -43,16 +44,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
             for image in &args[3..] {
                 let img = decode_image(&std::fs::read(image)?)?;
-                let data: Vec<f32> = match &p {
-                    Processor::Image(p) => p.preprocess(&img)?.into_raw_vec_and_offset().0,
-                    Processor::Qwen2VL(p) => {
-                        p.preprocess_batch(std::slice::from_ref(&img))?.pixel_values.into_raw_vec_and_offset().0
-                    }
+                let result = match &p {
+                    Processor::Image(p) => p.preprocess(&img).map(|a| a.into_raw_vec_and_offset().0),
+                    Processor::Qwen2VL(p) => p
+                        .preprocess_batch(std::slice::from_ref(&img))
+                        .map(|o| o.pixel_values.into_raw_vec_and_offset().0),
                     Processor::Whisper(_) => unreachable!(),
                 };
                 let name = Path::new(image).file_name().unwrap().to_string_lossy();
                 let stem = cfg_name.trim_end_matches(".json");
-                write_f32(&out.join(format!("{stem}__{bname}__{name}.f32")), &data)?;
+                match result {
+                    Ok(data) => write_f32(&out.join(format!("{stem}__{bname}__{name}.f32")), &data)?,
+                    // Expected errors (e.g. RGBA without do_convert_rgb) must match too.
+                    Err(e) => std::fs::write(out.join(format!("{stem}__{bname}__{name}.err")), e.to_string())?,
+                }
             }
         }
     }

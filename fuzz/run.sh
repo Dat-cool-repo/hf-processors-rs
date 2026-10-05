@@ -26,6 +26,8 @@ dir=${FUZZ_DIR:-$PWD}
 mkdir -p "$dir/corpus/$target" "$dir/artifacts/$target" "regressions/$target"
 dict=()
 [ -f "dicts/$target.dict" ] && dict=(-dict="dicts/$target.dict")
-exec cargo +nightly fuzz run "$target" "$dir/corpus/$target" "regressions/$target" -- \
+# The host triple explicitly: a prebuilt (musl) cargo-fuzz would otherwise default to its own.
+host=$(rustc +nightly -vV | sed -n "s/^host: //p")
+exec cargo +nightly fuzz run --target "$host" "$target" "$dir/corpus/$target" "regressions/$target" -- \
   -artifact_prefix="$dir/artifacts/$target/" -max_total_time="$secs" -rss_limit_mb=2048 -timeout=10 \
   "${dict[@]}" "$@"
