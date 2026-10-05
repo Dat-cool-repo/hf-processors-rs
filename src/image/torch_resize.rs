@@ -158,14 +158,26 @@ fn clamp_shift(v: i32, precision: u32) -> u8 {
 
 fn horizontal(src: &ImageU8, c: &Int16Coeffs) -> ImageU8 {
     let weights: Vec<i32> = c.weights.iter().map(|&w| w as i32).collect();
-    let f = FixedFilter { bounds: &c.bounds, weights: &weights, w16: Some(&c.weights), ksize: c.ksize, precision: c.precision };
+    let f = FixedFilter {
+        bounds: &c.bounds,
+        weights: &weights,
+        w16: Some(&c.weights),
+        ksize: c.ksize,
+        precision: c.precision,
+    };
     let data = kernels::horizontal(&src.data, src.width, src.channels, 0, src.height, &f);
     ImageU8 { width: c.bounds.len(), height: src.height, channels: src.channels, data }
 }
 
 fn vertical(src: &ImageU8, c: &Int16Coeffs) -> ImageU8 {
     let weights: Vec<i32> = c.weights.iter().map(|&w| w as i32).collect();
-    let f = FixedFilter { bounds: &c.bounds, weights: &weights, w16: Some(&c.weights), ksize: c.ksize, precision: c.precision };
+    let f = FixedFilter {
+        bounds: &c.bounds,
+        weights: &weights,
+        w16: Some(&c.weights),
+        ksize: c.ksize,
+        precision: c.precision,
+    };
     let data = kernels::convolve_rows(&src.data, src.width * src.channels, &f);
     ImageU8 { width: src.width, height: c.bounds.len(), channels: src.channels, data }
 }
@@ -318,7 +330,13 @@ mod profile {
         };
         let t = kernels::transpose(&img.data, w, h, ch);
         let weights: Vec<i32> = cw.weights.iter().map(|&x| x as i32).collect();
-        let f = FixedFilter { bounds: &cw.bounds, weights: &weights, w16: Some(&cw.weights), ksize: cw.ksize, precision: cw.precision };
+        let f = FixedFilter {
+            bounds: &cw.bounds,
+            weights: &weights,
+            w16: Some(&cw.weights),
+            ksize: cw.ksize,
+            precision: cw.precision,
+        };
         let r = kernels::convolve_rows(&t, h * ch, &f);
         let hor = horizontal(&img, &cw);
         time("transpose in (18 MB)", &mut || drop(kernels::transpose(&img.data, w, h, ch)));

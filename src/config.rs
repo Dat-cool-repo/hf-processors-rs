@@ -158,19 +158,10 @@ impl SizeSpec {
             SizeValue::Dict(d) => d.clone(),
         };
         let u = |x: Option<u32>| x.map(|v| v as usize);
-        Ok(match (
-            u(d.height),
-            u(d.width),
-            u(d.shortest_edge),
-            u(d.longest_edge),
-            u(d.max_height),
-            u(d.max_width),
-        ) {
+        Ok(match (u(d.height), u(d.width), u(d.shortest_edge), u(d.longest_edge), u(d.max_height), u(d.max_width)) {
             (Some(height), Some(width), None, None, None, None) => SizeSpec::HeightWidth { height, width },
             (None, None, Some(s), None, None, None) => SizeSpec::ShortestEdge(s),
-            (None, None, Some(shortest), Some(longest), None, None) => {
-                SizeSpec::ShortestLongest { shortest, longest }
-            }
+            (None, None, Some(shortest), Some(longest), None, None) => SizeSpec::ShortestLongest { shortest, longest },
             (None, None, None, Some(l), None, None) => SizeSpec::LongestEdge(l),
             (None, None, None, None, Some(max_height), Some(max_width)) => {
                 SizeSpec::MaxHeightWidth { max_height, max_width }
@@ -182,9 +173,7 @@ impl SizeSpec {
     /// Output `(height, width)` of the generic `resize` step for an input of `(h, w)`.
     pub fn output_size(&self, h: usize, w: usize) -> Result<(usize, usize)> {
         Ok(match *self {
-            SizeSpec::ShortestLongest { shortest, longest } => {
-                size_with_aspect_ratio(h, w, shortest, Some(longest))
-            }
+            SizeSpec::ShortestLongest { shortest, longest } => size_with_aspect_ratio(h, w, shortest, Some(longest)),
             SizeSpec::ShortestEdge(s) => resize_output_image_size(h, w, s),
             SizeSpec::MaxHeightWidth { max_height, max_width } => {
                 let hs = max_height as f64 / h as f64;
@@ -195,8 +184,7 @@ impl SizeSpec {
             SizeSpec::HeightWidth { height, width } => (height, width),
             SizeSpec::LongestEdge(_) => {
                 return Err(Error::Config(
-                    "size must contain 'height' and 'width', 'max_height' and 'max_width', or 'shortest_edge'"
-                        .into(),
+                    "size must contain 'height' and 'width', 'max_height' and 'max_width', or 'shortest_edge'".into(),
                 ));
             }
         })

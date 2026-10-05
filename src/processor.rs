@@ -126,9 +126,7 @@ fn defaults(kind: ProcessorKind) -> Defaults {
         },
         ProcessorKind::Vit => Defaults { resample: Resample::Bilinear, ..base },
         ProcessorKind::Siglip => Defaults { default_to_square: false, do_convert_rgb: true, ..base },
-        ProcessorKind::ConvNext => {
-            Defaults { size: SizeSpec::ShortestEdge(384), default_to_square: false, ..base }
-        }
+        ProcessorKind::ConvNext => Defaults { size: SizeSpec::ShortestEdge(384), default_to_square: false, ..base },
         ProcessorKind::Blip => Defaults {
             mean: OPENAI_CLIP_MEAN,
             std: OPENAI_CLIP_STD,
@@ -167,9 +165,7 @@ impl ImageProcessor {
     /// Build a processor from a parsed config. The processor class is taken from
     /// `image_processor_type` / `feature_extractor_type`.
     pub fn from_config(cfg: &PreprocessorConfig) -> Result<Self> {
-        let name = cfg
-            .processor_type()
-            .ok_or_else(|| Error::Config("missing image_processor_type".into()))?;
+        let name = cfg.processor_type().ok_or_else(|| Error::Config("missing image_processor_type".into()))?;
         let kind = ProcessorKind::from_type_name(&name).ok_or(Error::UnsupportedProcessor(name))?;
         Self::from_config_as(cfg, kind)
     }
@@ -184,9 +180,11 @@ impl ImageProcessor {
         };
         let crop_size = match &cfg.crop_size {
             // crop_size always uses default_to_square=True.
-            Some(v) => Some(SizeSpec::from_value(v, true)?.height_width().ok_or_else(|| {
-                Error::Config("crop_size must have 'height' and 'width'".into())
-            })?),
+            Some(v) => Some(
+                SizeSpec::from_value(v, true)?
+                    .height_width()
+                    .ok_or_else(|| Error::Config("crop_size must have 'height' and 'width'".into()))?,
+            ),
             None => d.crop_size,
         };
         let resample = match cfg.resample {

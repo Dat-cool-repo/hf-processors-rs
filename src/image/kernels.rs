@@ -244,14 +244,7 @@ const STRIP: usize = 32;
 
 /// Horizontal pass over rows `[row0, row0 + n_rows)` of an interleaved image: for each strip
 /// of rows, transpose -> convolve rows -> transpose back into the output.
-pub(crate) fn horizontal(
-    src: &[u8],
-    w: usize,
-    c: usize,
-    row0: usize,
-    n_rows: usize,
-    f: &FixedFilter,
-) -> Vec<u8> {
+pub(crate) fn horizontal(src: &[u8], w: usize, c: usize, row0: usize, n_rows: usize, f: &FixedFilter) -> Vec<u8> {
     let out_w = f.bounds.len();
     let mut out = vec![0u8; out_w * n_rows * c];
     let mut t = vec![0u8; w * STRIP.min(n_rows) * c];
@@ -289,7 +282,9 @@ mod tests {
     /// The madd kernel (i16 weights, odd/even tap counts, tails) equals the generic loop.
     #[test]
     fn madd_kernel_matches_generic() {
-        for (row_len, n_in, n_out, seed) in [(96usize, 50usize, 7usize, 1u64), (1008, 37, 5, 2), (33, 9, 9, 3), (31, 4, 2, 4)] {
+        for (row_len, n_in, n_out, seed) in
+            [(96usize, 50usize, 7usize, 1u64), (1008, 37, 5, 2), (33, 9, 9, 3), (31, 4, 2, 4)]
+        {
             let src = rnd_bytes(row_len * n_in, seed);
             let ksize = n_in.min(13);
             let mut bounds = Vec::new();

@@ -176,11 +176,7 @@ impl Normalize {
                 for (v, out) in lut.iter_mut().enumerate() {
                     *out = match sem {
                         FloatSemantics::Numpy => {
-                            let x = if self.do_rescale {
-                                (v as f64 * self.rescale_factor) as f32
-                            } else {
-                                v as f32
-                            };
+                            let x = if self.do_rescale { (v as f64 * self.rescale_factor) as f32 } else { v as f32 };
                             if self.do_normalize { (x - mean as f32) / std as f32 } else { x }
                         }
                         FloatSemantics::TorchFused => {

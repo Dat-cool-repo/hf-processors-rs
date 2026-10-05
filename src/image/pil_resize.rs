@@ -130,13 +130,7 @@ pub(crate) struct Coeffs {
 }
 
 /// `precompute_coeffs` + `normalize_coeffs_8bpc` from Resample.c.
-pub(crate) fn precompute_coeffs(
-    in_size: usize,
-    in0: f32,
-    in1: f32,
-    out_size: usize,
-    resample: Resample,
-) -> Coeffs {
+pub(crate) fn precompute_coeffs(in_size: usize, in0: f32, in1: f32, out_size: usize, resample: Resample) -> Coeffs {
     let (filter, fsupport) = filter_of(resample);
     let scale = (in1 - in0) as f64 / out_size as f64;
     let filterscale = if scale < 1.0 { 1.0 } else { scale };

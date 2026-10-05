@@ -195,7 +195,12 @@ fn golden_extra_decode_like_pillow() {
         let img = load_image(golden_dir().join("images").join(&d.image)).unwrap();
         let rgb = hf_processors::image::ops::convert_to_rgb(&img);
         let ok = [rgb.height, rgb.width, rgb.channels] == d.shape[..] && hex(&Sha256::digest(&rgb.data)) == d.sha256;
-        println!("decode {:<22} (Pillow mode {:<5}) -> convert(\"RGB\"): {}", d.image, d.mode, if ok { "exact" } else { "DIFF" });
+        println!(
+            "decode {:<22} (Pillow mode {:<5}) -> convert(\"RGB\"): {}",
+            d.image,
+            d.mode,
+            if ok { "exact" } else { "DIFF" }
+        );
         if !ok {
             if d.image.ends_with(".jpg") && !cfg!(feature = "pil-jpeg") {
                 continue; // pure-Rust jpeg-decoder: bounded, checked through the processor cases
@@ -226,8 +231,7 @@ fn golden_extra_qwen2_vl() {
         let id = case.case.as_deref().unwrap();
         let label = format!("{id} {} {}", case.backend, case.image);
         let names = case.batch.clone().unwrap_or_else(|| vec![case.image.clone()]);
-        let images: Vec<_> =
-            names.iter().map(|n| load_image(golden_dir().join("images").join(n)).unwrap()).collect();
+        let images: Vec<_> = names.iter().map(|n| load_image(golden_dir().join("images").join(n)).unwrap()).collect();
         let result = proc.preprocess_batch(&images);
         if case.status == "error" {
             match result {
@@ -244,13 +248,18 @@ fn golden_extra_qwen2_vl() {
             }
         };
         let grid_ref: Vec<Vec<i64>> = match case.grid_thw.clone().unwrap() {
-            Value::Array(a) if a.first().is_some_and(|v| v.is_array()) => serde_json::from_value(Value::Array(a)).unwrap(),
+            Value::Array(a) if a.first().is_some_and(|v| v.is_array()) => {
+                serde_json::from_value(Value::Array(a)).unwrap()
+            }
             v => vec![serde_json::from_value(v).unwrap()],
         };
         let grid: Vec<Vec<i64>> = out.image_grid_thw.rows().into_iter().map(|r| r.to_vec()).collect();
         if grid != grid_ref || out.pixel_values.shape() != case.shape.as_ref().unwrap().as_slice() {
-            failures.push(format!("{label}: grid {grid:?} / shape {:?} vs {grid_ref:?} / {:?}",
-                out.pixel_values.shape(), case.shape));
+            failures.push(format!(
+                "{label}: grid {grid:?} / shape {:?} vs {grid_ref:?} / {:?}",
+                out.pixel_values.shape(),
+                case.shape
+            ));
             continue;
         }
         let jpeg_pure_rust = names.iter().any(|n| n.ends_with(".jpg")) && !cfg!(feature = "pil-jpeg");
@@ -271,8 +280,10 @@ fn golden_extra_qwen2_vl() {
             }
         }
     }
-    println!("qwen2-vl: {n_ok} bit-exact (incl. batches), {n_raw} raw float checks, {n_err} expected errors, {} failures",
-        failures.len());
+    println!(
+        "qwen2-vl: {n_ok} bit-exact (incl. batches), {n_raw} raw float checks, {n_err} expected errors, {} failures",
+        failures.len()
+    );
     assert!(failures.is_empty(), "failures:\n{}", failures.join("\n"));
 }
 
@@ -326,8 +337,11 @@ fn golden_extra_whisper_options() {
                 format!("mask {shape:?} ok")
             }
             (None, None) => "no mask".to_string(),
-            (got, want) => panic!("{}: mask presence differs: rust {:?} vs python {want:?}", wc.name,
-                got.as_ref().map(|m| m.shape().to_vec())),
+            (got, want) => panic!(
+                "{}: mask presence differs: rust {:?} vs python {want:?}",
+                wc.name,
+                got.as_ref().map(|m| m.shape().to_vec())
+            ),
         };
         println!("whisper {:<24} {:?}: max|diff| = {max:.3e}, mean = {mean:.3e}, {mask_info}", wc.name, wc.shape);
         // Same bound as the base Whisper test (torch float32 STFT vs our f64 STFT).

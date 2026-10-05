@@ -49,10 +49,7 @@ fn pool(n: usize) -> PyResult<Arc<rayon::ThreadPool>> {
         return Ok(p.clone());
     }
     let p = Arc::new(
-        rayon::ThreadPoolBuilder::new()
-            .num_threads(n)
-            .build()
-            .map_err(|e| PyRuntimeError::new_err(e.to_string()))?,
+        rayon::ThreadPoolBuilder::new().num_threads(n).build().map_err(|e| PyRuntimeError::new_err(e.to_string()))?,
     );
     map.insert(n, p.clone());
     Ok(p)

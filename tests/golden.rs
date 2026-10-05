@@ -2,9 +2,7 @@
 //!
 //! Run with `cargo test --release -- --nocapture` to see the per-case report.
 
-use hf_processors::{
-    Backend, ImageProcessor, PreprocessorConfig, ProcessorKind, WhisperFeatureExtractor, load_image,
-};
+use hf_processors::{Backend, ImageProcessor, PreprocessorConfig, ProcessorKind, WhisperFeatureExtractor, load_image};
 use ndarray::{Array2, Array3, ArrayD, Ix2, Ix3};
 use ndarray_npy::NpzReader;
 use serde::Deserialize;
@@ -196,8 +194,10 @@ fn golden_image_processors() {
                 // *indices* (np.array of a mode-"P" image) to the pipeline and then fails on the
                 // 1-channel input; the `image` crate expands palettes, so Rust processes colors.
                 Ok(_) if case.mode == "P" => {
-                    println!("known divergence: {} {} {} (palette without do_convert_rgb)", case.case,
-                             case.backend, case.image);
+                    println!(
+                        "known divergence: {} {} {} (palette without do_convert_rgb)",
+                        case.case, case.backend, case.image
+                    );
                 }
                 Ok(_) => failures.push(format!(
                     "{} {} {} ({}): transformers raised `{}` but Rust succeeded",
@@ -230,7 +230,13 @@ fn golden_image_processors() {
                     o.reference,
                     format!("{}/{}", o.mismatched, o.max_u8),
                     o.max_abs,
-                    if pass { "exact" } else if is_jpeg { "jpeg" } else { "FAIL" }
+                    if pass {
+                        "exact"
+                    } else if is_jpeg {
+                        "jpeg"
+                    } else {
+                        "FAIL"
+                    }
                 );
                 if is_jpeg && !cfg!(feature = "pil-jpeg") {
                     jpeg_report.push((case.case.clone(), case.backend.clone(), o.max_abs, o.mismatched, o.total));
@@ -262,8 +268,8 @@ fn golden_image_processors() {
 /// Independent check on one raw float tensor (no LUT compression involved).
 #[test]
 fn golden_raw_clip_astronaut() {
-    let mut npz = NpzReader::new(File::open(golden_dir().join("fixtures/raw_clip_torchvision_astronaut.npz")).unwrap())
-        .unwrap();
+    let mut npz =
+        NpzReader::new(File::open(golden_dir().join("fixtures/raw_clip_torchvision_astronaut.npz")).unwrap()).unwrap();
     let reference: Array3<f32> = npz.by_name("pixel_values").unwrap();
     let cfg = PreprocessorConfig::from_file(golden_dir().join("configs/openai_clip-vit-base-patch32.json")).unwrap();
     let proc = ImageProcessor::from_config(&cfg).unwrap();

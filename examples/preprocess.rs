@@ -13,11 +13,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         _ => Backend::Torchvision,
     };
     let proc = AutoImageProcessor::from_pretrained(&repo)?.with_backend(backend);
-    println!("{:?} backend={:?} size={:?} crop={:?} resample={:?}", proc.kind, proc.backend, proc.size,
-             proc.crop_size, proc.resample);
+    println!(
+        "{:?} backend={:?} size={:?} crop={:?} resample={:?}",
+        proc.kind, proc.backend, proc.size, proc.crop_size, proc.resample
+    );
     let pv = proc.preprocess_path(&image)?;
     let sum: f64 = pv.iter().map(|&v| v as f64).sum();
-    println!("pixel_values shape={:?} sum={sum:.6} first={:?}", pv.shape(),
-             pv.iter().take(4).collect::<Vec<_>>());
+    println!("pixel_values shape={:?} sum={sum:.6} first={:?}", pv.shape(), pv.iter().take(4).collect::<Vec<_>>());
     Ok(())
 }

@@ -211,9 +211,8 @@ impl WhisperFeatureExtractor {
         let n_samples = chunk_length * sampling_rate as usize;
         let mel_filters = mel_filter_bank_slaney(1 + n_fft / 2, feature_size, 0.0, 8000.0, sampling_rate);
         // np.hanning(n_fft + 1)[:-1] == torch.hann_window(n_fft, periodic=True)
-        let window = (0..n_fft)
-            .map(|n| 0.5 - 0.5 * (2.0 * std::f64::consts::PI * n as f64 / n_fft as f64).cos())
-            .collect();
+        let window =
+            (0..n_fft).map(|n| 0.5 - 0.5 * (2.0 * std::f64::consts::PI * n as f64 / n_fft as f64).cos()).collect();
         let fft = FftPlanner::new().plan_fft_forward(n_fft);
         WhisperFeatureExtractor {
             feature_size,
@@ -443,11 +442,8 @@ mod tests {
         let fe = WhisperFeatureExtractor::new(80, 16000, 160, 30, 400, 0.0);
         let a: Vec<f32> = (0..1000).map(|i| (i as f32 * 0.05).sin()).collect();
         let b: Vec<f32> = (0..1650).map(|i| (i as f32 * 0.03).sin()).collect();
-        let opts = WhisperOptions {
-            padding: Padding::Longest,
-            return_attention_mask: Some(true),
-            ..Default::default()
-        };
+        let opts =
+            WhisperOptions { padding: Padding::Longest, return_attention_mask: Some(true), ..Default::default() };
         let out = fe.call(&[&a, &b], &opts).unwrap();
         assert_eq!(out.input_features.dim(), (2, 80, 10));
         let m = out.attention_mask.unwrap();

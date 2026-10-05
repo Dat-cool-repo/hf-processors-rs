@@ -38,10 +38,8 @@ fn main() {
     #[cfg(not(feature = "rayon"))]
     assert_eq!(threads, 1, "build with --features rayon for multi-threaded batches");
 
-    let typical = batch(
-        &["photo_640x480.png", "coffee.png", "astronaut.png", "hifreq_333x517.png", "photo_500x375.jpg"],
-        64,
-    );
+    let typical =
+        batch(&["photo_640x480.png", "coffee.png", "astronaut.png", "hifreq_333x517.png", "photo_500x375.jpg"], 64);
     let large = batch(&["huge_3000x2000.png"], 8);
     let configs = [
         ("clip-vit-base-patch32", "openai_clip-vit-base-patch32.json", ProcessorKind::Clip),

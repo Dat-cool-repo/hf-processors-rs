@@ -39,11 +39,7 @@ pub fn resolve_file(repo_or_path: &str, filename: &str) -> Result<PathBuf> {
     }
     if p.is_dir() {
         let f = p.join(filename);
-        return if f.is_file() {
-            Ok(f)
-        } else {
-            Err(Error::Config(format!("{} has no {filename}", p.display())))
-        };
+        return if f.is_file() { Ok(f) } else { Err(Error::Config(format!("{} has no {filename}", p.display()))) };
     }
     download(repo_or_path, filename)
 }
@@ -83,10 +79,7 @@ fn download(repo: &str, filename: &str) -> Result<PathBuf> {
         req = req.header("Authorization", &format!("Bearer {tok}"));
     }
     let mut resp = req.call().map_err(|e| Error::Hub(format!("GET {url}: {e}")))?;
-    let body = resp
-        .body_mut()
-        .read_to_string()
-        .map_err(|e| Error::Hub(format!("reading {url}: {e}")))?;
+    let body = resp.body_mut().read_to_string().map_err(|e| Error::Hub(format!("reading {url}: {e}")))?;
     // Validate before caching.
     serde_json::from_str::<serde_json::Value>(&body)?;
     std::fs::create_dir_all(target.parent().expect("has parent"))?;
@@ -99,7 +92,5 @@ fn download(repo: &str, filename: &str) -> Result<PathBuf> {
 #[cfg(not(feature = "hub"))]
 fn download(repo: &str, _filename: &str) -> Result<PathBuf> {
     let _ = (split_revision, cache_dir);
-    Err(Error::Hub(format!(
-        "`{repo}` is not a local path and the `hub` feature is disabled"
-    )))
+    Err(Error::Hub(format!("`{repo}` is not a local path and the `hub` feature is disabled")))
 }

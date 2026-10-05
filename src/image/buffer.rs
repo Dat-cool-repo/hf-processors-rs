@@ -27,10 +27,7 @@ impl ImageU8 {
             return Err(Error::Image(format!("empty image {width}x{height}")));
         }
         if data.len() != width * height * channels {
-            return Err(Error::Image(format!(
-                "buffer length {} != {width}x{height}x{channels}",
-                data.len()
-            )));
+            return Err(Error::Image(format!("buffer length {} != {width}x{height}x{channels}", data.len())));
         }
         Ok(Self { width, height, channels, data })
     }
@@ -113,12 +110,7 @@ impl From<image::DynamicImage> for ImageU8 {
 #[cfg(feature = "decode")]
 impl From<&image::RgbImage> for ImageU8 {
     fn from(img: &image::RgbImage) -> Self {
-        ImageU8 {
-            width: img.width() as usize,
-            height: img.height() as usize,
-            channels: 3,
-            data: img.as_raw().clone(),
-        }
+        ImageU8 { width: img.width() as usize, height: img.height() as usize, channels: 3, data: img.as_raw().clone() }
     }
 }
 
@@ -139,9 +131,10 @@ pub fn load_image(path: impl AsRef<std::path::Path>) -> Result<ImageU8> {
 #[cfg(feature = "decode")]
 pub fn decode_image(bytes: &[u8]) -> Result<ImageU8> {
     if bytes.starts_with(&[0xFF, 0xD8, 0xFF])
-        && let Some(img) = decode_jpeg(bytes)? {
-            return Ok(img);
-        }
+        && let Some(img) = decode_jpeg(bytes)?
+    {
+        return Ok(img);
+    }
     let img = image::load_from_memory(bytes).map_err(|e| Error::Image(e.to_string()))?;
     Ok(ImageU8::from_dynamic(&img))
 }
