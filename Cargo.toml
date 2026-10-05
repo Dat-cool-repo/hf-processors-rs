@@ -39,7 +39,9 @@ thiserror = "2"
 ndarray = "0.16"
 rustfft = "6"
 image = { version = "0.25", default-features = false, features = ["png", "jpeg"], optional = true }
-jpeg-decoder = { version = "0.3", default-features = false, optional = true }
+# platform_independent: no SSE / NEON kernels, so the pure-Rust decoder gives the same pixels
+# on every architecture, wasm included (its SIMD and scalar paths round differently).
+jpeg-decoder = { version = "0.3", default-features = false, features = ["platform_independent"], optional = true }
 mozjpeg = { version = "0.10", default-features = false, optional = true }
 ureq = { version = "3", optional = true }
 rayon = { version = "1", optional = true }
