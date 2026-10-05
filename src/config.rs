@@ -233,17 +233,17 @@ pub fn size_with_aspect_ratio(h: usize, w: usize, size: usize, max_size: Option<
     } else if w_i < h_i {
         let oh = match raw_size {
             Some(raw) => (raw * hf / wf) as i64,
-            None => ((size * h_i) as f64 / wf) as i64,
+            None => ((size as i128 * h_i as i128) as f64 / wf) as i64,
         };
         (oh, size)
     } else {
         let ow = match raw_size {
             Some(raw) => (raw * wf / hf) as i64,
-            None => ((size * w_i) as f64 / hf) as i64,
+            None => ((size as i128 * w_i as i128) as f64 / hf) as i64,
         };
         (size, ow)
     };
-    (oh as usize, ow as usize)
+    (oh.max(0) as usize, ow.max(0) as usize)
 }
 
 #[cfg(test)]

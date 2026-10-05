@@ -6,7 +6,6 @@ description = "wasm-bindgen bindings for hf-processors (in-browser HF preprocess
 license = "MIT OR Apache-2.0"
 authors = ["Dat-cool-repo contributors"]
 repository = "https://github.com/Dat-cool-repo/hf-processors-rs"
-homepage = "https://github.com/Dat-cool-repo/hf-processors-rs"
 publish = false
 
 [lib]

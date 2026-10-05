@@ -6,11 +6,13 @@ description = "Hugging Face `transformers` image/audio preprocessors (CLIP, ViT,
 license = "MIT OR Apache-2.0"
 authors = ["Dat-cool-repo contributors"]
 repository = "https://github.com/Dat-cool-repo/hf-processors-rs"
-homepage = "https://github.com/Dat-cool-repo/hf-processors-rs"
 keywords = ["huggingface", "transformers", "preprocessing", "image", "whisper"]
 categories = ["multimedia::images", "science", "computer-vision"]
 readme = "README.md"
 publish = false
+# Keep the packaged crate (and the Python sdist, which embeds it) small: the golden fixtures,
+# fuzzing, scripts and bindings are development-only.
+exclude = ["/golden/", "/fuzz/", "/docs/", "/scripts/", "/bindings/", "/examples/clip-candle/", "/.github/", "/tests/"]
 
 [lib]
 name = "hf_processors"
@@ -64,6 +66,8 @@ required-features = ["decode"]
 
 [workspace]
 members = [".", "bindings/python", "bindings/wasm"]
+# Own workspaces: cargo fuzz (nightly) and the candle example (heavy dependencies).
+exclude = ["fuzz", "examples/clip-candle"]
 
 # Small wasm builds: cargo build --profile wasm-release --target wasm32-unknown-unknown -p hf-processors-wasm
 [profile.wasm-release]

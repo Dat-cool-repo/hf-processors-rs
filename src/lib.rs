@@ -22,6 +22,7 @@ pub mod config;
 pub mod error;
 pub mod hub;
 pub mod image;
+pub mod limits;
 pub mod processor;
 pub mod qwen2_vl;
 
@@ -31,6 +32,7 @@ pub use error::{Error, Result};
 pub use image::{ImageU8, PassOrder, Resample};
 #[cfg(feature = "decode")]
 pub use image::{decode_image, load_image};
+pub use limits::{DEFAULT_MAX_IMAGE_PIXELS, max_image_pixels, set_max_image_pixels};
 pub use processor::{Backend, ImageProcessor, ProcessorKind, RgbConversion};
 pub use qwen2_vl::{Qwen2VLImageProcessor, Qwen2VLOutput, smart_resize};
 

@@ -228,11 +228,16 @@ impl ImageProcessor {
         resize_with_backend(img, h, w, self.backend, self.resample, self.pil_pass_order)
     }
 
-    fn center_crop(&self, img: &ImageU8, h: usize, w: usize) -> ImageU8 {
-        match self.backend {
+    fn center_crop(&self, img: &ImageU8, h: usize, w: usize) -> Result<ImageU8> {
+        if h == 0 || w == 0 {
+            return Err(Error::Config(format!("crop size {h}x{w} is empty")));
+        }
+        // Crops larger than the image are zero-padded: bound the canvas.
+        crate::limits::check_alloc("center crop canvas", &[h.max(img.height), w.max(img.width)])?;
+        Ok(match self.backend {
             Backend::Pil => ops::center_crop_slow(img, h, w),
             Backend::Torchvision => ops::center_crop_torchvision(img, h, w),
-        }
+        })
     }
 
     fn resize(&self, img: &ImageU8) -> Result<ImageU8> {
@@ -244,7 +249,7 @@ impl ImageProcessor {
                 let resize_shortest = (s as f64 / self.crop_pct) as usize;
                 let (h, w) = resize_output_image_size(img.height, img.width, resize_shortest);
                 let r = self.resize_to(img, h, w)?;
-                Ok(self.center_crop(&r, s, s))
+                self.center_crop(&r, s, s)
             } else {
                 self.resize_to(img, s, s)
             };
@@ -269,7 +274,7 @@ impl ImageProcessor {
         }
         if self.do_center_crop {
             let (h, w) = self.crop_size.expect("validated");
-            cur = std::borrow::Cow::Owned(self.center_crop(&cur, h, w));
+            cur = std::borrow::Cow::Owned(self.center_crop(&cur, h, w)?);
         }
         Ok(cur.into_owned())
     }
@@ -332,6 +337,7 @@ pub(crate) fn resize_with_backend(
     if h == 0 || w == 0 {
         return Err(Error::Image(format!("resize target {h}x{w} is empty")));
     }
+    crate::limits::check_alloc("resize target", &[h, w])?;
     match backend {
         Backend::Pil => {
             if img.channels != 1 && img.channels != 3 {
@@ -361,6 +367,20 @@ pub(crate) fn normalize_luts(
     mean: &[f64],
     std: &[f64],
 ) -> Result<Vec<[f32; 256]>> {
+    if do_normalize {
+        for (name, v) in [("image_mean", mean), ("image_std", std)] {
+            if v.is_empty() {
+                return Err(Error::Config(format!("{name} is empty")));
+            }
+            if v.len() != 1 && v.len() != mean.len().max(std.len()) {
+                return Err(Error::Config(format!(
+                    "image_mean and image_std have different lengths ({} and {})",
+                    mean.len(),
+                    std.len()
+                )));
+            }
+        }
+    }
     let n_mean = mean.len().max(std.len());
     if !do_normalize || n_mean == 1 || n_mean == c {
         let norm = Normalize { do_rescale, rescale_factor, do_normalize, mean: mean.to_vec(), std: std.to_vec() };

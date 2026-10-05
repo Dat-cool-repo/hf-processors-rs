@@ -121,71 +121,121 @@ impl From<&image::RgbImage> for ImageU8 {
 /// are identical to `PIL.Image.open`. Without it, the pure-Rust `jpeg-decoder` is used, which
 /// differs from Pillow by up to +-3 per pixel (the `image` crate's default zune-jpeg decoder
 /// differs by up to 29, so it is avoided for JPEG).
+///
+/// The size declared in the image header is checked against
+/// [`crate::limits::max_image_pixels`] before anything is decoded (see [`crate::limits`]).
 #[cfg(feature = "decode")]
 pub fn load_image(path: impl AsRef<std::path::Path>) -> Result<ImageU8> {
-    let bytes = std::fs::read(path.as_ref())?;
-    decode_image(&bytes).map_err(|e| Error::Image(format!("{}: {e}", path.as_ref().display())))
+    let path = path.as_ref();
+    let bytes = std::fs::read(path)?;
+    decode_image(&bytes).map_err(|e| match e {
+        Error::DecompressionBomb(m) => Error::DecompressionBomb(format!("{}: {m}", path.display())),
+        e => Error::Image(format!("{}: {e}", path.display())),
+    })
 }
 
 /// [`load_image`] for an in-memory encoded image.
 #[cfg(feature = "decode")]
 pub fn decode_image(bytes: &[u8]) -> Result<ImageU8> {
+    #[cfg(feature = "pil-jpeg")]
+    return decode_with(bytes, decode_jpeg_libjpeg);
+    #[cfg(not(feature = "pil-jpeg"))]
+    return decode_with(bytes, decode_jpeg_pure);
+}
+
+/// [`decode_image`] with the pure-Rust JPEG decoder, even when `pil-jpeg` is enabled (used by
+/// the fuzz targets to cover both decoders in one build).
+#[doc(hidden)]
+#[cfg(feature = "decode")]
+pub fn decode_image_pure_rust(bytes: &[u8]) -> Result<ImageU8> {
+    decode_with(bytes, decode_jpeg_pure)
+}
+
+#[cfg(feature = "decode")]
+type JpegDecoder = fn(&[u8]) -> Result<Option<ImageU8>>;
+
+#[cfg(feature = "decode")]
+fn decode_with(bytes: &[u8], jpeg: JpegDecoder) -> Result<ImageU8> {
     if bytes.starts_with(&[0xFF, 0xD8, 0xFF])
-        && let Some(img) = decode_jpeg(bytes)?
+        && let Some(img) = jpeg(bytes)?
     {
         return Ok(img);
     }
-    let img = image::load_from_memory(bytes).map_err(|e| Error::Image(e.to_string()))?;
+    decode_generic(bytes)
+}
+
+/// PNG (and JPEG pixel formats the JPEG decoders do not handle) through the `image` crate.
+#[cfg(feature = "decode")]
+fn decode_generic(bytes: &[u8]) -> Result<ImageU8> {
+    use image::ImageReader;
+    let img_err = |e: image::ImageError| Error::Image(e.to_string());
+    let reader = || ImageReader::new(std::io::Cursor::new(bytes)).with_guessed_format();
+    // Header only: reject bombs before the decoder allocates the pixel buffer.
+    let (w, h) = reader()?.into_dimensions().map_err(img_err)?;
+    crate::limits::check_image_size(w as u64, h as u64)?;
+    let mut r = reader()?;
+    let mut limits = image::Limits::no_limits();
+    // The `image` crate's own allocation cap (512 MiB by default) would reject images that
+    // Pillow accepts; size it for the largest accepted image at 16-bit RGBA instead.
+    limits.max_alloc =
+        crate::limits::max_image_pixels().map(|p| p.saturating_mul(16).max(512 << 20).saturating_add(64 << 20));
+    r.limits(limits);
+    let img = r.decode().map_err(img_err)?;
     Ok(ImageU8::from_dynamic(&img))
 }
 
 #[cfg(feature = "pil-jpeg")]
-fn decode_jpeg(bytes: &[u8]) -> Result<Option<ImageU8>> {
+fn decode_jpeg_libjpeg(bytes: &[u8]) -> Result<Option<ImageU8>> {
     use mozjpeg::decompress::Format;
-    let run = || -> std::io::Result<Option<ImageU8>> {
-        let d = mozjpeg::Decompress::new_mem(bytes)?;
+    let run = || -> Result<Option<ImageU8>> {
+        let io = |e: std::io::Error| Error::Image(format!("jpeg: {e}"));
+        // Reads the header only.
+        let d = mozjpeg::Decompress::new_mem(bytes).map_err(io)?;
         let (w, h) = (d.width(), d.height());
-        Ok(match d.image()? {
+        crate::limits::check_image_size(w as u64, h as u64)?;
+        Ok(match d.image().map_err(io)? {
             Format::RGB(mut s) => {
-                let px: Vec<[u8; 3]> = s.read_scanlines()?;
-                s.finish()?;
-                Some(ImageU8 { width: w, height: h, channels: 3, data: px.into_iter().flatten().collect() })
+                let px: Vec<[u8; 3]> = s.read_scanlines().map_err(io)?;
+                s.finish().map_err(io)?;
+                Some(ImageU8::new(w, h, 3, px.into_flattened())?)
             }
             Format::Gray(mut s) => {
-                let px: Vec<u8> = s.read_scanlines()?;
-                s.finish()?;
-                Some(ImageU8 { width: w, height: h, channels: 1, data: px })
+                let px: Vec<u8> = s.read_scanlines().map_err(io)?;
+                s.finish().map_err(io)?;
+                Some(ImageU8::new(w, h, 1, px)?)
             }
             Format::CMYK(mut s) => {
-                let px: Vec<[u8; 4]> = s.read_scanlines()?;
-                s.finish()?;
+                let px: Vec<[u8; 4]> = s.read_scanlines().map_err(io)?;
+                s.finish().map_err(io)?;
                 // Pillow opens CMYK JPEGs with rawmode "CMYK;I" (Adobe inverted storage).
                 let data = px.iter().flat_map(|p| cmyk_to_rgb([255 - p[0], 255 - p[1], 255 - p[2], 255 - p[3]]));
-                Some(ImageU8 { width: w, height: h, channels: 3, data: data.collect() })
+                Some(ImageU8::new(w, h, 3, data.collect())?)
             }
         })
     };
-    match std::panic::catch_unwind(run) {
-        Ok(Ok(v)) => Ok(v),
-        Ok(Err(e)) => Err(Error::Image(format!("jpeg: {e}"))),
-        Err(_) => Err(Error::Image("jpeg: libjpeg error".into())),
-    }
+    // libjpeg errors unwind out of the C code (mozjpeg's error manager).
+    std::panic::catch_unwind(run).unwrap_or_else(|_| Err(Error::Image("jpeg: libjpeg error".into())))
 }
 
-#[cfg(all(feature = "decode", not(feature = "pil-jpeg")))]
-fn decode_jpeg(bytes: &[u8]) -> Result<Option<ImageU8>> {
+#[cfg(feature = "decode")]
+fn decode_jpeg_pure(bytes: &[u8]) -> Result<Option<ImageU8>> {
     use jpeg_decoder::PixelFormat;
+    let jerr = |e: jpeg_decoder::Error| Error::Image(format!("jpeg: {e}"));
     let mut d = jpeg_decoder::Decoder::new(std::io::Cursor::new(bytes));
-    let data = d.decode().map_err(|e| Error::Image(format!("jpeg: {e}")))?;
-    let info = d.info().expect("decoded");
+    // Header only: reject bombs before the decoder allocates the pixel buffer.
+    d.read_info().map_err(jerr)?;
+    let info = d.info().ok_or_else(|| Error::Image("jpeg: no frame header".into()))?;
+    crate::limits::check_image_size(info.width as u64, info.height as u64)?;
+    let data = d.decode().map_err(jerr)?;
+    let info = d.info().ok_or_else(|| Error::Image("jpeg: no frame header".into()))?;
     let (w, h) = (info.width as usize, info.height as usize);
     Ok(match info.pixel_format {
-        PixelFormat::RGB24 => Some(ImageU8 { width: w, height: h, channels: 3, data }),
-        PixelFormat::L8 => Some(ImageU8 { width: w, height: h, channels: 1, data }),
+        PixelFormat::RGB24 => Some(ImageU8::new(w, h, 3, data)?),
+        PixelFormat::L8 => Some(ImageU8::new(w, h, 1, data)?),
         PixelFormat::CMYK32 => {
             // jpeg-decoder already undoes the Adobe inversion.
             let rgb = data.as_chunks::<4>().0.iter().flat_map(|&p| cmyk_to_rgb(p));
-            Some(ImageU8 { width: w, height: h, channels: 3, data: rgb.collect() })
+            Some(ImageU8::new(w, h, 3, rgb.collect())?)
         }
         _ => None,
     })

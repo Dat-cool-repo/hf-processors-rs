@@ -22,6 +22,10 @@ use ndarray::Array2;
 pub const DEFAULT_MIN_PIXELS: usize = 56 * 56;
 pub const DEFAULT_MAX_PIXELS: usize = 28 * 28 * 1280;
 
+const MAX_PATCH_SIZE: usize = 1024;
+const MAX_MERGE_SIZE: usize = 64;
+const MAX_TEMPORAL: usize = 64;
+
 /// `Qwen2VLImageProcessor` / `Qwen2VLImageProcessorPil`.
 #[derive(Clone, Debug)]
 pub struct Qwen2VLImageProcessor {
@@ -67,24 +71,36 @@ pub fn smart_resize(
     if height == 0 || width == 0 || factor == 0 {
         return Err(Error::Image(format!("smart_resize of an empty image {width}x{height}")));
     }
+    // Python integers are unbounded; keep every product exact in i128 by bounding the inputs.
+    const MAX_SIDE: usize = u32::MAX as usize;
+    if height > MAX_SIDE || width > MAX_SIDE || factor > MAX_SIDE {
+        return Err(Error::Image(format!("smart_resize input {width}x{height} (factor {factor}) is too large")));
+    }
     let (hf, wf, ff) = (height as f64, width as f64, factor as f64);
     let ratio = hf.max(wf) / hf.min(wf);
     if ratio > 200.0 {
         return Err(Error::Image(format!("absolute aspect ratio must be smaller than 200, got {ratio}")));
     }
-    let mut h_bar = py_round(hf / ff) * factor as i64;
-    let mut w_bar = py_round(wf / ff) * factor as i64;
-    let fi = factor as i64;
-    if (h_bar * w_bar) as u128 > max_pixels as u128 {
-        let beta = ((height * width) as f64 / max_pixels as f64).sqrt();
-        h_bar = fi.max((hf / beta / ff).floor() as i64 * fi);
-        w_bar = fi.max((wf / beta / ff).floor() as i64 * fi);
-    } else if ((h_bar * w_bar) as u128) < min_pixels as u128 {
-        let beta = (min_pixels as f64 / (height * width) as f64).sqrt();
-        h_bar = (hf * beta / ff).ceil() as i64 * fi;
-        w_bar = (wf * beta / ff).ceil() as i64 * fi;
+    let fi = factor as i128;
+    let mut h_bar = py_round(hf / ff) as i128 * fi;
+    let mut w_bar = py_round(wf / ff) as i128 * fi;
+    // (height * width) / max_pixels is exact-int true division in Python; height * width
+    // < 2^64 converts to f64 with a single rounding.
+    let area = (height as u128 * width as u128) as f64;
+    if h_bar * w_bar > max_pixels as i128 {
+        let beta = (area / max_pixels as f64).sqrt();
+        // Float -> int casts saturate; the results are range-checked below.
+        h_bar = fi.max(((hf / beta / ff).floor() as i128).saturating_mul(fi));
+        w_bar = fi.max(((wf / beta / ff).floor() as i128).saturating_mul(fi));
+    } else if h_bar * w_bar < min_pixels as i128 {
+        let beta = (min_pixels as f64 / area).sqrt();
+        h_bar = ((hf * beta / ff).ceil() as i128).saturating_mul(fi);
+        w_bar = ((wf * beta / ff).ceil() as i128).saturating_mul(fi);
     }
-    Ok((h_bar as usize, w_bar as usize))
+    match (usize::try_from(h_bar), usize::try_from(w_bar)) {
+        (Ok(h), Ok(w)) => Ok((h, w)),
+        _ => Err(Error::Image(format!("smart_resize output {w_bar}x{h_bar} is too large"))),
+    }
 }
 
 impl Qwen2VLImageProcessor {
@@ -130,6 +146,15 @@ impl Qwen2VLImageProcessor {
         };
         if p.patch_size == 0 || p.merge_size == 0 || p.temporal_patch_size == 0 {
             return Err(Error::Config("patch_size, merge_size and temporal_patch_size must be positive".into()));
+        }
+        // Far above any released checkpoint (14 or 16, 2, 2), and small enough that
+        // `patch_dim` and `factor` cannot overflow, even with a 32-bit usize.
+        if p.patch_size > MAX_PATCH_SIZE || p.merge_size > MAX_MERGE_SIZE || p.temporal_patch_size > MAX_TEMPORAL {
+            return Err(Error::Config(format!(
+                "patch_size {} / merge_size {} / temporal_patch_size {} out of range (max {MAX_PATCH_SIZE} / \
+                 {MAX_MERGE_SIZE} / {MAX_TEMPORAL})",
+                p.patch_size, p.merge_size, p.temporal_patch_size
+            )));
         }
         Ok(p)
     }
@@ -199,6 +224,8 @@ impl Qwen2VLImageProcessor {
             &self.image_std,
         )?;
         let (gh, gw) = self.grid(&cur)?;
+        // The frame is repeated temporal_patch_size times.
+        crate::limits::check_alloc("Qwen2-VL pixel_values", &[cur.height, cur.width, self.temporal_patch_size])?;
         let dim = self.patch_dim(cur.channels);
         let mut out = vec![0f32; gh * gw * dim];
         self.patchify_into(&cur, &luts, &mut out);

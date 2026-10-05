@@ -192,14 +192,23 @@ pub fn mel_filter_bank_slaney(
 }
 
 /// Round `n` up to a multiple of `m` (transformers' `pad_to_multiple_of`).
-fn round_up(n: usize, m: Option<usize>) -> usize {
+fn round_up(n: usize, m: Option<usize>) -> Result<usize> {
     match m {
-        Some(m) if m > 0 && !n.is_multiple_of(m) => (n / m + 1) * m,
-        _ => n,
+        Some(m) if m > 0 && !n.is_multiple_of(m) => (n / m + 1)
+            .checked_mul(m)
+            .ok_or_else(|| Error::Audio(format!("length {n} rounded up to a multiple of {m} overflows"))),
+        _ => Ok(n),
     }
 }
 
+const MAX_FEATURE_SIZE: usize = 1024;
+const MAX_N_FFT: usize = 16384;
+/// About 4.6 hours at 16 kHz.
+const MAX_N_SAMPLES: usize = 1 << 28;
+
 impl WhisperFeatureExtractor {
+    /// Build an extractor; fails on parameters no real checkpoint uses (zero or absurd sizes)
+    /// instead of panicking or allocating gigabytes.
     pub fn new(
         feature_size: usize,
         sampling_rate: u32,
@@ -207,14 +216,28 @@ impl WhisperFeatureExtractor {
         chunk_length: usize,
         n_fft: usize,
         padding_value: f64,
-    ) -> Self {
-        let n_samples = chunk_length * sampling_rate as usize;
+    ) -> Result<Self> {
+        // Released Whisper / Whisper-like checkpoints use 80 or 128 mels, n_fft 400, hop 160,
+        // 16 kHz and 30 s chunks; the bounds keep the filterbank below 70 MB.
+        if !(1..=MAX_FEATURE_SIZE).contains(&feature_size) {
+            return Err(Error::Config(format!("feature_size {feature_size} out of range 1..={MAX_FEATURE_SIZE}")));
+        }
+        if !(1..=MAX_N_FFT).contains(&n_fft) {
+            return Err(Error::Config(format!("n_fft {n_fft} out of range 1..={MAX_N_FFT}")));
+        }
+        if hop_length == 0 || sampling_rate == 0 {
+            return Err(Error::Config("hop_length and sampling_rate must be positive".into()));
+        }
+        let n_samples = chunk_length
+            .checked_mul(sampling_rate as usize)
+            .filter(|&n| n <= MAX_N_SAMPLES)
+            .ok_or_else(|| Error::Config(format!("chunk_length {chunk_length} s at {sampling_rate} Hz is too long")))?;
         let mel_filters = mel_filter_bank_slaney(1 + n_fft / 2, feature_size, 0.0, 8000.0, sampling_rate);
         // np.hanning(n_fft + 1)[:-1] == torch.hann_window(n_fft, periodic=True)
         let window =
             (0..n_fft).map(|n| 0.5 - 0.5 * (2.0 * std::f64::consts::PI * n as f64 / n_fft as f64).cos()).collect();
         let fft = FftPlanner::new().plan_fft_forward(n_fft);
-        WhisperFeatureExtractor {
+        Ok(WhisperFeatureExtractor {
             feature_size,
             sampling_rate,
             hop_length,
@@ -228,7 +251,7 @@ impl WhisperFeatureExtractor {
             mel_filters,
             window,
             fft,
-        }
+        })
     }
 
     pub fn from_config(cfg: &PreprocessorConfig) -> Result<Self> {
@@ -239,7 +262,7 @@ impl WhisperFeatureExtractor {
             cfg.chunk_length.unwrap_or(30),
             cfg.n_fft.unwrap_or(400),
             cfg.padding_value.unwrap_or(0.0),
-        );
+        )?;
         fe.dither = cfg.dither.unwrap_or(0.0);
         fe.return_attention_mask = cfg.return_attention_mask.unwrap_or(false);
         Ok(fe)
@@ -286,14 +309,14 @@ impl WhisperFeatureExtractor {
         let make_mask = pad_arg.unwrap_or(self.return_attention_mask);
 
         // Truncation (SequenceFeatureExtractor._truncate).
-        let trunc_len = round_up(max_length, opts.pad_to_multiple_of);
+        let trunc_len = round_up(max_length, opts.pad_to_multiple_of)?;
         let lens: Vec<usize> =
             clips.iter().map(|c| if opts.truncation { c.len().min(trunc_len) } else { c.len() }).collect();
         // Padding target (SequenceFeatureExtractor._pad).
         let target = match opts.padding {
             Padding::DoNotPad => None,
-            Padding::MaxLength => Some(round_up(max_length, opts.pad_to_multiple_of)),
-            Padding::Longest => Some(round_up(*lens.iter().max().unwrap(), opts.pad_to_multiple_of)),
+            Padding::MaxLength => Some(round_up(max_length, opts.pad_to_multiple_of)?),
+            Padding::Longest => Some(round_up(*lens.iter().max().unwrap_or(&0), opts.pad_to_multiple_of)?),
         };
         let padded_lens: Vec<usize> = lens.iter().map(|&l| target.map_or(l, |t| t.max(l))).collect();
         let total = padded_lens[0];
@@ -309,6 +332,12 @@ impl WhisperFeatureExtractor {
             )));
         }
         let n = clips.len();
+        // Bound the padded waveforms and the features (absurd max_length / pad_to_multiple_of /
+        // config values) by the same limit as images; see `crate::limits`.
+        if total > lens.iter().copied().max().unwrap_or(0) {
+            crate::limits::check_alloc("Whisper padded waveforms", &[n, total])?;
+        }
+        crate::limits::check_alloc("Whisper input_features", &[n, self.feature_size, total / self.hop_length + 1])?;
         let pad_value = self.padding_value as f32;
         let mut waves: Vec<Vec<f32>> = Vec::with_capacity(n);
         for (clip, &len) in clips.iter().zip(&lens) {
@@ -340,7 +369,9 @@ impl WhisperFeatureExtractor {
             }
         }
 
-        let frames = total / self.hop_length;
+        // STFT frames (center=True, reflect-padded by n_fft / 2) minus the last one, like
+        // transformers: `(total - 1) / hop` for an odd n_fft, `total / hop` for an even one.
+        let frames = (total + 2 * (self.n_fft / 2) - self.n_fft) / self.hop_length;
         let mut feats = Array3::<f32>::zeros((n, self.feature_size, frames));
         for (i, w) in waves.iter().enumerate() {
             let wave: Vec<f64> = w.iter().map(|&v| v as f64).collect();
@@ -352,7 +383,7 @@ impl WhisperFeatureExtractor {
 
         let attention_mask = if opts.return_attention_mask == Some(true) {
             // mask[:, ::hop_length], minus the last entry when total % hop_length != 0.
-            Some(Array2::from_shape_fn((n, frames), |(i, f)| (f * self.hop_length < lens[i]) as i32))
+            Some(Array2::from_shape_fn((n, total / self.hop_length), |(i, f)| (f * self.hop_length < lens[i]) as i32))
         } else if make_mask {
             Some(Array2::from_shape_fn((n, total), |(i, s)| (s < lens[i]) as i32))
         } else {
@@ -431,7 +462,7 @@ mod tests {
 
     #[test]
     fn shapes() {
-        let fe = WhisperFeatureExtractor::new(80, 16000, 160, 30, 400, 0.0);
+        let fe = WhisperFeatureExtractor::new(80, 16000, 160, 30, 400, 0.0).unwrap();
         let x: Vec<f32> = (0..16000).map(|i| (i as f32 * 0.05).sin() * 0.3).collect();
         let f = fe.extract(&x).unwrap();
         assert_eq!(f.dim(), (80, 3000));
@@ -439,7 +470,7 @@ mod tests {
 
     #[test]
     fn padding_modes() {
-        let fe = WhisperFeatureExtractor::new(80, 16000, 160, 30, 400, 0.0);
+        let fe = WhisperFeatureExtractor::new(80, 16000, 160, 30, 400, 0.0).unwrap();
         let a: Vec<f32> = (0..1000).map(|i| (i as f32 * 0.05).sin()).collect();
         let b: Vec<f32> = (0..1650).map(|i| (i as f32 * 0.03).sin()).collect();
         let opts =

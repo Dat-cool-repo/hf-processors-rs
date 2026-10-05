@@ -146,10 +146,18 @@ unsafe fn convolve_madd_avx2(src: &[u8], row_len: usize, f: &FixedFilter, w16: &
 #[cfg(target_arch = "x86_64")]
 fn use_avx2() -> bool {
     static AVX2: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
-    *AVX2.get_or_init(|| {
-        std::arch::is_x86_feature_detected!("avx2")
-            && std::env::var("HF_PROCESSORS_FORCE_SCALAR").map_or(true, |v| v.is_empty() || v == "0")
-    })
+    !FORCE_SCALAR.load(std::sync::atomic::Ordering::Relaxed)
+        && *AVX2.get_or_init(|| {
+            std::arch::is_x86_feature_detected!("avx2")
+                && std::env::var("HF_PROCESSORS_FORCE_SCALAR").map_or(true, |v| v.is_empty() || v == "0")
+        })
+}
+
+static FORCE_SCALAR: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+/// Force the portable kernels (process-wide), for differential testing against the SIMD ones.
+pub fn set_force_scalar(force: bool) {
+    FORCE_SCALAR.store(force, std::sync::atomic::Ordering::Relaxed);
 }
 
 /// Resample along the row axis into `out` (`f.bounds.len() * row_len` bytes): `src` holds rows

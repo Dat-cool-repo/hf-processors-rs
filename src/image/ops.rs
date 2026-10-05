@@ -171,8 +171,10 @@ impl Normalize {
         (0..channels)
             .map(|c| {
                 let mut lut = [0f32; 256];
-                let mean = if self.mean.len() == 1 { self.mean[0] } else { self.mean[c] };
-                let std = if self.std.len() == 1 { self.std[0] } else { self.std[c] };
+                // One value per channel, or one value for all (the processors validate the
+                // lengths; missing values only occur when `do_normalize` is off).
+                let pick = |v: &[f64]| if v.len() == 1 { v[0] } else { v.get(c).copied().unwrap_or(0.0) };
+                let (mean, std) = (pick(&self.mean), pick(&self.std));
                 for (v, out) in lut.iter_mut().enumerate() {
                     *out = match sem {
                         FloatSemantics::Numpy => {

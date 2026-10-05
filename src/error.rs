@@ -16,6 +16,10 @@ pub enum Error {
     Json(#[from] serde_json::Error),
     #[error("hub error: {0}")]
     Hub(String),
+    /// The image (from its header) or an intermediate buffer exceeds twice
+    /// [`crate::limits::max_image_pixels`], like Pillow's `DecompressionBombError`.
+    #[error("decompression bomb: {0}")]
+    DecompressionBomb(String),
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
