@@ -79,6 +79,12 @@ jobs:
           imgs="golden/images/coffee.png golden/images/rgba_257x129.png golden/images/palette_200x120.png golden/images/gray16_160x120.png golden/images/photo_500x375.jpg golden/images/cmyk_200x150.jpg"
           cargo run --release -p hf-processors-wasm --example native_reference -- "$RUNNER_TEMP/ref" golden $imgs
           node bindings/wasm/tests/node_check.mjs bindings/wasm/pkg-node "$RUNNER_TEMP/ref" golden $imgs
+      - name: Module sizes (wasm-pack output and the wasm-release profile)
+        run: |
+          cargo build --profile wasm-release --target wasm32-unknown-unknown -p hf-processors-wasm
+          for f in bindings/wasm/pkg-node/hf_processors_wasm_bg.wasm target/wasm32-unknown-unknown/wasm-release/hf_processors_wasm.wasm; do
+            echo "$f: $(stat -c %s "$f") bytes, $(gzip -9c "$f" | wc -c) bytes gzipped"
+          done
 
   fuzz:
     # Replays the committed regression inputs and fuzzes each target briefly (the long runs are

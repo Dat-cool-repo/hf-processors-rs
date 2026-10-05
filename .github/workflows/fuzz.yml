@@ -1,0 +1,58 @@
+name: Fuzz (long)
+
+# Manual long fuzzing run: every target in parallel for `seconds` (default 20 minutes), with
+# libjpeg-turbo's C code instrumented (clang + AddressSanitizer + libFuzzer coverage). The
+# corpora and any crash artifacts are uploaded. CI's `fuzz` job only replays the regressions
+# and fuzzes each target for 30 s.
+
+on:
+  workflow_dispatch:
+    inputs:
+      seconds:
+        description: Seconds per target
+        default: "1200"
+
+jobs:
+  fuzz:
+    name: fuzz ${{ matrix.target }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [config, decode_pure, decode_libjpeg, resize, smart_resize, whisper]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@nightly
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: fuzz
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-fuzz
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Seed corpora
+        run: |
+          python -m pip install pillow numpy
+          python fuzz/make_seeds.py "$RUNNER_TEMP/fuzz"
+      - name: Fuzz
+        env:
+          FUZZ_DIR: ${{ runner.temp }}/fuzz
+        run: |
+          export CLANG=$(command -v clang)
+          $CLANG --version | head -1
+          bash fuzz/run.sh ${{ matrix.target }} ${{ inputs.seconds || '1200' }} -jobs=2 -workers=2 || status=$?
+          for f in fuzz/fuzz-*.log; do grep -h -E "Done [0-9]+ runs|cov: .* exec/s" "$f" | tail -2; done
+          ls -la "$FUZZ_DIR/artifacts/${{ matrix.target }}"
+          echo "corpus: $(ls "$FUZZ_DIR/corpus/${{ matrix.target }}" | wc -l) inputs"
+          exit ${status:-0}
+      - if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: fuzz-${{ matrix.target }}
+          path: |
+            ${{ runner.temp }}/fuzz/artifacts/${{ matrix.target }}
+            ${{ runner.temp }}/fuzz/corpus/${{ matrix.target }}
+            fuzz/fuzz-*.log
