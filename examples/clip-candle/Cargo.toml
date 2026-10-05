@@ -1,0 +1,19 @@
+[package]
+name = "clip-candle"
+version = "0.0.0"
+edition = "2024"
+publish = false
+description = "End-to-end example: hf-processors preprocessing + CLIP ViT-B/32 image embeddings with candle (CPU)."
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+hf-processors = { path = "../..", features = ["pil-jpeg", "rayon", "candle"] }
+candle-core = "0.9"
+candle-nn = "0.9"
+candle-transformers = "0.9"
+ndarray = "0.16"
+ndarray-npy = { version = "0.9", default-features = false }
+rayon = "1"
+
+# Its own workspace: candle-transformers is a heavy dependency the main crate does not need.
+[workspace]
