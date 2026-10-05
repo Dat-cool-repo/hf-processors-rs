@@ -184,7 +184,7 @@ fn decode_jpeg(bytes: &[u8]) -> Result<Option<ImageU8>> {
         PixelFormat::L8 => Some(ImageU8 { width: w, height: h, channels: 1, data }),
         PixelFormat::CMYK32 => {
             // jpeg-decoder already undoes the Adobe inversion.
-            let rgb = data.chunks_exact(4).flat_map(|p| cmyk_to_rgb([p[0], p[1], p[2], p[3]]));
+            let rgb = data.as_chunks::<4>().0.iter().flat_map(|&p| cmyk_to_rgb(p));
             Some(ImageU8 { width: w, height: h, channels: 3, data: rgb.collect() })
         }
         _ => None,

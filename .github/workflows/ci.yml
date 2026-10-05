@@ -44,6 +44,8 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: cargo fmt --all --check
       - run: cargo clippy --workspace --all-targets --features pil-jpeg,rayon -- -D warnings
+      - name: clippy (default features, pure-Rust JPEG path)
+        run: cargo clippy --workspace --all-targets -- -D warnings
 
   wasm:
     runs-on: ubuntu-latest
