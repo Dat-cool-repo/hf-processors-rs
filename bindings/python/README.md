@@ -8,6 +8,10 @@ and decoding plus preprocessing run in Rust with the GIL released, in parallel o
 **Status: alpha.** See the [project README](https://github.com/Dat-cool-repo/hf-processors-rs)
 for the exactness tables, tests and benchmarks.
 
+```bash
+pip install hf-processors-rs
+```
+
 ```python
 import hf_processors_rs as hpr
 

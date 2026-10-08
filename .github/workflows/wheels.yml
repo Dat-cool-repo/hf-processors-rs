@@ -1,7 +1,8 @@
 name: Wheels
 
 # Builds abi3 (CPython >= 3.9) wheels for the `hf_processors_rs` Python package and tests each
-# one against the golden fixtures. Artifacts only: nothing is published.
+# one against the golden fixtures. On a `v*` tag, once every build and test job has passed, the
+# `publish` job uploads the wheels and the sdist to PyPI with trusted publishing (OIDC, no token).
 
 on:
   push:
@@ -96,3 +97,30 @@ jobs:
       - name: Golden-fixture parity
         working-directory: bindings/python
         run: python -m pytest -q tests
+
+  publish:
+    name: Publish to PyPI
+    needs: [build, sdist, test]
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/hf-processors-rs
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          merge-multiple: true
+          path: dist
+      - name: Tag matches the package version
+        run: |
+          v="${GITHUB_REF_NAME#v}"
+          ls -la dist
+          for f in dist/*; do
+            case "$(basename "$f")" in
+              *-"$v"-*|*-"$v".tar.gz) ;;
+              *) echo "::error::$f does not match tag version $v"; exit 1 ;;
+            esac
+          done
+      - uses: pypa/gh-action-pypi-publish@release/v1

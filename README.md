@@ -63,9 +63,16 @@ and `pil` (`XImageProcessorPil`, the v4 "slow" class). Config handling follows t
 
 ## Install
 
-Nothing is published to crates.io or PyPI yet.
+**Python:**
 
-**Rust** (git dependency):
+```bash
+pip install hf-processors-rs       # import name: hf_processors_rs
+```
+
+Prebuilt abi3 wheels (CPython 3.9+) cover Linux x86_64 / aarch64, macOS x86_64 / arm64 and
+Windows x64.
+
+**Rust** (not on crates.io yet; git dependency):
 
 ```toml
 [dependencies]
@@ -75,8 +82,8 @@ hf-processors = { git = "https://github.com/Dat-cool-repo/hf-processors-rs", fea
 The library is imported as `hf_processors`. It needs a recent stable Rust toolchain (edition
 2024).
 
-**Python** (build from source; needs a Rust toolchain, a C compiler for the bundled
-libjpeg-turbo, and Python 3.9 or newer):
+**Python from source** (needs a Rust toolchain, a C compiler for the bundled libjpeg-turbo, and
+Python 3.9 or newer):
 
 ```bash
 git clone https://github.com/Dat-cool-repo/hf-processors-rs
@@ -432,9 +439,10 @@ audio.
 Windows wheel from the Wheels workflow was also installed into a fresh Python 3.10 venv on a
 Windows 11 machine: 433 tests pass (8 skipped: the live transformers comparison).
 
-**Platforms:** Linux x86_64 (CI and local, WSL2), Windows x64 (CI and local), macOS x86_64 and
-arm64 (CI only; manual testing on Apple Silicon is pending), Linux aarch64 (wheel built in CI,
-not tested).
+**Platforms:** Linux x86_64 (CI and local, WSL2), Windows x64 (CI and local), macOS arm64 (CI
+and by hand on Apple Silicon, M5 Pro: all Rust golden tests bit-exact, 433 Python tests pass with
+both a local build and the CI wheel, and WASM in Node matches native), macOS x86_64 (CI), Linux
+aarch64 (wheel built in CI, not tested).
 
 ## Development
 
